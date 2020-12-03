@@ -1,11 +1,6 @@
 
 export default {
   /*
-  ** Nuxt rendering mode
-  ** See https://nuxtjs.org/api/configuration-mode
-  */
-  mode: 'universal',
-  /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
   */
@@ -41,6 +36,9 @@ export default {
   ** See https://nuxtjs.org/api/configuration-components
   */
   components: true,
+  router: {
+    middleware: ['routerGaurd']
+  },
   /*
   ** Nuxt.js dev-modules
   */
