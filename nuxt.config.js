@@ -49,12 +49,31 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
     '@nuxtjs/pwa',
-    // Doc: https://github.com/nuxt/content
+    'nuxt-i18n',
     '@nuxt/content',
   ],
+
+  i18n: {
+    lazy:true,
+    locales: [
+      {
+        name: 'English',
+        code: 'en',
+        iso: 'en-US',
+        file: 'en.js'
+      },
+      {
+        name: 'Arabic',
+        code: 'ar',
+        iso: 'ar-EG',
+        file: 'ar.js'
+      },
+    ],
+    langDir: 'lang/',
+    defaultLocale: 'en',
+  },
   /*
   ** Content module configuration
   ** See https://content.nuxtjs.org/configuration

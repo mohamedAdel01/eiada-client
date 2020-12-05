@@ -1,17 +1,25 @@
 <template>
   <div class="auth-layout d-flex align-items-center">
-    <section
-      class="auth-sec bg-white rounded-lg mx-auto px-3 py-5 col-md-9 col-12 shadow-sm"
-    >
-      <div
-        class="logo bg-white rounded-circle d-flex align-items-center justify-content-center"
-      >
+    <section class="auth-sec bg-white rounded-lg mx-auto px-3 py-5 col-md-9 col-12 shadow-sm">
+      <div class="logo bg-white rounded-circle d-flex align-items-center justify-content-center">
         <img src="@/static/images/logo.svg" alt="" />
       </div>
       <Nuxt />
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  head() {
+    return {
+      htmlAttrs: {
+        lang: this.$i18n.locale,
+      },
+    };
+  },
+};
+</script>
 
 <style lang="scss">
 .auth-layout {
