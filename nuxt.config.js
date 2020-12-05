@@ -53,7 +53,16 @@ export default {
     '@nuxtjs/pwa',
     'nuxt-i18n',
     '@nuxt/content',
+    '@nuxtjs/apollo',
   ],
+
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'https://eiada29.herokuapp.com/graphql',
+      }
+    }
+  },
 
   i18n: {
     lazy:true,

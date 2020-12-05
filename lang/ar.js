@@ -1,3 +1,3 @@
 export default {
-    "hello": "اهلا وسهلاً"
+    "Fullname": "الاسم بالكامل"
   }

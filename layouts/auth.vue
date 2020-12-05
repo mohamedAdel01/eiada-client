@@ -1,10 +1,12 @@
 <template>
   <div class="auth-layout d-flex align-items-center">
-    <section class="auth-sec bg-white rounded-lg mx-auto px-3 py-5 col-md-9 col-12 shadow-sm">
+    <section class="auth-sec bg-white rounded-lg mx-auto px-3 py-5 col-lg-10 col-12 shadow-sm">
       <div class="logo bg-white rounded-circle d-flex align-items-center justify-content-center">
         <img src="@/static/images/logo.svg" alt="" />
       </div>
-      <Nuxt />
+      <div class="pt-4">
+        <Nuxt />
+      </div>
     </section>
   </div>
 </template>
