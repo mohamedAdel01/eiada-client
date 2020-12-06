@@ -40,7 +40,7 @@ import gql from "graphql-tag";
 export default {
   methods: {
     test() {
-      console.log('iiiii')
+      console.log(this.$apollo.mutate)
       this.$store.dispatch('auth/test', 'mohamed adel')
       // this.$apollo.mutate({
       //   mutation: gql`
