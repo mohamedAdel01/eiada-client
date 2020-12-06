@@ -16,7 +16,8 @@
     "bootstrap-vue": "^2.15.0",
     "graphql-tag": "^2.11.0",
     "nuxt": "^2.14.0",
-    "nuxt-i18n": "^6.15.4"
+    "nuxt-i18n": "^6.15.4",
+    "vuelidate": "^0.7.6"
   },
   "devDependencies": {
     "fibers": "^5.0.0",
