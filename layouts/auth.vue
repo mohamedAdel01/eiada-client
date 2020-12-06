@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-layout d-flex align-items-center">
+  <div class="auth-layout mt-5 pt-5 ">
     <section class="auth-sec bg-white rounded-lg mx-auto px-3 py-5 col-lg-10 col-12 shadow-sm">
       <div class="logo bg-white rounded-circle d-flex align-items-center justify-content-center">
         <img src="@/static/images/logo.svg" alt="" />
@@ -25,7 +25,6 @@ export default {
 
 <style lang="scss">
 .auth-layout {
-  height: 100vh;
   .auth-sec {
     position: relative;
     .logo {
