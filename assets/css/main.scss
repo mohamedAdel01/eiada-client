@@ -3,10 +3,10 @@ body {
 }
 
 .page-enter-active {
-  animation: opacity 0.4s;
+  animation: opacity 0.5s;
 }
 .page-leave-active {
-  animation: opacity 0.4s reverse;
+  animation: opacity 0.5s reverse;
 }
 @keyframes opacity {
   0% {

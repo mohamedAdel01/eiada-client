@@ -1,7 +1,5 @@
 <template>
   <div class="auth-layout mt-5 pt-5 ">
-    <nuxt-link to="/auth/register">register</nuxt-link>
-    <nuxt-link to="/auth/login">login</nuxt-link>
     <section class="auth-sec bg-white rounded-lg mx-auto px-3 py-5 col-lg-10 col-12 shadow-sm">
       <div class="logo bg-white rounded-circle d-flex align-items-center justify-content-center">
         <img src="@/static/images/logo.svg" alt="" />
