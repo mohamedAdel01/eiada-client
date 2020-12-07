@@ -31,7 +31,9 @@
       ></b-form-input>
     </b-form-group>
 
-    <button class="btn btn-info btn-block py-2" @click="test">{{ $t("Submit") }}</button>
+    <button class="btn btn-info btn-block py-2" @click="register">
+      {{ $t("Submit") }}
+    </button>
   </b-form>
 </template>
 
@@ -39,27 +41,9 @@
 import gql from "graphql-tag";
 export default {
   methods: {
-    test() {
-      console.log(this.$apollo.mutate)
-      this.$store.dispatch('auth/test', 'mohamed adel')
-      // this.$apollo.mutate({
-      //   mutation: gql`
-      //     mutation {
-      //       Register(fullname: "radwa adel", email: "adelradwa44@gmail.com", phone: "+201116515446", password: "123456") {
-      //         user {
-      //           id
-      //           email
-      //           token
-      //         }
-      //         errors {
-      //           key
-      //           message
-      //         }
-      //         message
-      //       }
-      //     }
-      //   `,
-      // });
+    register() {
+      console.log(this.$apollo.mutate);
+      this.$store.dispatch("auth/test", "mohamed adel");
     },
   },
 };

@@ -2,6 +2,21 @@ body {
   background: #fbfbfb;
 }
 
+.page-enter-active {
+  animation: opacity 0.4s;
+}
+.page-leave-active {
+  animation: opacity 0.4s reverse;
+}
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 form {
   .form-group {
     position: relative;
@@ -21,14 +36,14 @@ form {
       opacity: 0;
     }
     &:focus-within {
-        &::after {
-            opacity: 1;
-        }
+      &::after {
+        opacity: 1;
+      }
     }
 
     input {
-        box-shadow: none !important;
-        outline: none !important;
+      box-shadow: none !important;
+      outline: none !important;
     }
   }
 }
