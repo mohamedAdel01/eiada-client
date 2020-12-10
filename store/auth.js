@@ -7,7 +7,7 @@ export const state = () => ({
 export const mutations = {
   save_data(state, payload) {
     state.authData = payload;
-    localStorage.setItem('authData', JSON.stringify(payload))
+    localStorage.setItem("authData", JSON.stringify(payload));
   }
 };
 
@@ -16,14 +16,20 @@ export const actions = {
     let apollo = this.app.apolloProvider.defaultClient;
 
     switch (service) {
-      case "REGISER":
-        let response = await authServices.REGISTER(apollo, payload);
-        if (response.register.errors.length) {
-          return response.register;
+      case "REGISTER":
+        let response = (await authServices.REGISTER(apollo, payload)).data
+          .Register;
+        if (response.errors.length) {
+          return {
+            error: true,
+            response
+          };
         }
-        console.log("response", response);
-        commit("save_data", response.register.user);
-        return response.register.message;
+        commit("save_data", response.user);
+        return {
+          error: false,
+          response
+        };
         break;
 
       default:

@@ -1,15 +1,15 @@
 import gql from "graphql-tag";
 
 export default {
-  REGISTER(apollo, payload) {
-    return apollo.mutate({
+  async REGISTER(apollo, payload) {
+    return await apollo.mutate({
       mutation: gql`
               mutation {
                 Register(
-                  fullname: ${payload.fullname}
-                  email: ${payload.email}
-                  phone: ${payload.phone}
-                  password: ${payload.password}
+                  fullname: "${payload.fullname}",
+                  email: "${payload.email}",
+                  phone: "${payload.phone}",
+                  password: "${payload.password}"
                 ) {
                   user {
                     id

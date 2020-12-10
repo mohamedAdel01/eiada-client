@@ -11,12 +11,19 @@
         $t("This field is required")
       }}</b-form-invalid-feedback>
     </b-form-group>
+
     <b-form-group :data-label="$t('Email')">
       <b-form-input
         v-model="$v.form.email.$model"
         class="py-4 bg-light border rounded"
         :placeholder="$t('Enter', { input: $t('Email') })"
-        :state="$v.form.email.$dirty ? !$v.form.email.$error : null"
+        :state="
+          responseErrors && responseErrors.key == 'email'
+            ? false
+            : $v.form.email.$dirty
+            ? !$v.form.email.$error
+            : null
+        "
       ></b-form-input>
       <b-form-invalid-feedback v-show="!$v.form.email.required">{{
         $t("This field is required")
@@ -24,18 +31,36 @@
       <b-form-invalid-feedback v-show="!$v.form.email.email">{{
         $t("Please add a valid email")
       }}</b-form-invalid-feedback>
+      <b-form-invalid-feedback
+        class="d-block"
+        v-if="responseErrors && responseErrors.key == 'email'"
+        >{{ $t(responseErrors.message) }}</b-form-invalid-feedback
+      >
     </b-form-group>
+
     <b-form-group :data-label="$t('Phone')">
       <b-form-input
         v-model="$v.form.phone.$model"
         class="py-4 bg-light border rounded"
         :placeholder="$t('Enter', { input: $t('Phone') })"
-        :state="$v.form.phone.$dirty ? !$v.form.phone.$error : null"
+        :state="
+          responseErrors && responseErrors.key == 'phone'
+            ? false
+            : $v.form.phone.$dirty
+            ? !$v.form.phone.$error
+            : null
+        "
       ></b-form-input>
       <b-form-invalid-feedback v-show="!$v.form.phone.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
+      <b-form-invalid-feedback
+        class="d-block"
+        v-if="responseErrors && responseErrors.key == 'phone'"
+        >{{ $t(responseErrors.message) }}</b-form-invalid-feedback
+      >
     </b-form-group>
+
     <b-form-group class="position-relative" :data-label="$t('Password')">
       <div class="eye" v-show="form.password">
         <img
@@ -68,6 +93,7 @@
         }}</b-form-invalid-feedback
       >
     </b-form-group>
+
     <b-form-group :data-label="$t('Confirm Password')">
       <b-form-input
         type="password"
@@ -108,6 +134,7 @@ export default {
         confirmPassword: "",
       },
       showPassword: false,
+      responseErrors: null,
     };
   },
   methods: {
@@ -122,11 +149,13 @@ export default {
           service: "REGISTER",
           payload: this.form,
         })
-        .then(() => {
-          this.$emit('success')
-        })
-        .catch((error) => {
-          console.log("kkoooo", error);
+        .then(({ error, response }) => {
+          if (error) {
+            this.responseErrors = response.errors[0];
+            console.log(response.errors);
+            return;
+          }
+          this.$emit("success");
         });
     },
   },
