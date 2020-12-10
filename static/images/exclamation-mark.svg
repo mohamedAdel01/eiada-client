@@ -1,0 +1,55 @@
+<svg version="1.1" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286.054 286.054">
+<style>
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #E2574C;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #E2574C;
+  stroke-miterlimit: 10;
+  margin: 0 auto;
+  box-shadow: inset 0px 0px 0px #E2574C;
+  animation: fill 0.3s ease-in-out 1.2s forwards, scale 1.2s ease-in-out 1.2s both;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke .5s cubic-bezier(0.65, 0, 0.45, 1) 1.0s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+}
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 5px #E2574C;
+  }
+}
+</style>
+  	<circle class="checkmark__circle" cy="26" r="25" fill="none"/>
+	<path class="" style="fill:#E2574C;" d="M143.036,62.726c-10.244,0-17.995,5.346-17.995,13.981v79.201c0,8.644,7.75,13.972,17.995,13.972
+		c9.994,0,17.995-5.551,17.995-13.972V76.707C161.03,68.277,153.03,62.726,143.036,62.726z M143.036,187.723
+		c-9.842,0-17.852,8.01-17.852,17.86c0,9.833,8.01,17.843,17.852,17.843s17.843-8.01,17.843-17.843
+		C160.878,195.732,152.878,187.723,143.036,187.723z"/>
+
+</svg>

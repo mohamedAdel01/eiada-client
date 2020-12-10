@@ -122,8 +122,8 @@ export default {
           service: "REGISTER",
           payload: this.form,
         })
-        .then((res) => {
-          // this.$router.push("/auth/verify-email");
+        .then(() => {
+          this.$emit('success')
         })
         .catch((error) => {
           console.log("kkoooo", error);

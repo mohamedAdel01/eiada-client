@@ -29,7 +29,10 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [{ src: "~plugins/vuelidate", ssr: false }],
+  plugins: [
+    { src: "~plugins/vuelidate", ssr: false },
+    { src: "~plugins/inlineSVG", ssr: false }
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
