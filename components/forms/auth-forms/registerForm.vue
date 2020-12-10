@@ -5,7 +5,7 @@
         v-model="$v.form.fullname.$model"
         class="py-4 bg-light border rounded"
         :placeholder="$t('Enter', { input: $t('Fullname') })"
-        :state="$v.form.fullname.$model == null ? null : !$v.form.fullname.$error"
+        :state="!$v.form.fullname.$error"
       ></b-form-input>
       <b-form-invalid-feedback v-if="!$v.form.fullname.required">{{
         $t("This field is required")
@@ -16,7 +16,7 @@
         v-model="$v.form.email.$model"
         class="py-4 bg-light border rounded"
         :placeholder="$t('Enter', { input: $t('Email') })"
-        :state="$v.form.email.$model == null ? null : !$v.form.email.$error"
+        :state="!$v.form.email.$error"
       ></b-form-input>
       <b-form-invalid-feedback v-if="!$v.form.email.required">{{
         $t("This field is required")
@@ -30,18 +30,31 @@
         v-model="$v.form.phone.$model"
         class="py-4 bg-light border rounded"
         :placeholder="$t('Enter', { input: $t('Phone') })"
-        :state="$v.form.phone.$model == null ? null : !$v.form.phone.$error"
+        :state="!$v.form.phone.$error"
       ></b-form-input>
       <b-form-invalid-feedback v-if="!$v.form.phone.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
     </b-form-group>
-    <b-form-group :data-label="$t('Password')">
+    <b-form-group class="position-relative" :data-label="$t('Password')">
+      <div class="eye" v-show="form.password">
+        <img
+          v-show="!showPassword"
+          @click="showPassword = true"
+          src="@/static/images/hide-password.svg"
+        />
+        <img
+          v-show="showPassword"
+          @click="showPassword = false"
+          src="@/static/images/show-password.svg"
+        />
+      </div>
       <b-form-input
+        :type="showPassword ? 'text' : 'password'"
         v-model="$v.form.password.$model"
         class="py-4 bg-light border rounded"
         :placeholder="$t('Enter', { input: $t('Password') })"
-        :state="$v.form.password.$model == null ? null : !$v.form.password.$error"
+        :state="!$v.form.password.$error"
       ></b-form-input>
       <b-form-invalid-feedback v-if="!$v.form.password.required">{{
         $t("This field is required")
@@ -57,12 +70,11 @@
     </b-form-group>
     <b-form-group :data-label="$t('Confirm Password')">
       <b-form-input
+        type="password"
         v-model="$v.form.confirmPassword.$model"
         class="py-4 bg-light border rounded"
         :placeholder="$t('Enter', { input: $t('Confirm Password') })"
-        :state="
-          $v.form.confirmPassword.$model == null ? null : !$v.form.confirmPassword.$error
-        "
+        :state="!$v.form.confirmPassword.$error"
       ></b-form-input>
       <b-form-invalid-feedback v-if="!$v.form.confirmPassword.required">{{
         $t("This field is required")
@@ -93,13 +105,24 @@ export default {
         password: null,
         confirmPassword: null,
       },
+      showPassword: false,
     };
   },
   methods: {
     register() {
       this.$v.$touch();
       if (this.$v.$invalid) return false;
-      this.$store.dispatch("auth/test", this.form);
+      this.$store
+        .dispatch("auth/AUTH", {
+          service: "REGISTER",
+          payload: this.form,
+        })
+        .then((res) => {
+          // this.$router.push("/auth/verify-email");
+        })
+        .catch((error) => {
+          console.log('kkoooo',error);
+        });
     },
   },
   validations: {
@@ -135,3 +158,17 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.eye {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 10px;
+  right: -35px;
+  img {
+    cursor: pointer;
+    width: 100%;
+  }
+}
+</style>

@@ -1,15 +1,15 @@
 import gql from "graphql-tag";
 
 export default {
-    tt(apollo) {
-        apollo.mutate({
-            mutation: gql`
+  REGISTER(apollo, payload) {
+    return apollo.mutate({
+      mutation: gql`
               mutation {
                 Register(
-                  fullname: "radwa adel"
-                  email: "adelradwa44@gmail.com"
-                  phone: "+201116515446"
-                  password: "123456"
+                  fullname: ${payload.fullname}
+                  email: ${payload.email}
+                  phone: ${payload.phone}
+                  password: ${payload.password}
                 ) {
                   user {
                     id
@@ -24,6 +24,6 @@ export default {
                 }
               }
             `
-          });
-    }
-}
+    });
+  }
+};

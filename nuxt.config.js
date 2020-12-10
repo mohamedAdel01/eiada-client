@@ -1,101 +1,95 @@
-
 export default {
   /*
-  ** Nuxt target
-  ** See https://nuxtjs.org/api/configuration-target
-  */
-  target: 'server',
+   ** Nuxt target
+   ** See https://nuxtjs.org/api/configuration-target
+   */
+  target: "server",
   /*
-  ** Headers of the page
-  ** See https://nuxtjs.org/api/configuration-head
-  */
+   ** Headers of the page
+   ** See https://nuxtjs.org/api/configuration-head
+   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: process.env.npm_package_name || "",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        hid: "description",
+        name: "description",
+        content: process.env.npm_package_description || ""
+      }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   /*
-  ** Global CSS
-  */
-  css: [
-    '~/assets/css/main.scss'
-  ],
+   ** Global CSS
+   */
+  css: ["~/assets/css/main.scss"],
   /*
-  ** Plugins to load before mounting the App
-  ** https://nuxtjs.org/guide/plugins
-  */
-  plugins: [
-    { src: '~plugins/vuelidate', ssr: false }
-  ],
+   ** Plugins to load before mounting the App
+   ** https://nuxtjs.org/guide/plugins
+   */
+  plugins: [{ src: "~plugins/vuelidate", ssr: false }],
   /*
-  ** Auto import components
-  ** See https://nuxtjs.org/api/configuration-components
-  */
+   ** Auto import components
+   ** See https://nuxtjs.org/api/configuration-components
+   */
   components: true,
   router: {
-    middleware: ['routerGaurd']
+    middleware: ["routerGaurd"]
   },
   /*
-  ** Nuxt.js dev-modules
-  */
-  buildModules: [
-  ],
+   ** Nuxt.js dev-modules
+   */
+  buildModules: [],
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
-    'bootstrap-vue/nuxt',
-    '@nuxtjs/pwa',
-    'nuxt-i18n',
-    '@nuxt/content',
-    '@nuxtjs/apollo',
+    "bootstrap-vue/nuxt",
+    "@nuxtjs/pwa",
+    "nuxt-i18n",
+    "@nuxt/content",
+    "@nuxtjs/apollo"
   ],
 
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'http://localhost:4000/graphql',
+        httpEndpoint: "http://localhost:4000/graphql"
       }
     }
   },
 
   i18n: {
-    lazy:true,
+    lazy: true,
     locales: [
       {
-        name: 'English',
-        code: 'en',
-        iso: 'en-US',
-        file: 'en.js'
+        name: "English",
+        code: "en",
+        iso: "en-US",
+        file: "en.js"
       },
       {
-        name: 'Arabic',
-        code: 'ar',
-        iso: 'ar-EG',
-        file: 'ar.js'
-      },
+        name: "Arabic",
+        code: "ar",
+        iso: "ar-EG",
+        file: "ar.js"
+      }
     ],
-    langDir: 'lang/',
-    defaultLocale: 'en',
+    langDir: "lang/",
+    defaultLocale: "en"
   },
   /*
-  ** Content module configuration
-  ** See https://content.nuxtjs.org/configuration
-  */
+   ** Content module configuration
+   ** See https://content.nuxtjs.org/configuration
+   */
   content: {},
   /*
-  ** Build configuration
-  ** See https://nuxtjs.org/api/configuration-build/
-  */
+   ** Build configuration
+   ** See https://nuxtjs.org/api/configuration-build/
+   */
   build: {
-    vendor: [
-      'vuelidate'
-    ]
+    vendor: ["vuelidate"]
   }
-}
+};
