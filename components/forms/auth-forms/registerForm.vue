@@ -5,9 +5,9 @@
         v-model="$v.form.fullname.$model"
         class="py-4 bg-light border rounded"
         :placeholder="$t('Enter', { input: $t('Fullname') })"
-        :state="!$v.form.fullname.$error"
+        :state="$v.form.fullname.$dirty ? !$v.form.fullname.$error : null"
       ></b-form-input>
-      <b-form-invalid-feedback v-if="!$v.form.fullname.required">{{
+      <b-form-invalid-feedback v-show="!$v.form.fullname.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
     </b-form-group>
@@ -16,12 +16,12 @@
         v-model="$v.form.email.$model"
         class="py-4 bg-light border rounded"
         :placeholder="$t('Enter', { input: $t('Email') })"
-        :state="!$v.form.email.$error"
+        :state="$v.form.email.$dirty ? !$v.form.email.$error : null"
       ></b-form-input>
-      <b-form-invalid-feedback v-if="!$v.form.email.required">{{
+      <b-form-invalid-feedback v-show="!$v.form.email.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
-      <b-form-invalid-feedback v-if="!$v.form.email.email">{{
+      <b-form-invalid-feedback v-show="!$v.form.email.email">{{
         $t("Please add a valid email")
       }}</b-form-invalid-feedback>
     </b-form-group>
@@ -30,9 +30,9 @@
         v-model="$v.form.phone.$model"
         class="py-4 bg-light border rounded"
         :placeholder="$t('Enter', { input: $t('Phone') })"
-        :state="!$v.form.phone.$error"
+        :state="$v.form.phone.$dirty ? !$v.form.phone.$error : null"
       ></b-form-input>
-      <b-form-invalid-feedback v-if="!$v.form.phone.required">{{
+      <b-form-invalid-feedback v-show="!$v.form.phone.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
     </b-form-group>
@@ -54,13 +54,13 @@
         v-model="$v.form.password.$model"
         class="py-4 bg-light border rounded"
         :placeholder="$t('Enter', { input: $t('Password') })"
-        :state="!$v.form.password.$error"
+        :state="$v.form.password.$dirty ? !$v.form.password.$error : null"
       ></b-form-input>
-      <b-form-invalid-feedback v-if="!$v.form.password.required">{{
+      <b-form-invalid-feedback v-show="!$v.form.password.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
       <b-form-invalid-feedback
-        v-if="$v.form.password.required && !$v.form.password.valid"
+        v-show="$v.form.password.required && !$v.form.password.valid"
         >{{
           $t(
             "Password must contain capital letters, small letters, numbers and any special sign from these #?!@$%^&*-"
@@ -74,13 +74,15 @@
         v-model="$v.form.confirmPassword.$model"
         class="py-4 bg-light border rounded"
         :placeholder="$t('Enter', { input: $t('Confirm Password') })"
-        :state="!$v.form.confirmPassword.$error"
+        :state="$v.form.confirmPassword.$dirty ? !$v.form.confirmPassword.$error : null"
       ></b-form-input>
-      <b-form-invalid-feedback v-if="!$v.form.confirmPassword.required">{{
+      <b-form-invalid-feedback v-show="!$v.form.confirmPassword.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
       <b-form-invalid-feedback
-        v-if="$v.form.confirmPassword.required && !$v.form.confirmPassword.sameAsPassword"
+        v-show="
+          $v.form.confirmPassword.required && !$v.form.confirmPassword.sameAsPassword
+        "
         >{{ $t("Passwords must match") }}</b-form-invalid-feedback
       >
     </b-form-group>
@@ -99,19 +101,22 @@ export default {
   data() {
     return {
       form: {
-        fullname: null,
-        email: null,
-        phone: null,
-        password: null,
-        confirmPassword: null,
+        fullname: "",
+        email: "",
+        phone: "",
+        password: "",
+        confirmPassword: "",
       },
       showPassword: false,
     };
   },
   methods: {
     register() {
-      this.$v.$touch();
-      if (this.$v.$invalid) return false;
+      this.$v.form.$touch();
+      if (this.$v.form.$anyError) {
+        this.$toast.info(this.$t("Please fill all inputs with correct data"));
+        return false;
+      }
       this.$store
         .dispatch("auth/AUTH", {
           service: "REGISTER",
@@ -121,7 +126,7 @@ export default {
           // this.$router.push("/auth/verify-email");
         })
         .catch((error) => {
-          console.log('kkoooo',error);
+          console.log("kkoooo", error);
         });
     },
   },

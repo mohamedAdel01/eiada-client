@@ -1,5 +1,14 @@
 body {
   background: #fbfbfb;
+  font-size: 14px;
+}
+
+.msgToast {
+  font-size: 1em;
+
+  &.info {
+    background: #17a2b8 !important;
+  }
 }
 
 .page-enter-active {

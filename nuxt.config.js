@@ -50,7 +50,8 @@ export default {
     "@nuxtjs/pwa",
     "nuxt-i18n",
     "@nuxt/content",
-    "@nuxtjs/apollo"
+    "@nuxtjs/apollo",
+    "@nuxtjs/toast"
   ],
 
   apollo: {
@@ -59,6 +60,13 @@ export default {
         httpEndpoint: "http://localhost:4000/graphql"
       }
     }
+  },
+  toast: {
+    position: "top-center",
+    theme: "bubble",
+    keepOnHover: true,
+    duration: 4000,
+    className: "msgToast"
   },
 
   i18n: {
