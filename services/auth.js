@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export default {
-  async REGISTER(apollo, payload) {
+  async REGISTER({ apollo }, payload) {
     return await apollo.mutate({
       mutation: gql`
               mutation {
@@ -15,6 +15,7 @@ export default {
                     id
                     email
                     token
+                    email_verified
                   }
                   errors {
                     key
@@ -24,6 +25,44 @@ export default {
                 }
               }
             `
+    });
+  },
+
+  async VERIFY_EMAIL({ apollo }, payload) {
+    return await apollo.mutate({
+      mutation: gql`
+        mutation {
+          Verify_Email(verification_code: "${payload}") {
+            message
+            errors {
+              key
+              message
+            }
+          }
+        }
+      `
+    });
+  },
+
+  async RESEND_VERIFICATION_EMAIL({ apollo, token }) {
+    return await apollo.mutate({
+      mutation: gql`
+        mutation {
+          Resend_Verification_Email {
+            message
+            errors {
+              key
+              message
+            }
+          }
+        }
+      `,
+      variables: {},
+      context: {
+        headers: {
+          Authorization: token
+        }
+      }
     });
   }
 };
