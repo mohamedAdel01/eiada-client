@@ -43,6 +43,7 @@
 
 <script>
 export default {
+  middleware: "verificationPages",
   layout: "auth",
   data() {
     return {

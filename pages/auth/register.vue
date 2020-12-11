@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  middleware: 'globalPages',
+  middleware: 'authPages',
   layout: "auth",
   data() {
     return {
