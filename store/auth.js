@@ -1,13 +1,8 @@
 import authServices from "@/services/auth";
 
-export const state = () => ({
-  authData: null
-});
-
 export const mutations = {
   save_data(state, payload) {
-    state.authData = payload;
-    localStorage.setItem("authData", JSON.stringify(payload));
+    this.$cookiz.set('authData', JSON.stringify(payload))
   }
 };
 

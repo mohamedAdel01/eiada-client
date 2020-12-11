@@ -38,9 +38,6 @@ export default {
    ** See https://nuxtjs.org/api/configuration-components
    */
   components: true,
-  router: {
-    middleware: ["routerGaurd"]
-  },
   /*
    ** Nuxt.js dev-modules
    */
@@ -54,7 +51,8 @@ export default {
     "nuxt-i18n",
     "@nuxt/content",
     "@nuxtjs/apollo",
-    "@nuxtjs/toast"
+    "@nuxtjs/toast",
+    ['cookie-universal-nuxt', { alias: 'cookiz' }],
   ],
 
   apollo: {

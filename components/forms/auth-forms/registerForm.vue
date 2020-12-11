@@ -113,8 +113,18 @@
       >
     </b-form-group>
 
-    <button class="btn btn-info btn-block py-2" @click="register">
-      {{ $t("Submit") }}
+    <button
+      class="btn btn-info btn-block py-2"
+      :disabled="loading"
+      @click="register"
+    >
+      <span v-show="!loading">
+        {{ $t("Submit") }}
+      </span>
+      <span v-show="loading">
+        {{ $t("...Loading") }}
+        <b-spinner small variant="white" label="Spinning"></b-spinner>
+      </span>
     </button>
   </b-form>
 </template>
@@ -135,13 +145,16 @@ export default {
       },
       showPassword: false,
       responseErrors: null,
+      loading: false,
     };
   },
   methods: {
     register() {
+      this.loading = true;
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
         this.$toast.info(this.$t("Please fill all inputs with correct data"));
+        this.loading = false;
         return false;
       }
       this.$store
@@ -150,12 +163,15 @@ export default {
           payload: this.form,
         })
         .then(({ error, response }) => {
+          this.loading = false;
           if (error) {
             this.responseErrors = response.errors[0];
-            console.log(response.errors);
             return;
           }
           this.$emit("success");
+          setTimeout(() => {
+            this.$router.push('/')
+          }, 5000)
         });
     },
   },
