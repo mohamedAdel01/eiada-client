@@ -4,10 +4,14 @@ export const mutations = {
   save_data(state, payload) {
     this.$cookiz.set("authData", JSON.stringify(payload));
   },
-  edit_data(state, payload) {
+  edit_data(state, {key, value}) {
     let authData = this.$cookiz.get("authData");
-    authData[payload.key] = payload.value;
-    this.$cookiz.set("authData", JSON.stringify(payload));
+    authData[key] = value;
+    console.log(authData)
+    this.$cookiz.set("authData", JSON.stringify(authData));
+  },
+  clear_data(state) {
+    this.$cookiz.removeAll()
   }
 };
 
@@ -15,7 +19,9 @@ export const actions = {
   async AUTH({ commit }, { service, payload }) {
     let response;
     let apollo = this.app.apolloProvider.defaultClient;
-    let token = this.$cookiz.get("authData").token;
+    let token = this.$cookiz.get("authData")
+      ? this.$cookiz.get("authData").token
+      : null;
 
     switch (service) {
       case "REGISTER":
@@ -67,6 +73,10 @@ export const actions = {
           error: false,
           response
         };
+        break;
+
+      case "LOGOUT":
+        commit('clear_data')
         break;
 
       default:
