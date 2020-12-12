@@ -3,7 +3,7 @@
     <b-form-group :data-label="$t('Email')">
       <b-form-input
         v-model="$v.form.email.$model"
-        class="py-4  border rounded"
+        class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Email') })"
         :state="
           responseErrors && responseErrors.key == 'email'
@@ -28,42 +28,32 @@
 
     <b-form-group class="position-relative" :data-label="$t('Password')">
       <div class="eye" v-show="form.password">
-        <img
+        <inline-svg
           v-show="!showPassword"
           @click="showPassword = true"
-          src="@/static/images/hide-password.svg"
-        />
-        <img
+          fill="#fff"
+          :src="require('@/static/images/hide-password.svg')"
+        ></inline-svg>
+        <inline-svg
           v-show="showPassword"
           @click="showPassword = false"
-          src="@/static/images/show-password.svg"
-        />
+          fill="#fff"
+          :src="require('@/static/images/show-password.svg')"
+        ></inline-svg>
       </div>
       <b-form-input
         :type="showPassword ? 'text' : 'password'"
         v-model="$v.form.password.$model"
-        class="py-4  border rounded"
+        class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Password') })"
         :state="$v.form.password.$dirty ? !$v.form.password.$error : null"
       ></b-form-input>
       <b-form-invalid-feedback v-show="!$v.form.password.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
-      <b-form-invalid-feedback
-        v-show="$v.form.password.required && !$v.form.password.valid"
-        >{{
-          $t(
-            "Password must contain capital letters, small letters, numbers and any special sign from these #?!@$%^&*-"
-          )
-        }}</b-form-invalid-feedback
-      >
     </b-form-group>
 
-    <button
-      class="btn btn-dark btn-block py-2"
-      :disabled="loading"
-      @click="login"
-    >
+    <button class="btn btn-dark btn-block py-2" :disabled="loading" @click="login">
       <span v-show="!loading">
         {{ $t("Login") }}
       </span>
@@ -83,11 +73,8 @@ export default {
   data() {
     return {
       form: {
-        fullname: "",
         email: "",
-        phone: "",
         password: "",
-        confirmPassword: "",
       },
       showPassword: false,
       responseErrors: null,
@@ -116,8 +103,8 @@ export default {
           }
           this.$emit("success");
           setTimeout(() => {
-            this.$router.push('/')
-          }, 5000)
+            this.$router.push("/");
+          }, 5000);
         });
     },
   },
@@ -128,7 +115,7 @@ export default {
         email,
       },
       password: {
-        required
+        required,
       },
     },
   },

@@ -14,6 +14,11 @@
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione tempora quia
       labore, commodi repellendus quisquam. Fuga, vel! Dolorum, doloremque aperiam
       incidunt dicta voluptate alias eaque accusamus neque in reprehenderit animi!
+      <br />
+      <br />
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione tempora quia
+      labore, commodi repellendus quisquam. Fuga, vel! Dolorum, doloremque aperiam
+      incidunt dicta voluptate alias eaque accusamus neque in reprehenderit animi!
     </section>
     <section class="col-md-5 col-12">
       <login-form v-if="!showSuccessMsg" @success="showSuccessMsg = true" />

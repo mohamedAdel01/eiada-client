@@ -1,6 +1,6 @@
 <template>
   <div class="auth-layout mt-5 pt-5 mb-4">
-    <section class="auth-sec bg-white rounded-lg mx-auto px-3 py-5 col-lg-11 col-12">
+    <section class="auth-sec bg-white rounded-lg mx-auto px-3 py-5 col-md-11 col-12">
       <div class="logo bg-white rounded-circle d-flex align-items-center justify-content-center">
         <img src="@/static/images/logo.svg" alt="" />
       </div>

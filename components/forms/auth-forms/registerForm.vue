@@ -63,16 +63,18 @@
 
     <b-form-group class="position-relative" :data-label="$t('Password')">
       <div class="eye" v-show="form.password">
-        <img
+         <inline-svg
           v-show="!showPassword"
           @click="showPassword = true"
-          src="@/static/images/hide-password.svg"
-        />
-        <img
+          fill="#fff"
+          :src="require('@/static/images/hide-password.svg')"
+        ></inline-svg>
+        <inline-svg
           v-show="showPassword"
           @click="showPassword = false"
-          src="@/static/images/show-password.svg"
-        />
+          fill="#fff"
+          :src="require('@/static/images/show-password.svg')"
+        ></inline-svg>
       </div>
       <b-form-input
         :type="showPassword ? 'text' : 'password'"
