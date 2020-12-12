@@ -1,21 +1,9 @@
 <template>
   <b-form @submit.prevent>
-    <b-form-group :data-label="$t('Fullname')">
-      <b-form-input
-        v-model="$v.form.fullname.$model"
-        class="py-4 border rounded"
-        :placeholder="$t('Enter', { input: $t('Fullname') })"
-        :state="$v.form.fullname.$dirty ? !$v.form.fullname.$error : null"
-      ></b-form-input>
-      <b-form-invalid-feedback v-show="!$v.form.fullname.required">{{
-        $t("This field is required")
-      }}</b-form-invalid-feedback>
-    </b-form-group>
-
     <b-form-group :data-label="$t('Email')">
       <b-form-input
         v-model="$v.form.email.$model"
-        class="py-4 border rounded"
+        class="py-4  border rounded"
         :placeholder="$t('Enter', { input: $t('Email') })"
         :state="
           responseErrors && responseErrors.key == 'email'
@@ -38,29 +26,6 @@
       >
     </b-form-group>
 
-    <b-form-group :data-label="$t('Phone')">
-      <b-form-input
-        v-model="$v.form.phone.$model"
-        class="py-4 border rounded"
-        :placeholder="$t('Enter', { input: $t('Phone') })"
-        :state="
-          responseErrors && responseErrors.key == 'phone'
-            ? false
-            : $v.form.phone.$dirty
-            ? !$v.form.phone.$error
-            : null
-        "
-      ></b-form-input>
-      <b-form-invalid-feedback v-show="!$v.form.phone.required">{{
-        $t("This field is required")
-      }}</b-form-invalid-feedback>
-      <b-form-invalid-feedback
-        class="d-block"
-        v-if="responseErrors && responseErrors.key == 'phone'"
-        >{{ $t(responseErrors.message) }}</b-form-invalid-feedback
-      >
-    </b-form-group>
-
     <b-form-group class="position-relative" :data-label="$t('Password')">
       <div class="eye" v-show="form.password">
         <img
@@ -77,7 +42,7 @@
       <b-form-input
         :type="showPassword ? 'text' : 'password'"
         v-model="$v.form.password.$model"
-        class="py-4 border rounded"
+        class="py-4  border rounded"
         :placeholder="$t('Enter', { input: $t('Password') })"
         :state="$v.form.password.$dirty ? !$v.form.password.$error : null"
       ></b-form-input>
@@ -94,28 +59,13 @@
       >
     </b-form-group>
 
-    <b-form-group :data-label="$t('Confirm Password')">
-      <b-form-input
-        type="password"
-        v-model="$v.form.confirmPassword.$model"
-        class="py-4 border rounded"
-        :placeholder="$t('Enter', { input: $t('Confirm Password') })"
-        :state="$v.form.confirmPassword.$dirty ? !$v.form.confirmPassword.$error : null"
-      ></b-form-input>
-      <b-form-invalid-feedback v-show="!$v.form.confirmPassword.required">{{
-        $t("This field is required")
-      }}</b-form-invalid-feedback>
-      <b-form-invalid-feedback
-        v-show="
-          $v.form.confirmPassword.required && !$v.form.confirmPassword.sameAsPassword
-        "
-        >{{ $t("Passwords must match") }}</b-form-invalid-feedback
-      >
-    </b-form-group>
-
-    <button class="btn btn-dark btn-block py-2" :disabled="loading" @click="register">
+    <button
+      class="btn btn-dark btn-block py-2"
+      :disabled="loading"
+      @click="login"
+    >
       <span v-show="!loading">
-        {{ $t("Submit") }}
+        {{ $t("Login") }}
       </span>
       <span v-show="loading">
         {{ $t("...Loading") }}
@@ -145,7 +95,7 @@ export default {
     };
   },
   methods: {
-    register() {
+    login() {
       this.loading = true;
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
@@ -155,7 +105,7 @@ export default {
       }
       this.$store
         .dispatch("auth/AUTH", {
-          service: "REGISTER",
+          service: "LOGIN",
           payload: this.form,
         })
         .then(({ error, response }) => {
@@ -166,39 +116,19 @@ export default {
           }
           this.$emit("success");
           setTimeout(() => {
-            this.$router.push("/");
-          }, 5000);
+            this.$router.push('/')
+          }, 5000)
         });
     },
   },
   validations: {
     form: {
-      fullname: {
-        required,
-      },
       email: {
         required,
         email,
       },
-      phone: {
-        required,
-      },
       password: {
-        required,
-        minLength: minLength(8),
-        valid: function (value) {
-          const containsUppercase = /[A-Z]/.test(value);
-          const containsLowercase = /[a-z]/.test(value);
-          const containsNumber = /[0-9]/.test(value);
-          const containsSpecial = /[#?!@$%^&*-]/.test(value);
-          return (
-            containsUppercase && containsLowercase && containsNumber && containsSpecial
-          );
-        },
-      },
-      confirmPassword: {
-        required,
-        sameAsPassword: sameAs("password"),
+        required
       },
     },
   },

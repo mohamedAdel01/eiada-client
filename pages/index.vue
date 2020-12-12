@@ -4,6 +4,12 @@
       <h1 class="title">
         welcome in eiada home page
       </h1>
+      <nuxt-link to="/auth/register">register</nuxt-link>
+      <br/>
+      <nuxt-link to="/auth/login">login</nuxt-link>
+      <br/>
+      <nuxt-link to="/auth/email-verify">email-verify</nuxt-link>
+
       <p @click="logout">logout</p>
     </div>
   </div>
