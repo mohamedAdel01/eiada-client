@@ -66,13 +66,13 @@
          <inline-svg
           v-show="!showPassword"
           @click="showPassword = true"
-          fill="#fff"
+          fill="#aaa"
           :src="require('@/static/images/hide-password.svg')"
         ></inline-svg>
         <inline-svg
           v-show="showPassword"
           @click="showPassword = false"
-          fill="#fff"
+          fill="#aaa"
           :src="require('@/static/images/show-password.svg')"
         ></inline-svg>
       </div>

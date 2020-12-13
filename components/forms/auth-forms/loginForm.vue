@@ -26,18 +26,22 @@
       >
     </b-form-group>
 
-    <b-form-group class="position-relative" :data-label="$t('Password')">
+    <b-form-group
+      class="position-relative"
+      v-if="!forgetPasswordForm"
+      :data-label="$t('Password')"
+    >
       <div class="eye" v-show="form.password">
         <inline-svg
           v-show="!showPassword"
           @click="showPassword = true"
-          fill="#fff"
+          fill="#aaa"
           :src="require('@/static/images/hide-password.svg')"
         ></inline-svg>
         <inline-svg
           v-show="showPassword"
           @click="showPassword = false"
-          fill="#fff"
+          fill="#aaa"
           :src="require('@/static/images/show-password.svg')"
         ></inline-svg>
       </div>
@@ -64,8 +68,31 @@
       >
     </b-form-group>
 
-    <button class="btn btn-dark btn-block py-2" :disabled="loading" @click="login">
-      <span v-show="!loading">
+    <div class="position-relative">
+      <button
+        type="button"
+        class="forget-password btn btn-link bg-white rounded pt-0 position-absolute"
+        @click="forgetPasswordForm = !forgetPasswordForm"
+      >
+        <span v-show="!forgetPasswordForm">
+          {{ $t("Forget password") }}
+        </span>
+        <span v-show="forgetPasswordForm">
+          {{ $t("Return to login") }}
+        </span>
+      </button>
+    </div>
+
+    <button
+      class="btn btn-dark btn-block py-2 mt-5"
+      :disabled="loading"
+      type="submit"
+      @click="forgetPasswordForm ? submit('FORGET_PASSWORD_REQUREST') : submit('LOGIN')"
+    >
+      <span v-show="forgetPasswordForm && !loading">
+        {{ $t("Send verification Email") }}
+      </span>
+      <span v-show="!forgetPasswordForm && !loading">
         {{ $t("Login") }}
       </span>
       <span v-show="loading">
@@ -90,20 +117,15 @@ export default {
       showPassword: false,
       responseErrors: null,
       loading: false,
+      forgetPasswordForm: false,
     };
   },
   methods: {
-    login() {
-      this.loading = true;
-      this.$v.form.$touch();
-      if (this.$v.form.$anyError) {
-        this.$toast.info(this.$t("Please fill all inputs with correct data"));
-        this.loading = false;
-        return false;
-      }
+    submit(service) {
+      if (!this.checkErrors()) return;
       this.$store
         .dispatch("auth/AUTH", {
-          service: "LOGIN",
+          service,
           payload: this.form,
         })
         .then(({ error, response }) => {
@@ -112,20 +134,43 @@ export default {
             this.responseErrors = response.errors[0];
             return;
           }
-          this.$router.push("/");
+          if (service == "LOGIN") return this.$router.push("/");
+          this.$emit("success");
         });
     },
-  },
-  validations: {
-    form: {
-      email: {
-        required,
-        email,
-      },
-      password: {
-        required,
-      },
+    checkErrors() {
+      this.loading = true;
+      this.$v.form.$touch();
+      if (this.$v.form.$anyError) {
+        this.$toast.info(this.$t("Please fill all inputs with correct data"));
+        this.loading = false;
+        return false;
+      }
+      return true;
     },
+  },
+  validations() {
+    if (this.forgetPasswordForm) {
+      return {
+        form: {
+          email: {
+            required,
+            email,
+          },
+        },
+      };
+    }
+    return {
+      form: {
+        email: {
+          required,
+          email,
+        },
+        password: {
+          required,
+        },
+      },
+    };
   },
 };
 </script>
@@ -141,5 +186,9 @@ export default {
     cursor: pointer;
     width: 100%;
   }
+}
+.forget-password {
+  right: 0;
+  top: -10px;
 }
 </style>

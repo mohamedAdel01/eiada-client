@@ -5,7 +5,7 @@ export default {
     return await apollo.mutate({
       mutation: gql`
               mutation {
-                Register(
+                REGISTER(
                   fullname: "${payload.fullname}",
                   email: "${payload.email}",
                   phone: "${payload.phone}",
@@ -32,7 +32,7 @@ export default {
     return await apollo.mutate({
       mutation: gql`
         mutation {
-          Verify_Email(verification_code: "${payload}") {
+          VERIFY_EMAIL(verification_code: "${payload}") {
             message
             errors {
               key
@@ -48,7 +48,7 @@ export default {
     return await apollo.mutate({
       mutation: gql`
         mutation {
-          Resend_Verification_Email {
+          RESEND_VERIFICATION_EMAIL {
             message
             errors {
               key
@@ -70,7 +70,7 @@ export default {
     return await apollo.mutate({
       mutation: gql`
         mutation {
-          Login(email: "${payload.email}", password: "${payload.password}") {
+          LOGIN(email: "${payload.email}", password: "${payload.password}") {
             user {
               id
               fullname
@@ -84,6 +84,22 @@ export default {
             }
           }
         }
+      `
+    });
+  },
+
+  async FORGET_PASSWORD_REQUREST({ apollo }, payload) {
+    return await apollo.mutate({
+      mutation: gql`
+      mutation {
+        FORGET_PASSWORD_REQUREST(email:"${payload.email}"){
+          message
+          errors {
+            key
+            message
+          }
+        }
+      }
       `
     });
   }

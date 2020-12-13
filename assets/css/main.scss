@@ -14,7 +14,7 @@ body {
   padding: 10px;
   border-radius: 5px;
   margin-top: 5px;
-  box-shadow: 1px 1px 2px #999;
+  border: 1px solid tomato;
 }
 
 .msgToast {
@@ -68,10 +68,10 @@ form {
       }
     }
 
-    input {
-      box-shadow: none !important;
-      outline: none !important;
-    }
+  }
+  input, button {
+    box-shadow: none !important;
+    outline: none !important;
   }
 }
 
