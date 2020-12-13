@@ -58,7 +58,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: "http://localhost:4000/graphql"
+        httpEndpoint: "https://eiada-server.herokuapp.com/graphql"
       }
     }
   },
