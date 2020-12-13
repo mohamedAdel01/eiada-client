@@ -1,7 +1,7 @@
 <template>
   <b-form @submit.prevent>
-    <b-form-group class="position-relative" :data-label="$t('Password')">
-      <div class="eye" v-show="form.password">
+    <b-form-group class="position-relative" :data-label="$t('New Password')">
+      <div class="eye" v-show="form.new_password">
         <inline-svg
           v-show="!showPassword"
           @click="showPassword = true"
@@ -17,22 +17,22 @@
       </div>
       <b-form-input
         :type="showPassword ? 'text' : 'password'"
-        v-model="$v.form.password.$model"
+        v-model="$v.form.new_password.$model"
         class="py-4 border rounded"
-        :placeholder="$t('Enter', { input: $t('Password') })"
+        :placeholder="$t('Enter', { input: $t('New Password') })"
         :state="
           responseErrors && responseErrors.key == 'password'
             ? false
-            : $v.form.password.$dirty
-            ? !$v.form.password.$error
+            : $v.form.new_password.$dirty
+            ? !$v.form.new_password.$error
             : null
         "
       ></b-form-input>
-      <b-form-invalid-feedback v-show="!$v.form.password.required">{{
+      <b-form-invalid-feedback v-show="!$v.form.new_password.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
       <b-form-invalid-feedback
-        v-show="$v.form.password.required && !$v.form.password.valid"
+        v-show="$v.form.new_password.required && !$v.form.new_password.valid"
         >{{
           $t(
             "Password must contain capital letters, small letters, numbers and any special sign from these #?!@$%^&*-"
@@ -41,7 +41,7 @@
       >
       <b-form-invalid-feedback
         class="d-block"
-        v-if="responseErrors && responseErrors.key == 'password'"
+        v-if="responseErrors && responseErrors.key == 'new_password'"
         >{{ $t(responseErrors.message) }}</b-form-invalid-feedback
       >
     </b-form-group>
@@ -82,7 +82,7 @@ export default {
     return {
       form: {
         code: "",
-        password: "",
+        new_password: "",
       },
       showPassword: false,
       responseErrors: null,
@@ -124,7 +124,7 @@ export default {
   },
   validations: {
     form: {
-      password: {
+      new_password: {
         required,
         // minLength: minLength(6),
         valid: function (value) {

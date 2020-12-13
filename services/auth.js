@@ -109,7 +109,7 @@ export default {
       mutation: gql`
         mutation {
           CHANGE_PASSWORD(
-            new_password: "${payload.password}"
+            new_password: "${payload.new_password}"
             verification_code: "${payload.code}"
           ) {
             message
