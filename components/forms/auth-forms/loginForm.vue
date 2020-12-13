@@ -46,11 +46,22 @@
         v-model="$v.form.password.$model"
         class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Password') })"
-        :state="$v.form.password.$dirty ? !$v.form.password.$error : null"
+        :state="
+          responseErrors && responseErrors.key == 'password'
+            ? false
+            : $v.form.password.$dirty
+            ? !$v.form.password.$error
+            : null
+        "
       ></b-form-input>
       <b-form-invalid-feedback v-show="!$v.form.password.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
+      <b-form-invalid-feedback
+        class="d-block"
+        v-if="responseErrors && responseErrors.key == 'password'"
+        >{{ $t(responseErrors.message) }}</b-form-invalid-feedback
+      >
     </b-form-group>
 
     <button class="btn btn-dark btn-block py-2" :disabled="loading" @click="login">
@@ -101,10 +112,7 @@ export default {
             this.responseErrors = response.errors[0];
             return;
           }
-          this.$emit("success");
-          setTimeout(() => {
-            this.$router.push("/");
-          }, 5000);
+          this.$router.push("/");
         });
     },
   },

@@ -16,20 +16,22 @@
       incidunt dicta voluptate alias eaque accusamus neque in reprehenderit animi!
     </section>
     <section class="col-md-5 col-12">
-      <register-form v-if="!showSuccessMsg" @success="showSuccessMsg = true" />
-      <message-sec
-        v-if="showSuccessMsg"
-        :status="true"
-        title="You are register successfully"
-        message="Please check your Email to verify email"
-      />
+      <no-ssr>
+        <register-form v-if="!showSuccessMsg" @success="showSuccessMsg = true" />
+        <message-sec
+          v-if="showSuccessMsg"
+          :status="true"
+          title="You are register successfully"
+          message="Please check your Email to verify email"
+        />
+      </no-ssr>
     </section>
   </div>
 </template>
 
 <script>
 export default {
-  middleware: 'authPages',
+  middleware: "authPages",
   layout: "auth",
   data() {
     return {

@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-layout pt-5 mb-4">
+  <div class="auth-layout mb-4">
     <section class="auth-sec rounded-lg mx-auto px-3 py-5 col-md-11 col-12">
       <div
         class="logo bg-white rounded-circle d-flex align-items-center justify-content-center"
@@ -30,6 +30,7 @@ export default {
 
 <style lang="scss">
 .auth-layout {
+  padding-top: 75px;
   .auth-sec {
     position: relative;
     .logo {

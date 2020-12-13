@@ -64,5 +64,27 @@ export default {
         }
       }
     });
+  },
+
+  async LOGIN({ apollo }, payload) {
+    return await apollo.mutate({
+      mutation: gql`
+        mutation {
+          Login(email: "${payload.email}", password: "${payload.password}") {
+            user {
+              id
+              fullname
+              email
+              token
+              email_verified
+            }
+            errors {
+              key
+              message
+            }
+          }
+        }
+      `
+    });
   }
 };
