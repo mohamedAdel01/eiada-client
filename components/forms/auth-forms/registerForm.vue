@@ -187,7 +187,7 @@ export default {
       },
       password: {
         required,
-        minLength: minLength(8),
+        // minLength: minLength(6),
         valid: function (value) {
           const containsUppercase = /[A-Z]/.test(value);
           const containsLowercase = /[a-z]/.test(value);

@@ -1,36 +1,6 @@
 <template>
   <b-form @submit.prevent>
-    <b-form-group :data-label="$t('Email')">
-      <b-form-input
-        v-model="$v.form.email.$model"
-        class="py-4 border rounded"
-        :placeholder="$t('Enter', { input: $t('Email') })"
-        :state="
-          responseErrors && responseErrors.key == 'email'
-            ? false
-            : $v.form.email.$dirty
-            ? !$v.form.email.$error
-            : null
-        "
-      ></b-form-input>
-      <b-form-invalid-feedback v-show="!$v.form.email.required">{{
-        $t("This field is required")
-      }}</b-form-invalid-feedback>
-      <b-form-invalid-feedback v-show="!$v.form.email.email">{{
-        $t("Please add a valid email")
-      }}</b-form-invalid-feedback>
-      <b-form-invalid-feedback
-        class="d-block"
-        v-if="responseErrors && responseErrors.key == 'email'"
-        >{{ $t(responseErrors.message) }}</b-form-invalid-feedback
-      >
-    </b-form-group>
-
-    <b-form-group
-      class="position-relative"
-      v-if="!forgetPasswordForm"
-      :data-label="$t('Password')"
-    >
+    <b-form-group class="position-relative" :data-label="$t('Password')">
       <div class="eye" v-show="form.password">
         <inline-svg
           v-show="!showPassword"
@@ -62,6 +32,14 @@
         $t("This field is required")
       }}</b-form-invalid-feedback>
       <b-form-invalid-feedback
+        v-show="$v.form.password.required && !$v.form.password.valid"
+        >{{
+          $t(
+            "Password must contain capital letters, small letters, numbers and any special sign from these #?!@$%^&*-"
+          )
+        }}</b-form-invalid-feedback
+      >
+      <b-form-invalid-feedback
         class="d-block"
         v-if="responseErrors && responseErrors.key == 'password'"
         >{{ $t(responseErrors.message) }}</b-form-invalid-feedback
@@ -72,14 +50,9 @@
       <button
         type="button"
         class="forget-password btn btn-link bg-white rounded pt-0 position-absolute"
-        @click="forgetPasswordForm = !forgetPasswordForm"
+        @click="change_password"
       >
-        <span v-show="!forgetPasswordForm">
-          {{ $t("Forget password") }}
-        </span>
-        <span v-show="forgetPasswordForm">
-          {{ $t("Return to login") }}
-        </span>
+        {{ $t("Change password") }}
       </button>
     </div>
 
@@ -87,13 +60,10 @@
       class="btn btn-dark btn-block py-2 mt-5"
       :disabled="loading"
       type="submit"
-      @click="forgetPasswordForm ? submit('FORGET_PASSWORD_REQUREST') : submit('LOGIN')"
+      @click="change_password"
     >
-      <span v-show="forgetPasswordForm && !loading">
-        {{ $t("Send verification Email") }}
-      </span>
-      <span v-show="!forgetPasswordForm && !loading">
-        {{ $t("Login") }}
+      <span v-show="!loading">
+        {{ $t("Change password") }}
       </span>
       <span v-show="loading">
         {{ $t("...Loading") }}
@@ -105,36 +75,35 @@
 
 <script>
 import { validationMixin } from "vuelidate";
-import { required, email } from "vuelidate/lib/validators";
+import { required, minLength } from "vuelidate/lib/validators";
 export default {
   mixins: [validationMixin],
   data() {
     return {
       form: {
-        email: "",
+        code: "",
         password: "",
       },
       showPassword: false,
       responseErrors: null,
       loading: false,
-      forgetPasswordForm: false,
     };
   },
   methods: {
-    submit(service) {
+    change_password() {
       if (!this.checkErrors()) return;
       this.$store
         .dispatch("auth/AUTH", {
-          service,
+          service: "CHANGE_PASSWORD",
           payload: this.form,
         })
         .then(({ error, response }) => {
           this.loading = false;
           if (error) {
             this.responseErrors = response.errors[0];
+            if (this.responseErrors.key == "code") this.$emit("error", this.responseErrors.message);
             return;
           }
-          if (service == "LOGIN") return this.$router.push("/");
           this.$emit("success");
         });
     },
@@ -149,28 +118,26 @@ export default {
       return true;
     },
   },
-  validations() {
-    if (this.forgetPasswordForm) {
-      return {
-        form: {
-          email: {
-            required,
-            email,
-          },
-        },
-      };
-    }
-    return {
-      form: {
-        email: {
-          required,
-          email,
-        },
-        password: {
-          required,
+  mounted() {
+    if (!this.$route.query.code) return this.$router.push("/");
+    this.form.code = this.$route.query.code;
+  },
+  validations: {
+    form: {
+      password: {
+        required,
+        // minLength: minLength(6),
+        valid: function (value) {
+          const containsUppercase = /[A-Z]/.test(value);
+          const containsLowercase = /[a-z]/.test(value);
+          const containsNumber = /[0-9]/.test(value);
+          const containsSpecial = /[#?!@$%^&*-]/.test(value);
+          return (
+            containsUppercase && containsLowercase && containsNumber && containsSpecial
+          );
         },
       },
-    };
+    },
   },
 };
 </script>

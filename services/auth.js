@@ -102,5 +102,24 @@ export default {
       }
       `
     });
+  },
+
+  async CHANGE_PASSWORD({ apollo }, payload) {
+    return await apollo.mutate({
+      mutation: gql`
+        mutation {
+          CHANGE_PASSWORD(
+            new_password: "${payload.password}"
+            verification_code: "${payload.code}"
+          ) {
+            message
+            errors {
+              key
+              message
+            }
+          }
+        }
+      `
+    });
   }
 };
