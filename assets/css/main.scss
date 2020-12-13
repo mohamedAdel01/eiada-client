@@ -1,15 +1,20 @@
 body {
-  background: #fbfbfb;
-  background-image: url("~@/static/images/blob.svg");
-  background-size: 1000px 570px;
   font-size: 14px;
 }
 
+.auth {
+  background-image: url("~@/static/images/wave.svg");
+  background-size: cover;
+  min-height: 100vh;
+}
+
 .invalid-feedback {
+  width: fit-content;
   background: white;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-top: 5px;
+  box-shadow: 1px 1px 2px #999;
 }
 
 .msgToast {
@@ -68,4 +73,25 @@ form {
       outline: none !important;
     }
   }
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

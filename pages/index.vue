@@ -31,5 +31,7 @@ export default {
 </script>
 
 <style>
-
+body {
+  background-image: none;
+}
 </style>
