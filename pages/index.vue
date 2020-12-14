@@ -27,9 +27,6 @@ export default {
         });
     },
   },
-  mounted() {
-    console.log("koooooo", this.$cookiz.get("authData"));
-  },
 };
 </script>
 
