@@ -1,11 +1,9 @@
 <template>
   <div class="container">
     <div>
-      <h1 class="title">
-        welcome in eiada home page
-      </h1>
+      <h1 class="title">welcome in eiada home page</h1>
       <nuxt-link to="/auth/register">register</nuxt-link>
-      <br/>
+      <br />
       <nuxt-link to="/auth/login">login</nuxt-link>
       <p @click="logout">logout</p>
     </div>
@@ -14,17 +12,20 @@
 
 <script>
 export default {
+  // middleware: "authPages",
   methods: {
     logout() {
-      this.$store.dispatch('auth/AUTH', {
-        service: 'LOGOUT',
-        payload: null
-      }).then(res => {
-        location.reload()
-      })
-    }
-  }
-}
+      this.$store
+        .dispatch("auth/AUTH", {
+          service: "LOGOUT",
+          payload: null,
+        })
+        .then((res) => {
+          location.reload();
+        });
+    },
+  },
+};
 </script>
 
 <style>
