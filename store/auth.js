@@ -39,7 +39,7 @@ export const actions = {
     switch (service) {
       case "REGISTER":
       case "LOGIN":
-        commit("save_data", response.user);
+        commit("save_data", response);
         break;
 
       case "VERIFY_EMAIL":

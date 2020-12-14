@@ -3,7 +3,7 @@ export default function ({ app, route, store, redirect }) {
         redirect('/')
     }
 
-    if(app.$cookiz.get('authData').email_verified) {
+    if(app.$cookiz.get('authData').user.email_verified) {
         redirect('/')
     }
 }

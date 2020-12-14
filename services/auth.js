@@ -17,6 +17,14 @@ export default {
                     token
                     email_verified
                   }
+                  clinic {
+                    id
+                    name
+                  }
+                  branchs {
+                      id
+                      address
+                  }
                   errors {
                     key
                     message
@@ -77,6 +85,14 @@ export default {
               email
               token
               email_verified
+            }
+            clinic {
+              id
+              name
+            }
+            branchs {
+                id
+                address
             }
             errors {
               key

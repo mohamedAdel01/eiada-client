@@ -5,6 +5,8 @@
       <nuxt-link to="/auth/register">register</nuxt-link>
       <br />
       <nuxt-link to="/auth/login">login</nuxt-link>
+      <br />
+      <nuxt-link to="/app">app</nuxt-link>
       <p @click="logout">logout</p>
     </div>
   </div>
@@ -24,6 +26,9 @@ export default {
           location.reload();
         });
     },
+  },
+  mounted() {
+    console.log("koooooo", this.$cookiz.get("authData"));
   },
 };
 </script>
