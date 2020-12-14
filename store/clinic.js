@@ -1,4 +1,4 @@
-import authServices from "@/services/auth";
+import clinicServices from "@/services/clinic";
 
 export const state = () => ({
   clinic: null
@@ -6,7 +6,8 @@ export const state = () => ({
 
 export const mutations = {
   save_clinic(state, payload) {
-    this.$cookiz.set("authData", JSON.stringify(payload));
+      console.log(payload)
+    // this.$cookiz.set("authData", JSON.stringify(payload));
   }
 };
 
@@ -14,10 +15,10 @@ export const actions = {
   async CLINIC({ commit }, { service, payload }) {
     let apollo = this.app.apolloProvider.defaultClient;
     let token = this.$cookiz.get("authData")
-      ? this.$cookiz.get("authData").token
+      ? this.$cookiz.get("authData").user.token
       : null;
 
-    let response = (await authServices[service]({ apollo, token }, payload))
+    let response = (await clinicServices[service]({ apollo, token }, payload))
       .data[service];
 
     if (response.errors.length) {

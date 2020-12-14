@@ -1,8 +1,8 @@
 <template>
   <div class="app-1-layout mb-4">
-    <section class="app-1-sec rounded-lg mx-auto px-3 py-5 col-md-11 col-12">
+    <section class="app-1-sec rounded-lg mx-auto px-3 py-4 col-md-11 col-12">
       <div
-        class="logo d-flex justify-content-center"
+        class="logo"
       >
         <img src="@/static/images/logo.svg" alt="" />
       </div>

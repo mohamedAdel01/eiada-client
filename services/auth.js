@@ -15,6 +15,7 @@ export default {
                     id
                     email
                     token
+                    role
                     email_verified
                   }
                   clinic {
@@ -84,6 +85,7 @@ export default {
               fullname
               email
               token
+              role
               email_verified
             }
             clinic {

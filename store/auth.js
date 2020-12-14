@@ -23,7 +23,7 @@ export const actions = {
     }
     let apollo = this.app.apolloProvider.defaultClient;
     let token = this.$cookiz.get("authData")
-      ? this.$cookiz.get("authData").token
+      ? this.$cookiz.get("authData").user.token
       : null;
 
     let response = (await authServices[service]({ apollo, token }, payload))

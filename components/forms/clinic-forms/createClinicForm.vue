@@ -1,5 +1,5 @@
 <template>
-  <b-form @submit.prevent>
+  <b-form class="mt-5 pt-5" @submit.prevent>
     <b-form-group :data-label="$t('Clinic name')">
       <b-form-input
         v-model="$v.form.name.$model"
@@ -8,7 +8,7 @@
         :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
       ></b-form-input>
       <b-form-invalid-feedback v-show="!$v.form.name.required">{{
-        $t("This field is required")
+        $t("Please add your clinic name")
       }}</b-form-invalid-feedback>
     </b-form-group>
 
@@ -40,7 +40,6 @@ export default {
         name: "",
       },
       loading: false,
-      responseErrors: null,
     };
   },
   methods: {
@@ -54,18 +53,19 @@ export default {
         .then(({ error, response }) => {
           this.loading = false;
           if (error) {
-            this.responseErrors = response.errors[0];
+            this.$toast.error(this.$t(response.errors[0].message));
             return;
           }
-          if (service == "LOGIN") return this.$router.push("/");
           this.$emit("success");
+          setTimeout(() => {
+            this.$router.push("/app/branch/create-branch");
+          }, 5000);
         });
     },
     checkErrors() {
       this.loading = true;
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
-        this.$toast.info(this.$t("Please add your clinic name"));
         this.loading = false;
         return false;
       }

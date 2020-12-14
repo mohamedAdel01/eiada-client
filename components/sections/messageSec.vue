@@ -20,8 +20,8 @@ export default {
 <style lang="scss">
 .msg-imgs {
   img {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
   }
 }
 </style>
