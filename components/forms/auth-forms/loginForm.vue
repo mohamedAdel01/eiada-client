@@ -134,7 +134,7 @@ export default {
             this.responseErrors = response.errors[0];
             return;
           }
-          if (service == "LOGIN") return this.$router.push("/");
+          if (service == "LOGIN") return this.$router.push("/app");
           this.$emit("success");
         });
     },
