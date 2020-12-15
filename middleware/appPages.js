@@ -8,7 +8,7 @@ export default function({ app, route, redirect }) {
     return redirect("/app/clinic/create-clinic");
   }
 
-  if (!app.$cookiz.get("authData").branchs.length) {
+  if (!app.$cookiz.get("authData").branches.length) {
     if (route.path.split("/").pop() == "create-branch") return;
     return redirect("/app/branch/create-branch");
   }

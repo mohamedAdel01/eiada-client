@@ -2,10 +2,13 @@ body {
   font-size: 14px;
 }
 
-.auth, .app-1 {
+.auth,
+.app-1 {
   background-image: url("~@/static/images/wave.svg");
-  background-size: cover;
   min-height: 100vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom center;
 }
 
 .invalid-feedback {
@@ -67,14 +70,13 @@ form {
         opacity: 1;
       }
     }
-
   }
-  input, button {
+  input,
+  button {
     box-shadow: none !important;
     outline: none !important;
   }
 }
-
 
 /* width */
 ::-webkit-scrollbar {

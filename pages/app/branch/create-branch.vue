@@ -5,7 +5,7 @@
       <message-sec
         v-if="showSuccessMsg"
         :status="true"
-        title="Branchs has been created successfully"
+        title="Branches has been created successfully"
         message="Enjoy with your app"
       />
     </no-ssr>

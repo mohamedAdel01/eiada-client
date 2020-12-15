@@ -22,7 +22,7 @@ export default {
                     id
                     name
                   }
-                  branchs {
+                  branches {
                       id
                       address
                   }
@@ -92,7 +92,7 @@ export default {
               id
               name
             }
-            branchs {
+            branches {
                 id
                 address
             }
