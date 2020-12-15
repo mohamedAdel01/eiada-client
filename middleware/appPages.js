@@ -12,4 +12,16 @@ export default function({ app, route, redirect }) {
     if (route.path.split("/").pop() == "create-branch") return;
     return redirect("/app/branch/create-branch");
   }
+
+  if (route.path.split("/").pop() == "create-clinic") {
+    if (app.$cookiz.get("authData").clinic.length) {
+      return redirect("/app");
+    }
+  }
+
+  if (route.path.split("/").pop() == "create-branch") {
+    if (app.$cookiz.get("authData").branches.length) {
+      return redirect("/app");
+    }
+  }
 }
