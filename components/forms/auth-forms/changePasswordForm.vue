@@ -7,13 +7,13 @@
           @click="showPassword = true"
           fill="#aaa"
           :src="require('@/static/images/hide-password.svg')"
-        ></inline-svg>
+        />
         <inline-svg
           v-show="showPassword"
           @click="showPassword = false"
           fill="#aaa"
           :src="require('@/static/images/show-password.svg')"
-        ></inline-svg>
+        />
       </div>
       <b-form-input
         :type="showPassword ? 'text' : 'password'"
@@ -101,7 +101,8 @@ export default {
           this.loading = false;
           if (error) {
             this.responseErrors = response.errors[0];
-            if (this.responseErrors.key == "code") this.$emit("error", this.responseErrors.message);
+            if (this.responseErrors.key == "code")
+              this.$emit("error", this.responseErrors.message);
             return;
           }
           this.$emit("success");

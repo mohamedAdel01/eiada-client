@@ -1,12 +1,14 @@
 <template>
   <main>
-    <navbar />
-    <sidebar />
-    <div class="p-5 mx-2">
-      <no-ssr>
-        <Nuxt />
-      </no-ssr>
-    </div>
+    <no-ssr>
+      <navbar />
+      <sidebar />
+      <div class="p-5 mx-4">
+        <div class="p-4">
+          <Nuxt />
+        </div>
+      </div>
+    </no-ssr>
   </main>
 </template>
 

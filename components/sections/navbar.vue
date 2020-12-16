@@ -1,11 +1,12 @@
 <template>
-  <nav class="bg-white position-fixed d-flex align-items-center px-3">navbar here</nav>
+  <nav class="bg-white w-100 position-fixed d-flex align-items-center px-3">
+    <div class="d-flex justify-content-center mt-2 pointer">
+      <img src="@/static/images/logo.svg" alt="" />
+    </div>
+  </nav>
 </template>
 <style lang="scss" scoped>
 nav {
   height: 50px;
-  top: 0;
-  right: 0;
-  width: calc(100% - 50px);
 }
 </style>
