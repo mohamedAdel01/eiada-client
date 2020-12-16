@@ -16,15 +16,13 @@
       incidunt dicta voluptate alias eaque accusamus neque in reprehenderit animi!
     </section>
     <section class="col-md-5 col-12">
-      <no-ssr>
-        <register-form v-if="!showSuccessMsg" @success="showSuccessMsg = true" />
-        <message-sec
-          v-if="showSuccessMsg"
-          :status="true"
-          title="You are register successfully"
-          message="Please check your Email to verify email"
-        />
-      </no-ssr>
+      <register-form v-if="!showSuccessMsg" @success="showSuccessMsg = true" />
+      <message-sec
+        v-if="showSuccessMsg"
+        :status="true"
+        title="You are register successfully"
+        message="Please check your Email to verify email"
+      />
     </section>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
-  <div class="auth-layout mb-4">
-    <section class="mx-auto px-3 py-5 col-md-11 col-12">
-      <div class="auth-logo d-flex align-items-center justify-content-center">
+  <div class="app-1-layout mb-4">
+    <section class="app-1-sec rounded-lg mx-auto px-3 py-4 col-md-11 col-12">
+      <div class="logo">
         <img src="@/static/images/logo.svg" alt="" />
       </div>
       <div class="pt-4">
@@ -21,7 +21,7 @@ export default {
         lang: this.$i18n.locale,
       },
       bodyAttrs: {
-        class: "auth",
+        class: "app-1",
       },
     };
   },
@@ -29,10 +29,12 @@ export default {
 </script>
 
 <style lang="scss">
-.auth-layout {
-  .auth-logo {
-    img {
-      height: 100px;
+.app-1-layout {
+  .app-1-sec {
+    .logo {
+      img {
+        height: 120px;
+      }
     }
   }
 }

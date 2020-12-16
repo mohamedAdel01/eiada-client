@@ -23,15 +23,13 @@
       </p>
     </section>
     <section class="col-md-5 col-12">
-      <no-ssr>
-        <login-form v-if="!showSuccessMsg" @success="showSuccessMsg = true" />
-        <message-sec
-          v-if="showSuccessMsg"
-          :status="true"
-          title="Link has been sent successfully"
-          message="Please check your Email to change your password"
-        />
-      </no-ssr>
+      <login-form v-if="!showSuccessMsg" @success="showSuccessMsg = true" />
+      <message-sec
+        v-if="showSuccessMsg"
+        :status="true"
+        title="Link has been sent successfully"
+        message="Please check your Email to change your password"
+      />
     </section>
   </div>
 </template>

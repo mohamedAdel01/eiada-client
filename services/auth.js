@@ -15,7 +15,16 @@ export default {
                     id
                     email
                     token
+                    role
                     email_verified
+                  }
+                  clinic {
+                    id
+                    name
+                  }
+                  branches {
+                      id
+                      address
                   }
                   errors {
                     key
@@ -76,7 +85,16 @@ export default {
               fullname
               email
               token
+              role
               email_verified
+            }
+            clinic {
+              id
+              name
+            }
+            branches {
+                id
+                address
             }
             errors {
               key
