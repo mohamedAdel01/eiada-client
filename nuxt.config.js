@@ -1,3 +1,4 @@
+require("dotenv").config();
 export default {
   /*
    ** Nuxt target
@@ -52,13 +53,14 @@ export default {
     "@nuxt/content",
     "@nuxtjs/apollo",
     "@nuxtjs/toast",
-    ['cookie-universal-nuxt', { alias: 'cookiz' }],
+    ["cookie-universal-nuxt", { alias: "cookiz" }],
+    ["@nuxtjs/dotenv", { path: ".env" }]
   ],
 
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: "http://localhost:4000/graphql"
+        httpEndpoint: process.env.HTTP_END_POINT
       }
     }
   },
