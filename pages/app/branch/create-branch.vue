@@ -1,6 +1,5 @@
 <template>
   <div class="col-md-4 mx-auto mt-2">
-    <no-ssr>
       <create-branches-form v-if="!showSuccessMsg" @success="showSuccessMsg = true" />
       <message-sec
         v-if="showSuccessMsg"
@@ -8,7 +7,6 @@
         title="Branches has been created successfully"
         message="Enjoy with your app"
       />
-    </no-ssr>
   </div>
 </template>
 

@@ -5,7 +5,9 @@
         <img src="@/static/images/logo.svg" alt="" />
       </div>
       <div class="pt-4">
-        <Nuxt />
+        <no-ssr>
+          <Nuxt />
+        </no-ssr>
       </div>
     </section>
   </div>

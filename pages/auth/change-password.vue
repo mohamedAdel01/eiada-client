@@ -23,19 +23,17 @@
       </p>
     </section>
     <section class="col-md-5 col-12">
-      <no-ssr>
-        <change-password-form
-          v-if="!response"
-          @success="handleMsg($event, true)"
-          @error="handleMsg($event, false)"
-        />
-        <message-sec
-          v-if="response"
-          :status="response.status"
-          :title="response.title"
-          :message="response.message"
-        />
-      </no-ssr>
+      <change-password-form
+        v-if="!response"
+        @success="handleMsg($event, true)"
+        @error="handleMsg($event, false)"
+      />
+      <message-sec
+        v-if="response"
+        :status="response.status"
+        :title="response.title"
+        :message="response.message"
+      />
     </section>
   </div>
 </template>
