@@ -1,7 +1,11 @@
 <template>
   <aside class="position-fixed">
     <ul class="p-0 text-center">
-      <li class="bg-white pointer my-4 p-1 shadow-sm" :data-label="$t('Dashboard')">
+      <li
+        @click="$router.push('/app')"
+        class="bg-white pointer my-4 p-1 shadow-sm"
+        :data-label="$t('Dashboard')"
+      >
         <inline-svg
           width="40px"
           height="40px"
@@ -9,7 +13,11 @@
           :src="require('@/static/images/dashboard.svg')"
         ></inline-svg>
       </li>
-      <li class="bg-white pointer my-4 p-1 shadow-sm" :data-label="$t('Manage Users')">
+      <li
+        @click="$router.push('/app/users')"
+        class="bg-white pointer my-4 p-1 shadow-sm"
+        :data-label="$t('Manage Users')"
+      >
         <inline-svg
           width="40px"
           height="40px"
@@ -18,6 +26,7 @@
         ></inline-svg>
       </li>
       <li
+        @click="$router.push('/app/appointments')"
         class="bg-white pointer my-4 p-1 shadow-sm"
         :data-label="$t('Manage Appointments')"
       >
@@ -49,14 +58,15 @@ aside {
       &::after {
         content: attr(data-label);
         position: absolute;
-        top: 0;
-        margin: 0 25px;
+        bottom: 0;
+        left: -200px;
+        margin: 0;
         background: #fdfdfd;
-        width: fit-content;
+        width: 0;
         padding: 5px 20px;
         white-space: nowrap;
         box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-        transform: translate(-50px);
+        transform: translate(-40px);
         opacity: 0;
         transition: 0.5s;
         color: #777;
@@ -65,6 +75,9 @@ aside {
         &::after {
           transform: translate(0);
           opacity: 1;
+          width: fit-content;
+          margin: 0 25px;
+          left: auto;
         }
 
         svg {

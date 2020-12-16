@@ -1,12 +1,9 @@
 <template>
-  <div>Dashboard page</div>
+  <div>users page</div>
 </template>
-
 <script>
 export default {
   layout: "app-2",
   middleware: "appPages",
 };
 </script>
-
-<style></style>
