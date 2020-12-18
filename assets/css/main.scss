@@ -1,9 +1,28 @@
+@mixin tooltip { 
+  content: attr(data-label);
+  position: absolute;
+  min-width: fit-content;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+  background: white;
+  padding: 0 10px;
+  text-align: right;
+  transition: 0.5s;
+  opacity: 0;
+  transform: translate(0, 10px);
+}
+
 body {
   font-size: 14px;
 }
 
 .pointer {
   cursor: pointer;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+  margin-bottom: 0;
 }
 
 .auth,
@@ -59,23 +78,15 @@ form {
   .form-group {
     position: relative;
     &::after {
-      content: attr(data-label);
-      position: absolute;
-      top: 15px;
-      left: -150px;
-      min-width: 150px;
+      @include tooltip;
+      top: -10px;
+      left: 5px;
       border-radius: 50px;
-      font-size: 14px;
-      color: #333;
-      padding: 0 10px;
-      font-weight: bold;
-      text-align: right;
-      transition: 0.5s;
-      opacity: 0;
     }
     &:focus-within {
       &::after {
         opacity: 1;
+        transform: translate(0, 0);
       }
     }
   }
@@ -83,6 +94,8 @@ form {
   button {
     box-shadow: none !important;
     outline: none !important;
+    border: none !important;
+    border-radius: 0 !important;
   }
 }
 
@@ -104,4 +117,23 @@ form {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+
+
+
+.tooltip-bottom {
+  position: relative;
+  &::after {
+    @include tooltip;
+    bottom: -30px;
+    color: #777;
+    border-radius: 2px;
+  }
+  &:hover {
+    &::after {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
 }
