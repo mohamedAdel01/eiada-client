@@ -10,7 +10,7 @@
             :src="require('@/static/images/users.svg')"
           ></inline-svg>
         </div>
-        <h1 class="mx-2">Users</h1>
+        <h1 class="mx-2">{{ $t("Users") }}</h1>
       </div>
       <div
         class="d-flex align-items-center tooltip-bottom"
@@ -26,9 +26,7 @@
         </button>
       </div>
     </div>
-    <div>
-      
-    </div>
+    <div></div>
   </div>
 </template>
 <script>
