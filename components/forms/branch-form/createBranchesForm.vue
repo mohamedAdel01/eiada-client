@@ -9,7 +9,7 @@
         <div>
           <b-form-input
             v-model="v.address.$model"
-            class="py-4 border rounded"
+            class="py-4 border"
             :placeholder="$t('Enter', { input: $t('Branch address') })"
             :state="v.address.$dirty ? !v.address.$error : null"
           ></b-form-input>

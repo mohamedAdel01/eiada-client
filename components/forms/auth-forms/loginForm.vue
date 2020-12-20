@@ -3,7 +3,7 @@
     <b-form-group :data-label="$t('Email')">
       <b-form-input
         v-model="$v.form.email.$model"
-        class="py-4 border rounded"
+        class="py-4 border"
         :placeholder="$t('Enter', { input: $t('Email') })"
         :state="
           responseErrors && responseErrors.key == 'email'
@@ -48,7 +48,7 @@
       <b-form-input
         :type="showPassword ? 'text' : 'password'"
         v-model="$v.form.password.$model"
-        class="py-4 border rounded"
+        class="py-4 border"
         :placeholder="$t('Enter', { input: $t('Password') })"
         :state="
           responseErrors && responseErrors.key == 'password'
@@ -71,7 +71,7 @@
     <div class="position-relative">
       <button
         type="button"
-        class="forget-password btn btn-link bg-white rounded pt-0 position-absolute"
+        class="forget-password btn btn-link bg-white pt-0 position-absolute"
         @click="forgetPasswordForm = !forgetPasswordForm"
       >
         <span v-show="!forgetPasswordForm">

@@ -3,7 +3,7 @@
     <b-form-group :data-label="$t('Fullname')">
       <b-form-input
         v-model="$v.form.fullname.$model"
-        class="py-4 border rounded"
+        class="py-4 rounded"
         :placeholder="$t('Enter', { input: $t('Fullname') })"
         :state="$v.form.fullname.$dirty ? !$v.form.fullname.$error : null"
       ></b-form-input>
@@ -15,7 +15,7 @@
     <b-form-group :data-label="$t('Email')">
       <b-form-input
         v-model="$v.form.email.$model"
-        class="py-4 border rounded"
+        class="py-4 rounded"
         :placeholder="$t('Enter', { input: $t('Email') })"
         :state="
           responseErrors && responseErrors.key == 'email'
@@ -41,7 +41,7 @@
     <b-form-group :data-label="$t('Phone')">
       <b-form-input
         v-model="$v.form.phone.$model"
-        class="py-4 border rounded"
+        class="py-4 rounded"
         :placeholder="$t('Enter', { input: $t('Phone') })"
         :state="
           responseErrors && responseErrors.key == 'phone'
@@ -79,7 +79,7 @@
       <b-form-input
         :type="showPassword ? 'text' : 'password'"
         v-model="$v.form.password.$model"
-        class="py-4 border rounded"
+        class="py-4 rounded"
         :placeholder="$t('Enter', { input: $t('Password') })"
         :state="$v.form.password.$dirty ? !$v.form.password.$error : null"
       ></b-form-input>
@@ -100,7 +100,7 @@
       <b-form-input
         type="password"
         v-model="$v.form.confirmPassword.$model"
-        class="py-4 border rounded"
+        class="py-4 rounded"
         :placeholder="$t('Enter', { input: $t('Confirm Password') })"
         :state="$v.form.confirmPassword.$dirty ? !$v.form.confirmPassword.$error : null"
       ></b-form-input>

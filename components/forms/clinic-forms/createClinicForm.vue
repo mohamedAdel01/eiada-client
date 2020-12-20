@@ -3,7 +3,7 @@
     <b-form-group :data-label="$t('Clinic name')">
       <b-form-input
         v-model="$v.form.name.$model"
-        class="py-4 border rounded"
+        class="py-4 border"
         :placeholder="$t('Enter', { input: $t('Clinic name') })"
         :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
       ></b-form-input>

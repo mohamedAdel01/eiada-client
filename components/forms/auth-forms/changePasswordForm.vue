@@ -18,7 +18,7 @@
       <b-form-input
         :type="showPassword ? 'text' : 'password'"
         v-model="$v.form.new_password.$model"
-        class="py-4 border rounded"
+        class="py-4 border"
         :placeholder="$t('Enter', { input: $t('New Password') })"
         :state="
           responseErrors && responseErrors.key == 'password'

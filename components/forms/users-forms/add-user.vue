@@ -1,6 +1,6 @@
 <template>
   <b-form
-    class="user-form col-3 p-3 bg-white rounded"
+    class="user-form p-3 bg-white rounded"
     @submit.prevent
   >
     <div class="d-flex justify-content-center mb-5">
@@ -17,7 +17,7 @@
       <b-form-group :data-label="$t('Email')">
         <b-form-input
           v-model="$v.form.email.$model"
-          class="py-4 px-1 border-bottom"
+          class="py-4 border"
           :placeholder="$t('Enter', { input: $t('Email') })"
         ></b-form-input>
         <b-form-invalid-feedback v-show="!$v.form.email.required">{{
