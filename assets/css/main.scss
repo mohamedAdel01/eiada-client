@@ -1,4 +1,4 @@
-@mixin tooltip { 
+@mixin tooltip {
   content: attr(data-label);
   position: absolute;
   min-width: fit-content;
@@ -6,7 +6,7 @@
   color: #333;
   white-space: nowrap;
   background: white;
-  padding: 0 10px;
+  padding: 0 5px;
   text-align: right;
   transition: 0.5s;
   opacity: 0;
@@ -21,7 +21,13 @@ body {
   cursor: pointer;
 }
 
-h1,h2,h3,h4,h5,h6,p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin-bottom: 0;
 }
 
@@ -60,10 +66,10 @@ h1,h2,h3,h4,h5,h6,p {
 }
 
 .page-enter-active {
-  animation: opacity 0.5s;
+  animation: opacity 0.3s;
 }
 .page-leave-active {
-  animation: opacity 0.5s reverse;
+  animation: opacity 0.3s reverse;
 }
 @keyframes opacity {
   0% {
@@ -80,8 +86,7 @@ form {
     &::after {
       @include tooltip;
       top: -10px;
-      left: 5px;
-      border-radius: 50px;
+      left: 15px;
     }
     &:focus-within {
       &::after {
@@ -96,6 +101,37 @@ form {
     outline: none !important;
     border: none !important;
     border-radius: 0 !important;
+  }
+  input {
+    color: #000 !important;
+    font-weight: 600 !important;
+    &::placeholder {
+      font-weight: 400 !important;
+      color: #aaa !important;
+    }
+  }
+}
+
+.ui.selection.dropdown {
+  box-shadow: none !important;
+  z-index: 0 !important;
+  height: 50px;
+  line-height: 50px;
+  input {
+    height: 100%;
+    line-height: normal;
+  }
+  .text.default {
+    color: #aaa !important;
+  }
+  .text {
+    top: 7px !important;
+    color: #000 !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+  }
+  .dropdown.icon {
+    display: none !important;
   }
 }
 
@@ -119,16 +155,16 @@ form {
   background: #555;
 }
 
-
-
-
 .tooltip-bottom {
   position: relative;
   &::after {
     @include tooltip;
     bottom: -30px;
+    left: 0;
+    right: 0;
     color: #777;
     border-radius: 2px;
+    text-align: center;
   }
   &:hover {
     &::after {

@@ -1,6 +1,6 @@
 <template>
   <b-form @submit.prevent>
-    <b-form-group class="position-relative" :data-label="$t('New Password')">
+    <b-form-group class="position-relative px-2" :data-label="$t('New Password')">
       <div class="eye" v-show="form.new_password">
         <inline-svg
           v-show="!showPassword"
@@ -18,7 +18,7 @@
       <b-form-input
         :type="showPassword ? 'text' : 'password'"
         v-model="$v.form.new_password.$model"
-        class="py-4 border"
+        class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('New Password') })"
         :state="
           responseErrors && responseErrors.key == 'password'
@@ -56,20 +56,22 @@
       </button>
     </div>
 
-    <button
-      class="btn btn-dark btn-block py-2 mt-5"
-      :disabled="loading"
-      type="submit"
-      @click="change_password"
-    >
-      <span v-show="!loading">
-        {{ $t("Change password") }}
-      </span>
-      <span v-show="loading">
-        {{ $t("...Loading") }}
-        <b-spinner small variant="white" label="Spinning"></b-spinner>
-      </span>
-    </button>
+    <div class="px-2">
+      <button
+        class="btn btn-dark rounded btn-block py-2 mt-5"
+        :disabled="loading"
+        type="submit"
+        @click="change_password"
+      >
+        <span v-show="!loading">
+          {{ $t("Change password") }}
+        </span>
+        <span v-show="loading">
+          {{ $t("...Loading") }}
+          <b-spinner small variant="white" label="Spinning"></b-spinner>
+        </span>
+      </button>
+    </div>
   </b-form>
 </template>
 

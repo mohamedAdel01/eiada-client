@@ -1,6 +1,6 @@
 <template>
   <b-form class="mt-5 pt-5" @submit.prevent>
-    <b-form-group :data-label="$t('Clinic name')">
+    <b-form-group class="px-2" :data-label="$t('Clinic name')">
       <b-form-input
         v-model="$v.form.name.$model"
         class="py-4 border"
@@ -12,20 +12,22 @@
       }}</b-form-invalid-feedback>
     </b-form-group>
 
-    <button
-      class="btn btn-dark btn-block py-2"
-      :disabled="loading"
-      type="submit"
-      @click="submit"
-    >
-      <span v-show="!loading">
-        {{ $t("Create") }}
-      </span>
-      <span v-show="loading">
-        {{ $t("...Loading") }}
-        <b-spinner small variant="white" label="Spinning"></b-spinner>
-      </span>
-    </button>
+    <div class="px-2">
+      <button
+        class="btn btn-dark btn-block py-2"
+        :disabled="loading"
+        type="submit"
+        @click="submit"
+      >
+        <span v-show="!loading">
+          {{ $t("Create") }}
+        </span>
+        <span v-show="loading">
+          {{ $t("...Loading") }}
+          <b-spinner small variant="white" label="Spinning"></b-spinner>
+        </span>
+      </button>
+    </div>
   </b-form>
 </template>
 

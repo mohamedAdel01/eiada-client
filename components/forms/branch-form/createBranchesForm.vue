@@ -1,6 +1,7 @@
 <template>
   <b-form class="mt-5" @submit.prevent>
     <b-form-group
+      class="px-2"
       v-for="(v, i) in $v.form.addresses.$each.$iter"
       :key="i"
       :data-label="$t('Branch address')"
@@ -36,20 +37,22 @@
       </div>
     </b-form-group>
 
-    <button
-      class="btn btn-dark btn-block py-2"
-      :disabled="loading"
-      type="submit"
-      @click="submit"
-    >
-      <span v-show="!loading">
-        {{ $t("Submit") }}
-      </span>
-      <span v-show="loading">
-        {{ $t("...Loading") }}
-        <b-spinner small variant="white" label="Spinning"></b-spinner>
-      </span>
-    </button>
+    <div class="px-2">
+      <button
+        class="btn btn-dark btn-block rounded py-2"
+        :disabled="loading"
+        type="submit"
+        @click="submit"
+      >
+        <span v-show="!loading">
+          {{ $t("Submit") }}
+        </span>
+        <span v-show="loading">
+          {{ $t("...Loading") }}
+          <b-spinner small variant="white" label="Spinning"></b-spinner>
+        </span>
+      </button>
+    </div>
   </b-form>
 </template>
 

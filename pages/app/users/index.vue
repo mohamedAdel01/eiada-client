@@ -13,10 +13,7 @@
         <h1 class="mx-2">{{ $t("Users") }}</h1>
       </div>
       <div class="d-flex align-items-center tooltip-bottom" :data-label="$t('Add User')">
-        <button
-          v-b-modal.add-user
-          class="btn btn-info shadow-sm pointer py-2 px-3 mx-2"
-        >
+        <button v-b-modal.add-user class="btn btn-info shadow-sm pointer py-2 px-3 mx-2">
           <inline-svg
             fill="#fff"
             width="25px"
@@ -27,7 +24,7 @@
       </div>
     </section>
     <section>
-      <b-modal id="add-user" hide-header hide-footer>
+      <b-modal id="add-user" hide-header hide-footer no-close-on-backdrop>
         <add-user />
       </b-modal>
     </section>
@@ -42,18 +39,19 @@ export default {
 <style lang="scss">
 #add-user {
   .modal-dialog {
-    margin: 0 0 0 auto;
-    height: 100%;
+    margin: 0 0 0 auto !important;
+    height: 100% !important;
   }
   &.modal.fade .modal-dialog {
-    transform: translate(200px, 0);
+    transform: translate(200px, 0) !important;
   }
   &.modal.show .modal-dialog {
-    transform: none;
+    transform: none !important;
   }
   .modal-content {
-    height: 100%;
-    border-radius: 0;
+    height: 100% !important;
+    border-radius: 0 !important;
+    border: 1px solid #f0f0f0 !important;
   }
 }
 </style>

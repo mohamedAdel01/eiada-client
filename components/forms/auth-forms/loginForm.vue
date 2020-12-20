@@ -1,9 +1,9 @@
 <template>
   <b-form @submit.prevent>
-    <b-form-group :data-label="$t('Email')">
+    <b-form-group class="px-2" :data-label="$t('Email')">
       <b-form-input
         v-model="$v.form.email.$model"
-        class="py-4 border"
+        class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Email') })"
         :state="
           responseErrors && responseErrors.key == 'email'
@@ -27,7 +27,7 @@
     </b-form-group>
 
     <b-form-group
-      class="position-relative"
+      class="position-relative px-2"
       v-if="!forgetPasswordForm"
       :data-label="$t('Password')"
     >
@@ -48,7 +48,7 @@
       <b-form-input
         :type="showPassword ? 'text' : 'password'"
         v-model="$v.form.password.$model"
-        class="py-4 border"
+        class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Password') })"
         :state="
           responseErrors && responseErrors.key == 'password'
@@ -83,23 +83,25 @@
       </button>
     </div>
 
-    <button
-      class="btn btn-dark btn-block py-2 mt-5"
-      :disabled="loading"
-      type="submit"
-      @click="forgetPasswordForm ? submit('FORGET_PASSWORD_REQUREST') : submit('LOGIN')"
-    >
-      <span v-show="forgetPasswordForm && !loading">
-        {{ $t("Send verification Email") }}
-      </span>
-      <span v-show="!forgetPasswordForm && !loading">
-        {{ $t("Login") }}
-      </span>
-      <span v-show="loading">
-        {{ $t("...Loading") }}
-        <b-spinner small variant="white" label="Spinning"></b-spinner>
-      </span>
-    </button>
+    <div class="px-2">
+      <button
+        class="btn btn-dark rounded btn-block py-2 mt-5"
+        :disabled="loading"
+        type="submit"
+        @click="forgetPasswordForm ? submit('FORGET_PASSWORD_REQUREST') : submit('LOGIN')"
+      >
+        <span v-show="forgetPasswordForm && !loading">
+          {{ $t("Send verification Email") }}
+        </span>
+        <span v-show="!forgetPasswordForm && !loading">
+          {{ $t("Login") }}
+        </span>
+        <span v-show="loading">
+          {{ $t("...Loading") }}
+          <b-spinner small variant="white" label="Spinning"></b-spinner>
+        </span>
+      </button>
+    </div>
   </b-form>
 </template>
 

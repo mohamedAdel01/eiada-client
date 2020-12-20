@@ -1,9 +1,9 @@
 <template>
   <b-form @submit.prevent>
-    <b-form-group :data-label="$t('Fullname')">
+    <b-form-group class="px-2" :data-label="$t('Fullname')">
       <b-form-input
         v-model="$v.form.fullname.$model"
-        class="py-4 rounded"
+        class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Fullname') })"
         :state="$v.form.fullname.$dirty ? !$v.form.fullname.$error : null"
       ></b-form-input>
@@ -12,10 +12,10 @@
       }}</b-form-invalid-feedback>
     </b-form-group>
 
-    <b-form-group :data-label="$t('Email')">
+    <b-form-group class="px-2" :data-label="$t('Email')">
       <b-form-input
         v-model="$v.form.email.$model"
-        class="py-4 rounded"
+        class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Email') })"
         :state="
           responseErrors && responseErrors.key == 'email'
@@ -38,10 +38,10 @@
       >
     </b-form-group>
 
-    <b-form-group :data-label="$t('Phone')">
+    <b-form-group class="px-2" :data-label="$t('Phone')">
       <b-form-input
         v-model="$v.form.phone.$model"
-        class="py-4 rounded"
+        class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Phone') })"
         :state="
           responseErrors && responseErrors.key == 'phone'
@@ -61,9 +61,9 @@
       >
     </b-form-group>
 
-    <b-form-group class="position-relative" :data-label="$t('Password')">
+    <b-form-group class="position-relative px-2" :data-label="$t('Password')">
       <div class="eye" v-show="form.password">
-         <inline-svg
+        <inline-svg
           v-show="!showPassword"
           @click="showPassword = true"
           fill="#aaa"
@@ -79,7 +79,7 @@
       <b-form-input
         :type="showPassword ? 'text' : 'password'"
         v-model="$v.form.password.$model"
-        class="py-4 rounded"
+        class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Password') })"
         :state="$v.form.password.$dirty ? !$v.form.password.$error : null"
       ></b-form-input>
@@ -96,11 +96,11 @@
       >
     </b-form-group>
 
-    <b-form-group :data-label="$t('Confirm Password')">
+    <b-form-group class="px-2" :data-label="$t('Confirm Password')">
       <b-form-input
         type="password"
         v-model="$v.form.confirmPassword.$model"
-        class="py-4 rounded"
+        class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Confirm Password') })"
         :state="$v.form.confirmPassword.$dirty ? !$v.form.confirmPassword.$error : null"
       ></b-form-input>
@@ -115,15 +115,17 @@
       >
     </b-form-group>
 
-    <button class="btn btn-dark btn-block py-2" :disabled="loading" @click="register">
-      <span v-show="!loading">
-        {{ $t("Submit") }}
-      </span>
-      <span v-show="loading">
-        {{ $t("...Loading") }}
-        <b-spinner small variant="white" label="Spinning"></b-spinner>
-      </span>
-    </button>
+    <div class="px-2">
+      <button class="btn btn-dark rounded btn-block py-2" :disabled="loading" @click="register">
+        <span v-show="!loading">
+          {{ $t("Submit") }}
+        </span>
+        <span v-show="loading">
+          {{ $t("...Loading") }}
+          <b-spinner small variant="white" label="Spinning"></b-spinner>
+        </span>
+      </button>
+    </div>
   </b-form>
 </template>
 
