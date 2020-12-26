@@ -21,6 +21,16 @@ body {
   cursor: pointer;
 }
 
+.z-1 {
+  z-index: 1;
+}
+.z-2 {
+  z-index: 2;
+}
+.z-3 {
+  z-index: 3;
+}
+
 h1,
 h2,
 h3,
@@ -87,6 +97,12 @@ form {
       @include tooltip;
       top: -10px;
       left: 15px;
+    }
+    &.show-label {
+      &::after {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
     }
     &:focus-within {
       &::after {

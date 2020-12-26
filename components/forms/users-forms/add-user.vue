@@ -16,19 +16,25 @@
         <h3 class="mx-2 text-muted">{{ $t("Add User") }}</h3>
       </div>
 
-      <b-form-group class="px-2" :data-label="$t('Branch')">
-        <b-form-input
+      <b-form-group :class="['px-2 z-1', form.branch_id ? 'show-label' : '']" :data-label="$t('Branch')">
+        <model-list-select
+          class="border rounded"
+          :list="options"
           v-model="$v.form.branch_id.$model"
-          class="py-4 border rounded"
+          option-value="value"
+          option-text="text"
           :placeholder="$t('Enter', { input: $t('Branch') })"
-          :state="$v.form.branch_id.$dirty ? !$v.form.branch_id.$error : null"
-        ></b-form-input>
+        >
+        </model-list-select>
         <b-form-invalid-feedback v-show="!$v.form.branch_id.required">{{
           $t("This field is required")
         }}</b-form-invalid-feedback>
       </b-form-group>
 
-      <b-form-group class="px-2" :data-label="$t('Email')">
+      <b-form-group
+        :class="['px-2', form.email ? 'show-label' : '']"
+        :data-label="$t('Email')"
+      >
         <b-form-input
           v-model="$v.form.email.$model"
           class="py-4 border rounded"
@@ -49,7 +55,10 @@
         }}</b-form-invalid-feedback>
       </b-form-group>
 
-      <b-form-group class="px-2" :data-label="$t('Jop Title')">
+      <b-form-group
+        :class="['px-2', form.jop_title ? 'show-label' : '']"
+        :data-label="$t('Jop Title')"
+      >
         <b-form-input
           v-model="$v.form.jop_title.$model"
           class="py-4 border rounded"
@@ -61,19 +70,24 @@
         }}</b-form-invalid-feedback>
       </b-form-group>
 
-      <b-form-group class="px-2" :data-label="$t('Role')">
-        <model-list-select
-          class="border rounded"
-          :list="options"
-          v-model="$v.form.role_name.$model"
-          option-value="value"
-          option-text="text"
-          :placeholder="$t('Enter', { input: $t('Role') })"
-        >
-        </model-list-select>
-        <b-form-invalid-feedback v-show="!$v.form.role_name.required">{{
-          $t("This field is required")
-        }}</b-form-invalid-feedback>
+      <b-form-group :class="['px-2 z-1', form.role_name ? 'show-label' : '']" :data-label="$t('Role')">
+        <div>
+          <model-list-select
+            class="border rounded"
+            :list="options"
+            v-model="$v.form.role_name.$model"
+            option-value="value"
+            option-text="text"
+            :placeholder="$t('Enter', { input: $t('Role') })"
+          >
+          </model-list-select>
+          <button class="btn btn-link text-primary p-0 mx-2">
+            {{ $t("Edit Roles") }}
+          </button>
+          <b-form-invalid-feedback v-show="!$v.form.role_name.required">{{
+            $t("This field is required")
+          }}</b-form-invalid-feedback>
+        </div>
       </b-form-group>
 
       <b-modal id="user-roles" hide-header hide-footer hide-backdrop>
@@ -81,7 +95,9 @@
       </b-modal>
     </div>
     <div class="w-100 px-2 mt-4 d-flex justify-content-between">
-      <button class="btn btn-dark col-4 py-2 rounded">{{ $t("Submit") }}</button>
+      <button class="btn btn-dark col-4 py-2 rounded" @click="submit">
+        {{ $t("Submit") }}
+      </button>
       <button v-b-modal.user-roles class="btn btn-link text-danger col-4 py-2 rounded">
         {{ $t("Cancel") }}
       </button>
@@ -123,6 +139,11 @@ export default {
         { value: "d", text: "This one is disabled", disabled: true },
       ],
     };
+  },
+  methods: {
+    submit() {
+      console.log("test");
+    },
   },
   validations() {
     if (this.form.role_name != "custom") {
