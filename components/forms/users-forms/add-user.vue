@@ -16,13 +16,16 @@
         <h3 class="mx-2 text-muted">{{ $t("Add User") }}</h3>
       </div>
 
-      <b-form-group :class="['px-2 z-1', form.branch_id ? 'show-label' : '']" :data-label="$t('Branch')">
+      <b-form-group
+        :class="['px-2 z-1', form.branch_id ? 'show-label' : '']"
+        :data-label="$t('Branch')"
+      >
         <model-list-select
           class="border rounded"
-          :list="options"
+          :list="branches"
           v-model="$v.form.branch_id.$model"
-          option-value="value"
-          option-text="text"
+          option-value="id"
+          option-text="address"
           :placeholder="$t('Enter', { input: $t('Branch') })"
         >
         </model-list-select>
@@ -36,7 +39,7 @@
         :data-label="$t('Email')"
       >
         <b-form-input
-          v-model="$v.form.email.$model"
+          v-model="form.email"
           class="py-4 border rounded"
           :placeholder="$t('Enter', { input: $t('Email') })"
           :state="
@@ -60,7 +63,7 @@
         :data-label="$t('Jop Title')"
       >
         <b-form-input
-          v-model="$v.form.jop_title.$model"
+          v-model="form.jop_title"
           class="py-4 border rounded"
           :placeholder="$t('Enter', { input: $t('Jop Title') })"
           :state="$v.form.jop_title.$dirty ? !$v.form.jop_title.$error : null"
@@ -70,14 +73,17 @@
         }}</b-form-invalid-feedback>
       </b-form-group>
 
-      <b-form-group :class="['px-2 z-1', form.role_name ? 'show-label' : '']" :data-label="$t('Role')">
+      <b-form-group
+        :class="['px-2 z-1', form.role_name ? 'show-label' : '']"
+        :data-label="$t('Role')"
+      >
         <div>
           <model-list-select
             class="border rounded"
-            :list="options"
-            v-model="$v.form.role_name.$model"
-            option-value="value"
-            option-text="text"
+            :list="roles"
+            v-model="form.role_name"
+            option-value="name"
+            option-text="name"
             :placeholder="$t('Enter', { input: $t('Role') })"
           >
           </model-list-select>
@@ -106,22 +112,20 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate";
-import { required, email } from "vuelidate/lib/validators";
+import { add_user_validation } from "@/assets/js/constants";
 import "vue-search-select/dist/VueSearchSelect.css";
 import { ModelListSelect } from "vue-search-select";
 export default {
-  mixins: [validationMixin],
   components: {
     ModelListSelect,
   },
   data() {
     return {
       form: {
-        email: "",
-        jop_title: "",
+        email: "mohamed7adel96@gmail.com",
+        jop_title: "doctor",
         branch_id: "",
-        role_name: "",
+        role_name: "doctor",
         new_role: {
           name: "",
           custom: false,
@@ -140,54 +144,38 @@ export default {
       ],
     };
   },
-  methods: {
-    submit() {
-      console.log("test");
+  computed: {
+    roles() {
+      return this.$store.state.role.roles;
+    },
+    branches() {
+      let authData = this.$cookiz.get("authData");
+      return authData.branches;
     },
   },
+  methods: {
+    submit() {
+      if (!this.checkFormErrors()) return;
+      this.$store
+        .dispatch("user/USER", {
+          service: "CREATE_USER",
+          payload: this.form,
+        })
+        .then(({ error, response }) => {
+          this.loading = false;
+          if (error) {
+            this.responseErrors = response.errors[0];
+            return;
+          }
+        });
+      console.log(this.form);
+    },
+  },
+  // mounted() {
+  //   console.log(add_user_validation(this.form.role_name));
+  // },
   validations() {
-    if (this.form.role_name != "custom") {
-      return {
-        form: {
-          branch_id: {
-            required,
-          },
-          email: {
-            required,
-            email,
-          },
-          jop_title: {
-            required,
-          },
-          role_name: {
-            required,
-          },
-        },
-      };
-    } else {
-      return {
-        form: {
-          branch_id: {
-            required,
-          },
-          email: {
-            required,
-            email,
-          },
-          jop_title: {
-            required,
-          },
-          role_name: {
-            required,
-          },
-          new_role: {
-            name: {
-              required,
-            },
-          },
-        },
-      };
-    }
+    return add_user_validation(this.form.role_name);
   },
 };
 </script>

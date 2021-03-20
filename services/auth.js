@@ -4,36 +4,44 @@ export default {
   async REGISTER({ apollo }, payload) {
     return await apollo.mutate({
       mutation: gql`
-              mutation {
-                REGISTER(
-                  fullname: "${payload.fullname}",
-                  email: "${payload.email}",
-                  phone: "${payload.phone}",
-                  password: "${payload.password}"
-                ) {
-                  user {
-                    id
-                    email
-                    token
-                    role
-                    email_verified
-                  }
-                  clinic {
-                    id
-                    name
-                  }
-                  branches {
-                      id
-                      address
-                  }
-                  errors {
-                    key
-                    message
-                  }
-                  message
-                }
-              }
-            `
+        mutation(
+          $fullname: String!
+          $email: String!
+          $phone: String!
+          $password: String!
+        ) {
+          REGISTER(
+            fullname: $fullname
+            email: $email
+            phone: $phone
+            password: $password
+          ) {
+            user {
+              id
+              email
+              token
+              role
+              email_verified
+            }
+            clinic {
+              id
+              name
+            }
+            branches {
+              id
+              address
+            }
+            errors {
+              key
+              message
+            }
+            message
+          }
+        }
+      `,
+      variables: {
+        ...payload
+      }
     });
   },
 
@@ -78,8 +86,8 @@ export default {
   async LOGIN({ apollo }, payload) {
     return await apollo.mutate({
       mutation: gql`
-        mutation {
-          LOGIN(email: "${payload.email}", password: "${payload.password}") {
+        mutation($email: String!, $password: String!) {
+          LOGIN(email: $email, password: $password) {
             user {
               id
               fullname
@@ -93,8 +101,8 @@ export default {
               name
             }
             branches {
-                id
-                address
+              id
+              address
             }
             errors {
               key
@@ -102,7 +110,10 @@ export default {
             }
           }
         }
-      `
+      `,
+      variables: {
+        ...payload
+      }
     });
   },
 

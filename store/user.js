@@ -1,21 +1,23 @@
-import branchServices from "@/services/branch";
+import userServices from "@/services/user";
+
+export const state = () => ({
+  users: null
+});
 
 export const mutations = {
-  save_branch(state, payload) {
-    let authData = this.$cookiz.get("authData");
-    authData.branches = payload.branches;
-    this.$cookiz.set("authData", JSON.stringify(authData));
+  save_user_item(state, { key, value }) {
+    state[key] = value;
   }
 };
 
 export const actions = {
-  async BRANCH({ commit }, { service, payload }) {
+  async USER({ commit }, { service, payload }) {
     let apollo = this.app.apolloProvider.defaultClient;
     let token = this.$cookiz.get("authData")
       ? this.$cookiz.get("authData").user.token
       : null;
 
-    let response = (await branchServices[service]({ apollo, token }, payload))
+    let response = (await userServices[service]({ apollo, token }, payload))
       .data[service];
 
     if (response.errors && response.errors.length) {
@@ -26,8 +28,11 @@ export const actions = {
     }
 
     switch (service) {
-      case "CREATE_BRANCHES":
-        commit("save_branch", response);
+      case "CREATE_USER":
+        commit("save_user_item", {
+          key: "users",
+          value: response
+        });
         break;
     }
 

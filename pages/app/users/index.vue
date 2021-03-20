@@ -12,14 +12,18 @@
         </div>
         <h1 class="mx-2">{{ $t("Users") }}</h1>
       </div>
-      <div class="d-flex align-items-center tooltip-bottom" :data-label="$t('Add User')">
-        <button v-b-modal.add-user class="btn btn-info shadow-sm pointer py-2 px-3 mx-2">
+      <div class="d-flex align-items-center tooltip-bottom">
+        <button
+          v-b-modal.add-user
+          class="btn btn-info shadow-sm d-flex align-items-center pointer py-2 px-3 mx-2"
+        >
           <inline-svg
             fill="#fff"
             width="25px"
             height="20px"
             :src="require('@/static/images/add-user.svg')"
           ></inline-svg>
+          <p class="mx-1">{{ $t("Add User") }}</p>
         </button>
       </div>
     </section>
@@ -34,6 +38,11 @@
 export default {
   layout: "app-2",
   middleware: "appPages",
+  mounted() {
+    this.$store.dispatch("role/ROLE", {
+      service: "ROLES",
+    });
+  },
 };
 </script>
 <style lang="scss">

@@ -4,8 +4,8 @@ export default {
   async CREATE_CLINIC({ apollo, token }, payload) {
     return await apollo.mutate({
       mutation: gql`
-        mutation {
-          CREATE_CLINIC(name: "${payload.name}") {
+        mutation($name: String!) {
+          CREATE_CLINIC(name: $name) {
             clinic {
               name
               owner {
@@ -22,7 +22,9 @@ export default {
           }
         }
       `,
-      variables: {},
+      variables: {
+        ...payload
+      },
       context: {
         headers: {
           Authorization: token
