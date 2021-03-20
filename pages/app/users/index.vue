@@ -27,11 +27,19 @@
         </button>
       </div>
     </section>
-    <section>
-      <b-modal id="add-user" hide-header hide-footer no-close-on-backdrop>
-        <add-user />
-      </b-modal>
-    </section>
+
+    <div class="d-flex flex-wrap">
+      <section class="col-xl-3 col-12 px-2 my-2 z-2">
+        <filter-users-sec />
+      </section>
+      <section class="col-xl-9 col-12 px-2 my-2 z-1">
+        <users-table />
+      </section>
+    </div>
+
+    <b-modal id="add-user" hide-header hide-footer no-close-on-backdrop>
+      <add-user-form />
+    </b-modal>
   </div>
 </template>
 <script>
