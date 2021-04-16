@@ -35,5 +35,22 @@ export default {
         }
       }
     });
+  },
+  async USERS({ apollo, token }) {
+    return await apollo.query({
+      query: gql`
+        {
+          USERS {
+            fullname
+            email
+          }
+        }
+      `,
+      context: {
+        headers: {
+          Authorization: token
+        }
+      }
+    });
   }
 };

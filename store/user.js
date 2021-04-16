@@ -34,6 +34,12 @@ export const actions = {
           value: response
         });
         break;
+      case "USERS":
+        commit("save_user_item", {
+          key: "users",
+          value: response
+        });
+        break;
     }
 
     return {

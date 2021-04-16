@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="mb-4 d-flex justify-content-between align-items-center">
+    <section class="mb-5 d-flex justify-content-between align-items-center px-2">
       <div class="d-flex align-items-center">
         <div class="bg-white rounded shadow-sm pointer py-1 px-2">
           <inline-svg
@@ -15,7 +15,7 @@
       <div class="d-flex align-items-center tooltip-bottom">
         <button
           v-b-modal.add-user
-          class="btn btn-info shadow-sm d-flex align-items-center pointer py-2 px-3 mx-2"
+          class="btn btn-primary shadow-sm d-flex align-items-center pointer py-2 px-3"
         >
           <inline-svg
             fill="#fff"
@@ -28,16 +28,16 @@
       </div>
     </section>
 
-    <div class="d-flex flex-wrap">
-      <section class="col-xl-3 col-12 px-2 my-2 z-2">
+    <div>
+      <section>
         <filter-users-sec />
       </section>
-      <section class="col-xl-9 col-12 px-2 my-2 z-1">
-        <users-table />
+      <section>
+        <user-card-sec />
       </section>
     </div>
 
-    <b-modal id="add-user" hide-header hide-footer no-close-on-backdrop>
+    <b-modal id="add-user" hide-header hide-footer>
       <add-user-form />
     </b-modal>
   </div>
@@ -49,6 +49,9 @@ export default {
   mounted() {
     this.$store.dispatch("role/ROLE", {
       service: "ROLES",
+    });
+    this.$store.dispatch("user/USER", {
+      service: "USERS",
     });
   },
 };

@@ -5,7 +5,7 @@
       <img v-show="!status" src="@/static/images/exclamation-mark.svg" alt="error-img" />
     </div>
     <div class="mt-4">
-      <h4 :class="status? 'text-info' : 'text-danger'">{{ $t(title) }}</h4>
+      <h4 :class="status ? 'text-primary' : 'text-danger'">{{ $t(title) }}</h4>
       <p class="font-weight-bold">{{ $t(message) }}</p>
     </div>
   </section>

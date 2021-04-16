@@ -39,7 +39,14 @@ export default {
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
    */
-  components: true,
+  components: {
+    dirs: [
+      "~/components",
+      "~/components/forms",
+      "~/components/sections",
+      "~/components/tabels"
+    ]
+  },
   /*
    ** Nuxt.js dev-modules
    */
@@ -71,6 +78,25 @@ export default {
     keepOnHover: true,
     duration: 4000,
     className: "msgToast"
+  },
+
+  bootstrapVue: {
+    icons: false,
+    bootstrapCSS: false,
+    bootstrapVueCSS: false,
+    componentPlugins: [
+      "FormPlugin",
+      "FormInputPlugin",
+      "FormGroupPlugin",
+      "InputGroupPlugin",
+      "FormTextareaPlugin",
+      "CollapsePlugin",
+      "DropdownPlugin",
+      "PaginationPlugin",
+      "SpinnerPlugin",
+      "ModalPlugin"
+    ],
+    directivePlugins: []
   },
 
   i18n: {
