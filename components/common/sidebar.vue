@@ -1,5 +1,5 @@
 <template>
-  <aside class="position-fixed">
+  <section class="sidebar position-fixed z-3">
     <ul class="p-0 text-center">
       <li
         @click="$router.push('/app')"
@@ -38,7 +38,7 @@
         ></inline-svg>
       </li>
     </ul>
-  </aside>
+  </section>
 </template>
 
 <script>
@@ -46,7 +46,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-aside {
+.sidebar {
   top: 50px;
   left: 0;
   width: 70px;

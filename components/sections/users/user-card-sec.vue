@@ -1,6 +1,6 @@
 <template>
   <section class="d-flex flex-wrap">
-    <div class="col-md-3 px-2" v-for="(user, i) in users" :key="i">
+    <div class="col-md-3 px-2 py-2" v-for="(user, i) in users" :key="i">
       <div class="bg-white shadow-sm rounded pt-1 px-1 pb-4">
         <div class="d-flex justify-content-end align-items-center mb-5">
           <button class="btn btn-link d-flex align-items-center">
