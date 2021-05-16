@@ -116,7 +116,6 @@ export default {
           payload: this.form,
         })
         .then(({ error, response }) => {
-          this.loading = false;
           if (error) {
             this.responseErrors = response.errors[0];
             return;

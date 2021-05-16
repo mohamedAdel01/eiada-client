@@ -52,9 +52,6 @@ export const actions = {
       // case "LOGOUT":
       //   commit("clear_data");
       //   break;
-
-      default:
-        break;
     }
 
     return {

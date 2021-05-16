@@ -46,16 +46,6 @@
       >
     </b-form-group>
 
-    <div class="position-relative">
-      <button
-        type="button"
-        class="forget-password btn btn-link bg-white rounded pt-0 position-absolute"
-        @click="change_password"
-      >
-        {{ $t("Change password") }}
-      </button>
-    </div>
-
     <div class="px-2">
       <button
         class="btn btn-dark rounded btn-block py-2 mt-5"

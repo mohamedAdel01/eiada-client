@@ -56,7 +56,7 @@ export default {
           message: "You will redirected to Login page in 5 sec",
         };
         setTimeout(() => {
-          this.$router.push("/");
+          this.$router.push("/auth/login");
         }, 5000);
         return;
       }

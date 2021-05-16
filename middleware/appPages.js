@@ -3,6 +3,10 @@ export default function({ app, route, redirect }) {
     return redirect("/auth/login");
   }
 
+  // if (!app.$cookiz.get("authData").user.email_verified) {
+  //   return redirect("/auth/login");
+  // }
+
   if (!app.$cookiz.get("authData").clinic.length) {
     if (route.path.split("/").pop() == "create-clinic") return;
     return redirect("/app/clinic/create-clinic");

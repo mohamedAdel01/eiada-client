@@ -48,8 +48,8 @@ export default {
   async VERIFY_EMAIL({ apollo }, payload) {
     return await apollo.mutate({
       mutation: gql`
-        mutation {
-          VERIFY_EMAIL(verification_code: "${payload}") {
+        mutation($verification_code: String!) {
+          VERIFY_EMAIL(verification_code: $verification_code) {
             message
             errors {
               key
@@ -57,7 +57,10 @@ export default {
             }
           }
         }
-      `
+      `,
+      variables: {
+        ...payload
+      }
     });
   },
 
@@ -74,7 +77,6 @@ export default {
           }
         }
       `,
-      variables: {},
       context: {
         headers: {
           Authorization: token
@@ -118,28 +120,32 @@ export default {
   },
 
   async FORGET_PASSWORD_REQUREST({ apollo }, payload) {
+    console.log(payload);
     return await apollo.mutate({
       mutation: gql`
-      mutation {
-        FORGET_PASSWORD_REQUREST(email:"${payload.email}"){
-          message
-          errors {
-            key
+        mutation($email: String!) {
+          FORGET_PASSWORD_REQUREST(email: $email) {
             message
+            errors {
+              key
+              message
+            }
           }
         }
+      `,
+      variables: {
+        ...payload
       }
-      `
     });
   },
 
   async CHANGE_PASSWORD({ apollo }, payload) {
     return await apollo.mutate({
       mutation: gql`
-        mutation {
+        mutation($new_password: String!, $verification_code: String!) {
           CHANGE_PASSWORD(
-            new_password: "${payload.new_password}"
-            verification_code: "${payload.code}"
+            new_password: $new_password
+            verification_code: $code
           ) {
             message
             errors {
@@ -148,7 +154,10 @@ export default {
             }
           }
         }
-      `
+      `,
+      variables: {
+        ...payload
+      }
     });
   }
 };

@@ -106,13 +106,13 @@ export default {
         name: "English",
         code: "en",
         iso: "en-US",
-        file: "en.js"
+        file: "en.json"
       },
       {
         name: "Arabic",
         code: "ar",
         iso: "ar-EG",
-        file: "ar.js"
+        file: "ar.json"
       }
     ],
     langDir: "lang/",

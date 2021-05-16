@@ -77,7 +77,7 @@ export default {
       this.$store
         .dispatch("auth/AUTH", {
           service: "VERIFY_EMAIL",
-          payload: this.$route.query.code,
+          payload: { verification_code: this.$route.query.code },
         })
         .then(({ error, response }) => {
           if (error) {

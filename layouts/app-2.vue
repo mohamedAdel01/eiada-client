@@ -1,6 +1,6 @@
 <template>
   <main>
-    <no-ssr>
+    <client-only>
       <navbar />
       <sidebar />
       <div class="p-5 mx-4">
@@ -8,7 +8,7 @@
           <Nuxt />
         </div>
       </div>
-    </no-ssr>
+    </client-only>
   </main>
 </template>
 

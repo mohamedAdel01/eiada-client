@@ -4,9 +4,16 @@
       <img v-show="status" src="@/static/images/check-mark.svg" alt="success-img" />
       <img v-show="!status" src="@/static/images/exclamation-mark.svg" alt="error-img" />
     </div>
-    <div class="mt-4">
-      <h4 :class="status ? 'text-primary' : 'text-danger'">{{ $t(title) }}</h4>
-      <p class="font-weight-bold">{{ $t(message) }}</p>
+    <div
+      :class="[
+        'mt-4 bg-white border border-primary rounded-lg p-2',
+        status ? 'border-primary' : 'border-danger',
+      ]"
+    >
+      <h4 class="font-20" :class="status ? 'text-primary' : 'text-danger'">
+        {{ $t(title) }}
+      </h4>
+      <p>{{ $t(message) }}</p>
     </div>
   </section>
 </template>
