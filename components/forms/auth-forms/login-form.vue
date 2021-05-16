@@ -5,13 +5,7 @@
         v-model="$v.form.email.$model"
         class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Email') })"
-        :state="
-          responseErrors && responseErrors.key == 'email'
-            ? false
-            : $v.form.email.$dirty
-            ? !$v.form.email.$error
-            : null
-        "
+        :state="$v.form.email.$dirty ? !$v.form.email.$error : null"
       ></b-form-input>
       <b-form-invalid-feedback v-show="!$v.form.email.required">{{
         $t("This field is required")
@@ -19,15 +13,10 @@
       <b-form-invalid-feedback v-show="!$v.form.email.email">{{
         $t("Please add a valid email")
       }}</b-form-invalid-feedback>
-      <b-form-invalid-feedback
-        class="d-block"
-        v-if="responseErrors && responseErrors.key == 'email'"
-        >{{ $t(responseErrors.message) }}</b-form-invalid-feedback
-      >
     </b-form-group>
 
     <b-form-group
-      class="position-relative px-2"
+      class="position-relative px-2 mb-1"
       v-if="!forgetPasswordForm"
       :data-label="$t('Password')"
     >
@@ -50,28 +39,17 @@
         v-model="$v.form.password.$model"
         class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Password') })"
-        :state="
-          responseErrors && responseErrors.key == 'password'
-            ? false
-            : $v.form.password.$dirty
-            ? !$v.form.password.$error
-            : null
-        "
+        :state="$v.form.password.$dirty ? !$v.form.password.$error : null"
       ></b-form-input>
       <b-form-invalid-feedback v-show="!$v.form.password.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
-      <b-form-invalid-feedback
-        class="d-block"
-        v-if="responseErrors && responseErrors.key == 'password'"
-        >{{ $t(responseErrors.message) }}</b-form-invalid-feedback
-      >
     </b-form-group>
 
-    <div class="position-relative">
+    <div class="text-right">
       <button
         type="button"
-        class="forget-password btn btn-link bg-white pt-0 position-absolute"
+        class="forget-password btn btn-link bg-white pt-0"
         @click="forgetPasswordForm = !forgetPasswordForm"
       >
         <span v-show="!forgetPasswordForm">
@@ -83,9 +61,16 @@
       </button>
     </div>
 
+    <div
+      v-if="responseErrors"
+      class="border border-danger rounded-lg p-3 bg-white mx-2 mt-3 text-center"
+    >
+      <p>{{ responseErrors.message }}</p>
+    </div>
+
     <div class="px-2">
       <button
-        class="btn btn-dark rounded btn-block py-2 mt-5"
+        class="btn btn-dark rounded btn-block py-2 mt-4"
         :disabled="loading"
         type="submit"
         @click="forgetPasswordForm ? submit('FORGET_PASSWORD_REQUREST') : submit('LOGIN')"
@@ -188,9 +173,5 @@ export default {
     cursor: pointer;
     width: 100%;
   }
-}
-.forget-password {
-  right: 0;
-  top: -10px;
 }
 </style>

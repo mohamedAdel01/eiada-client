@@ -169,9 +169,6 @@ export default {
             return;
           }
           this.$emit("success");
-          setTimeout(() => {
-            this.$router.push("/");
-          }, 5000);
         });
     },
   },
