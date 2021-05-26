@@ -91,7 +91,6 @@
 </template>
 
 <script>
-import { required, email } from "vuelidate/lib/validators";
 import {
   store_action_mixin,
   check_errors_mixin,

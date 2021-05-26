@@ -134,8 +134,11 @@
 </template>
 
 <script>
-import { required, sameAs, email } from "vuelidate/lib/validators";
-import { store_action_mixin, check_errors_mixin } from "@/assets/js/constants";
+import {
+  store_action_mixin,
+  check_errors_mixin,
+  register_validation,
+} from "@/assets/js/constants";
 export default {
   mixins: [store_action_mixin, check_errors_mixin],
   data() {
@@ -170,36 +173,8 @@ export default {
       );
     },
   },
-  validations: {
-    form: {
-      fullname: {
-        required,
-      },
-      email: {
-        required,
-        email,
-      },
-      phone: {
-        required,
-      },
-      password: {
-        required,
-        // minLength: minLength(6),
-        valid: function (value) {
-          const containsUppercase = /[A-Z]/.test(value);
-          const containsLowercase = /[a-z]/.test(value);
-          const containsNumber = /[0-9]/.test(value);
-          const containsSpecial = /[#?!@$%^&*-]/.test(value);
-          return (
-            containsUppercase && containsLowercase && containsNumber && containsSpecial
-          );
-        },
-      },
-      confirmPassword: {
-        required,
-        sameAsPassword: sameAs("password"),
-      },
-    },
+  validations() {
+    return register_validation();
   },
 };
 </script>

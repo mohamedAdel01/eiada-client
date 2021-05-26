@@ -1,4 +1,4 @@
-import { required, email } from "vuelidate/lib/validators";
+import { required, email, sameAs } from "vuelidate/lib/validators";
 
 export const store_action_mixin = {
   methods: {
@@ -64,5 +64,34 @@ export const login_validation = forget_password_form => {
   };
 
   if (!forget_password_form) validation.form.password = { required };
+  return validation;
+};
+
+export const register_validation = () => {
+  let validation_keys = ["fullname", "email", "phone"];
+  let validation = create_validation_obj(validation_keys);
+
+  validation.form.password = {
+    required,
+    // minLength: minLength(6),
+    valid: function(value) {
+      const containsUppercase = /[A-Z]/.test(value);
+      const containsLowercase = /[a-z]/.test(value);
+      const containsNumber = /[0-9]/.test(value);
+      const containsSpecial = /[#?!@$%^&*-]/.test(value);
+      return (
+        containsUppercase &&
+        containsLowercase &&
+        containsNumber &&
+        containsSpecial
+      );
+    }
+  };
+
+  validation.form.confirmPassword = {
+    required,
+    sameAsPassword: sameAs("password")
+  };
+
   return validation;
 };
