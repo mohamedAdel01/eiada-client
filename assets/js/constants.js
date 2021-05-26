@@ -2,7 +2,7 @@ import { required, email, sameAs } from "vuelidate/lib/validators";
 
 export const store_action_mixin = {
   methods: {
-    STORE_ACTION(type, action, service, payload) {
+    STORE_ACTION(type, action, service, payload = null) {
       return this.$store.dispatch("HANDLE_REQUEST", {
         type,
         action,
@@ -91,6 +91,31 @@ export const register_validation = () => {
   validation.form.confirmPassword = {
     required,
     sameAsPassword: sameAs("password")
+  };
+
+  return validation;
+};
+
+export const change_password_validation = () => {
+  let validation = {
+    form: {
+      new_password: {
+        required,
+        // minLength: minLength(6),
+        valid: function(value) {
+          const containsUppercase = /[A-Z]/.test(value);
+          const containsLowercase = /[a-z]/.test(value);
+          const containsNumber = /[0-9]/.test(value);
+          const containsSpecial = /[#?!@$%^&*-]/.test(value);
+          return (
+            containsUppercase &&
+            containsLowercase &&
+            containsNumber &&
+            containsSpecial
+          );
+        }
+      }
+    }
   };
 
   return validation;

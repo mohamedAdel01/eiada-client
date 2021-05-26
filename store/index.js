@@ -7,9 +7,6 @@ export const state = () => ({
 export const mutations = {
   loading({ loading }, value) {
     loading = value;
-  },
-  clear_data() {
-    this.$cookiz.removeAll();
   }
 };
 
@@ -18,11 +15,6 @@ export const actions = {
     { commit, dispatch },
     { type, action, service, payload }
   ) {
-    if (service == "LOGOUT") {
-      // will be removed later
-      commit("clear_data");
-      return;
-    }
 
     commit("loading", "service");
 

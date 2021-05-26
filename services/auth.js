@@ -98,7 +98,7 @@ export default {
   mutation($new_password: String!, $verification_code: String!) {
     CHANGE_PASSWORD(
       new_password: $new_password
-      verification_code: $code
+      verification_code: $verification_code
     ) {
       message
       errors {

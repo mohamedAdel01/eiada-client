@@ -66,14 +66,17 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate";
-import { required, minLength } from "vuelidate/lib/validators";
+import {
+  store_action_mixin,
+  check_errors_mixin,
+  change_password_validation,
+} from "@/assets/js/constants";
 export default {
-  mixins: [validationMixin],
+  mixins: [store_action_mixin, check_errors_mixin],
   data() {
     return {
       form: {
-        code: "",
+        verification_code: "",
         new_password: "",
       },
       showPassword: false,
@@ -83,14 +86,9 @@ export default {
   },
   methods: {
     change_password() {
-      if (!this.checkErrors()) return;
-      this.$store
-        .dispatch("auth/AUTH", {
-          service: "CHANGE_PASSWORD",
-          payload: this.form,
-        })
-        .then(({ error, response }) => {
-          this.loading = false;
+      if (!this.CHECK_FORM_ERROR()) return;
+      this.STORE_ACTION("MUTATION", "auth/AUTH", "CHANGE_PASSWORD", this.form).then(
+        ({ error, response }) => {
           if (error) {
             this.responseErrors = response.errors[0];
             if (this.responseErrors.key == "code")
@@ -98,39 +96,16 @@ export default {
             return;
           }
           this.$emit("success");
-        });
-    },
-    checkErrors() {
-      this.loading = true;
-      this.$v.form.$touch();
-      if (this.$v.form.$anyError) {
-        this.$toast.info(this.$t("Please fill all inputs with correct data"));
-        this.loading = false;
-        return false;
-      }
-      return true;
+        }
+      );
     },
   },
   mounted() {
-    if (!this.$route.query.code) return this.$router.push("/");
-    this.form.code = this.$route.query.code;
+    if (!this.$route.query.verification_code) return this.$router.push("/");
+    this.form.verification_code = this.$route.query.verification_code;
   },
-  validations: {
-    form: {
-      new_password: {
-        required,
-        // minLength: minLength(6),
-        valid: function (value) {
-          const containsUppercase = /[A-Z]/.test(value);
-          const containsLowercase = /[a-z]/.test(value);
-          const containsNumber = /[0-9]/.test(value);
-          const containsSpecial = /[#?!@$%^&*-]/.test(value);
-          return (
-            containsUppercase && containsLowercase && containsNumber && containsSpecial
-          );
-        },
-      },
-    },
+  validations() {
+    return change_password_validation();
   },
 };
 </script>

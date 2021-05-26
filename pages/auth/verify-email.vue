@@ -42,7 +42,11 @@
 </template>
 
 <script>
+import {
+  store_action_mixin
+} from "@/assets/js/constants";
 export default {
+  mixins: [store_action_mixin],
   middleware: "verificationPages",
   layout: "auth",
   data() {
@@ -52,12 +56,8 @@ export default {
   },
   methods: {
     resend_verification_email() {
-      this.$store
-        .dispatch("auth/AUTH", {
-          service: "RESEND_VERIFICATION_EMAIL",
-          payload: null,
-        })
-        .then(({ error, response }) => {
+      this.STORE_ACTION("MUTATION", "auth/AUTH", "RESEND_VERIFICATION_EMAIL").then(
+        ({ error, response }) => {
           if (error) {
             this.response = {
               status: false,
@@ -71,32 +71,30 @@ export default {
             title: "The email has been sent successfully",
             message: "Please check your Email to verify email",
           };
-        });
+        }
+      );
     },
     verify_email() {
-      this.$store
-        .dispatch("auth/AUTH", {
-          service: "VERIFY_EMAIL",
-          payload: { verification_code: this.$route.query.code },
-        })
-        .then(({ error, response }) => {
-          if (error) {
-            this.response = {
-              status: false,
-              title: "Error while verifing",
-              message: response.errors[0].message,
-            };
-            return;
-          }
+      this.STORE_ACTION("MUTATION", "auth/AUTH", "VERIFY_EMAIL", {
+        verification_code: this.$route.query.code,
+      }).then(({ error, response }) => {
+        if (error) {
           this.response = {
-            status: true,
-            title: "Your Email verified successfuly",
-            message: "Enjoy using the app",
+            status: false,
+            title: "Error while verifing",
+            message: response.errors[0].message,
           };
-          setTimeout(() => {
-            this.$router.push("/");
-          }, 5000);
-        });
+          return;
+        }
+        this.response = {
+          status: true,
+          title: "Your Email verified successfuly",
+          message: "Enjoy using the app",
+        };
+        setTimeout(() => {
+          this.$router.push("/");
+        }, 5000);
+      });
     },
   },
   mounted() {
