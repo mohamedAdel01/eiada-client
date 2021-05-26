@@ -6,8 +6,9 @@ export const state = () => ({
 });
 
 export const mutations = {
-  loading({ loading }, value) {
+  loading({ loading, response_errors }, value) {
     loading = value;
+    if (value) response_errors = false;
   },
   error({ response_errors }, value) {
     response_errors = value.errors[0];
