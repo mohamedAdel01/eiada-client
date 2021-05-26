@@ -15,7 +15,6 @@ export const actions = {
     { commit, dispatch },
     { type, action, service, payload }
   ) {
-
     commit("loading", "service");
 
     let apollo = this.app.apolloProvider.defaultClient;
@@ -33,8 +32,13 @@ export const actions = {
       };
     }
 
+    dispatch(action, { service, response });
+
     commit("loading", false);
 
-    return dispatch(action, { service, response });
+    return {
+      error: false,
+      response
+    };
   }
 };

@@ -37,10 +37,5 @@ export const actions = {
       //   commit("clear_data");
       //   break;
     }
-
-    return {
-      error: false,
-      response
-    };
   }
 };
