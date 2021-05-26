@@ -18,7 +18,7 @@
         class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Email') })"
         :state="
-          responseErrors && responseErrors.key == 'email'
+          response_errors && response_errors.key == 'email'
             ? false
             : $v.form.email.$dirty
             ? !$v.form.email.$error
@@ -33,8 +33,8 @@
       }}</b-form-invalid-feedback>
       <b-form-invalid-feedback
         class="d-block"
-        v-if="responseErrors && responseErrors.key == 'email'"
-        >{{ $t(responseErrors.message) }}</b-form-invalid-feedback
+        v-if="response_errors && response_errors.key == 'email'"
+        >{{ $t(response_errors.message) }}</b-form-invalid-feedback
       >
     </b-form-group>
 
@@ -44,7 +44,7 @@
         class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Phone') })"
         :state="
-          responseErrors && responseErrors.key == 'phone'
+          response_errors && response_errors.key == 'phone'
             ? false
             : $v.form.phone.$dirty
             ? !$v.form.phone.$error
@@ -56,8 +56,8 @@
       }}</b-form-invalid-feedback>
       <b-form-invalid-feedback
         class="d-block"
-        v-if="responseErrors && responseErrors.key == 'phone'"
-        >{{ $t(responseErrors.message) }}</b-form-invalid-feedback
+        v-if="response_errors && response_errors.key == 'phone'"
+        >{{ $t(response_errors.message) }}</b-form-invalid-feedback
       >
     </b-form-group>
 
@@ -151,23 +151,23 @@ export default {
         confirmPassword: "",
       },
       showPassword: false,
-      responseErrors: null,
     };
   },
   computed: {
     loading() {
       return this.$store.state.loading;
     },
+    response_errors() {
+      return this.$store.state.response_errors;
+    },
   },
   methods: {
     register() {
       if (!this.CHECK_FORM_ERROR()) return;
       this.STORE_ACTION("MUTATION", "auth/AUTH", "REGISTER", this.form).then(
-        ({ error, response }) => {
-          if (error) {
-            this.responseErrors = response.errors[0];
-            return;
-          }
+        ({ error }) => {
+          if (error) return;
+
           this.$emit("success");
         }
       );
