@@ -62,10 +62,10 @@
     </div>
 
     <div
-      v-if="responseErrors"
+      v-if="response_errors"
       class="border border-danger rounded-lg p-3 bg-white mx-2 mt-3 text-center"
     >
-      <p>{{ responseErrors.message }}</p>
+      <p>{{ response_errors.message }}</p>
     </div>
 
     <div class="px-2">
@@ -105,7 +105,6 @@ export default {
         password: "",
       },
       showPassword: false,
-      responseErrors: null,
       forgetPasswordForm: false,
     };
   },
@@ -113,16 +112,17 @@ export default {
     loading() {
       return this.$store.state.loading;
     },
+    response_errors() {
+      return this.$store.state.response_errors;
+    },
   },
   methods: {
     submit(service) {
       if (!this.CHECK_FORM_ERROR()) return;
       this.STORE_ACTION("MUTATION", "auth/AUTH", service, this.form).then(
-        ({ error, response }) => {
-          if (error) {
-            this.responseErrors = response.errors[0];
-            return;
-          }
+        ({ error }) => {
+          if (error) return;
+
           if (service == "LOGIN") return this.$router.push("/app");
           this.$emit("success");
         }
