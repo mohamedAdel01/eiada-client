@@ -52,3 +52,17 @@ export const add_user_validation = role_name => {
 
   return validation;
 };
+
+export const login_validation = forget_password_form => {
+  let validation = {
+    form: {
+      email: {
+        required,
+        email
+      }
+    }
+  };
+
+  if (!forget_password_form) validation.form.password = { required };
+  return validation;
+};

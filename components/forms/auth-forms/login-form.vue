@@ -92,7 +92,11 @@
 
 <script>
 import { required, email } from "vuelidate/lib/validators";
-import { store_action_mixin, check_errors_mixin } from "@/assets/js/constants";
+import {
+  store_action_mixin,
+  check_errors_mixin,
+  login_validation,
+} from "@/assets/js/constants";
 export default {
   mixins: [store_action_mixin, check_errors_mixin],
   data() {
@@ -127,27 +131,7 @@ export default {
     },
   },
   validations() {
-    if (this.forgetPasswordForm) {
-      return {
-        form: {
-          email: {
-            required,
-            email,
-          },
-        },
-      };
-    }
-    return {
-      form: {
-        email: {
-          required,
-          email,
-        },
-        password: {
-          required,
-        },
-      },
-    };
+    return login_validation(this.forgetPasswordForm);
   },
 };
 </script>
