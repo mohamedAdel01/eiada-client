@@ -91,10 +91,10 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate";
 import { required, email } from "vuelidate/lib/validators";
+import { store_action_mixin, check_errors_mixin } from "@/assets/js/constants";
 export default {
-  mixins: [validationMixin],
+  mixins: [store_action_mixin, check_errors_mixin],
   data() {
     return {
       form: {
@@ -103,36 +103,27 @@ export default {
       },
       showPassword: false,
       responseErrors: null,
-      loading: false,
       forgetPasswordForm: false,
     };
   },
+  computed: {
+    loading() {
+      return this.$store.state.loading;
+    },
+  },
   methods: {
     submit(service) {
-      if (!this.checkErrors()) return;
-      this.$store
-        .dispatch("auth/AUTH", {
-          service,
-          payload: this.form,
-        })
-        .then(({ error, response }) => {
+      if (!this.CHECK_FORM_ERROR()) return;
+      this.STORE_ACTION("MUTATION", "auth/AUTH", service, this.form).then(
+        ({ error, response }) => {
           if (error) {
             this.responseErrors = response.errors[0];
             return;
           }
           if (service == "LOGIN") return this.$router.push("/app");
           this.$emit("success");
-        });
-    },
-    checkErrors() {
-      this.loading = true;
-      this.$v.form.$touch();
-      if (this.$v.form.$anyError) {
-        this.$toast.info(this.$t("Please fill all inputs with correct data"));
-        this.loading = false;
-        return false;
-      }
-      return true;
+        }
+      );
     },
   },
   validations() {

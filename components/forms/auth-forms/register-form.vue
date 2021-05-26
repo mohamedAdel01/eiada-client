@@ -116,7 +116,11 @@
     </b-form-group>
 
     <div class="px-2">
-      <button class="btn btn-dark rounded btn-block py-2" :disabled="loading" @click="register">
+      <button
+        class="btn btn-dark rounded btn-block py-2"
+        :disabled="loading"
+        @click="register"
+      >
         <span v-show="!loading">
           {{ $t("Submit") }}
         </span>
@@ -130,10 +134,10 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate";
-import { required, sameAs, email, minLength } from "vuelidate/lib/validators";
+import { required, sameAs, email } from "vuelidate/lib/validators";
+import { store_action_mixin, check_errors_mixin } from "@/assets/js/constants";
 export default {
-  mixins: [validationMixin],
+  mixins: [store_action_mixin, check_errors_mixin],
   data() {
     return {
       form: {
@@ -145,31 +149,25 @@ export default {
       },
       showPassword: false,
       responseErrors: null,
-      loading: false,
     };
+  },
+  computed: {
+    loading() {
+      return this.$store.state.loading;
+    },
   },
   methods: {
     register() {
-      this.loading = true;
-      this.$v.form.$touch();
-      if (this.$v.form.$anyError) {
-        this.$toast.info(this.$t("Please fill all inputs with correct data"));
-        this.loading = false;
-        return false;
-      }
-      this.$store
-        .dispatch("auth/AUTH", {
-          service: "REGISTER",
-          payload: this.form,
-        })
-        .then(({ error, response }) => {
-          this.loading = false;
+      if (!this.CHECK_FORM_ERROR()) return;
+      this.STORE_ACTION("MUTATION", "auth/AUTH", "REGISTER", this.form).then(
+        ({ error, response }) => {
           if (error) {
             this.responseErrors = response.errors[0];
             return;
           }
           this.$emit("success");
-        });
+        }
+      );
     },
   },
   validations: {

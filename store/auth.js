@@ -1,5 +1,3 @@
-import authServices from "@/services/auth";
-
 export const mutations = {
   save_data(state, payload) {
     this.$cookiz.set("authData", JSON.stringify(payload));
@@ -15,27 +13,8 @@ export const mutations = {
 };
 
 export const actions = {
-  async AUTH({ commit }, { service, payload }) {
-    if (service == "LOGOUT") {
-      // will be removed later
-      commit("clear_data");
-      return;
-    }
-    let apollo = this.app.apolloProvider.defaultClient;
-    let token = this.$cookiz.get("authData")
-      ? this.$cookiz.get("authData").user.token
-      : null;
-
-    let response = (await authServices[service]({ apollo, token }, payload))
-      .data[service];
-
-    if (response.errors.length) {
-      return {
-        error: true,
-        response
-      };
-    }
-
+  async AUTH({ commit }, { service, response }) {
+    
     switch (service) {
       case "REGISTER":
       case "LOGIN":
