@@ -32,8 +32,7 @@ export default {
    */
   plugins: [
     { src: "~plugins/vuelidate", ssr: false },
-    { src: "~plugins/inlineSVG", ssr: false },
-    { src: "~/plugins/mixins", ssr: false }
+    { src: "~plugins/inlineSVG", ssr: false }
   ],
   /*
    ** Auto import components

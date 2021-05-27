@@ -2,16 +2,17 @@ import SERVICE from "@/services";
 
 export const state = () => ({
   loading: false,
-  response_errors: false
+  response_errors: null
 });
 
 export const mutations = {
-  loading({ loading, response_errors }, value) {
-    loading = value;
-    if (value) response_errors = false;
+  loading(state, value) {
+    state.loading = value;
+    if (value) state.response_errors = false;
   },
-  error({ response_errors }, value) {
-    response_errors = value.errors[0];
+  error(state, error) {
+    state.response_errors = error;
+    state.loading = false
   }
 };
 
@@ -31,7 +32,7 @@ export const actions = {
       .data[service];
 
     if (response.errors.length) {
-      commit("error", response);
+      commit("error", response.errors[0]);
       return {
         error: true
       };

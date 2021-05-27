@@ -30,7 +30,7 @@ export default {
     });
   },
 
-  async QUERY({ apollo, token }) {
+  async QUERY({ apollo, token, service }) {
     return await apollo.query({
       query: gql`
         ${TYPES[service]}

@@ -60,7 +60,6 @@
         </span>
       </button>
     </div>
-
     <div
       v-if="response_errors"
       class="border border-danger rounded-lg p-3 bg-white mx-2 mt-3 text-center"
@@ -119,14 +118,12 @@ export default {
   methods: {
     submit(service) {
       if (!this.CHECK_FORM_ERROR()) return;
-      this.STORE_ACTION("MUTATION", "auth/AUTH", service, this.form).then(
-        ({ error }) => {
-          if (error) return;
+      this.STORE_ACTION("MUTATION", "auth/AUTH", service, this.form).then(({ error }) => {
+        if (error) return;
 
-          if (service == "LOGIN") return this.$router.push("/app");
-          this.$emit("success");
-        }
-      );
+        if (service == "LOGIN") return this.$router.push("/app");
+        this.$emit("success");
+      });
     },
   },
   validations() {
