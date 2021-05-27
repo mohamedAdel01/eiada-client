@@ -1,5 +1,3 @@
-import branchServices from "@/services/branch";
-
 export const mutations = {
   save_branch(state, payload) {
     let authData = this.$cookiz.get("authData");
@@ -9,31 +7,11 @@ export const mutations = {
 };
 
 export const actions = {
-  async BRANCH({ commit }, { service, payload }) {
-    let apollo = this.app.apolloProvider.defaultClient;
-    let token = this.$cookiz.get("authData")
-      ? this.$cookiz.get("authData").user.token
-      : null;
-
-    let response = (await branchServices[service]({ apollo, token }, payload))
-      .data[service];
-
-    if (response.errors && response.errors.length) {
-      return {
-        error: true,
-        response
-      };
-    }
-
+  async BRANCH({ commit }, { service, response }) {
     switch (service) {
       case "CREATE_BRANCHES":
         commit("save_branch", response);
         break;
     }
-
-    return {
-      error: false,
-      response
-    };
   }
 };

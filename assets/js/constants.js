@@ -1,4 +1,4 @@
-import { required, email, sameAs } from "vuelidate/lib/validators";
+import { required, email, sameAs, minLength } from "vuelidate/lib/validators";
 
 export const store_action_mixin = {
   methods: {
@@ -125,6 +125,19 @@ export const add_clinic_validation = {
   form: {
     name: {
       required
+    }
+  }
+};
+
+export const add_branch_validation = {
+  form: {
+    addresses: {
+      minLength: minLength(1),
+      $each: {
+        address: {
+          required
+        }
+      }
     }
   }
 };

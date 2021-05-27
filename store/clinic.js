@@ -13,10 +13,5 @@ export const actions = {
         commit("save_clinic", response);
         break;
     }
-
-    return {
-      error: false,
-      response
-    };
   }
 };

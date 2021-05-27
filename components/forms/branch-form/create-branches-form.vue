@@ -57,10 +57,13 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate";
-import { required, minLength } from "vuelidate/lib/validators";
+import {
+  add_branch_validation,
+  store_action_mixin,
+  check_errors_mixin,
+} from "@/assets/js/constants";
 export default {
-  mixins: [validationMixin],
+  mixins: [store_action_mixin, check_errors_mixin],
   data() {
     return {
       form: {
@@ -70,17 +73,17 @@ export default {
           },
         ],
       },
-      loading: false,
     };
+  },
+  computed: {
+    loading() {
+      return this.$store.state.loading;
+    },
   },
   methods: {
     submit() {
-      if (!this.checkErrors()) return;
-      this.$store
-        .dispatch("branch/BRANCH", {
-          service: "CREATE_BRANCHES",
-          payload: this.form,
-        })
+      if (!this.CHECK_FORM_ERROR()) return;
+      this.STORE_ACTION("MUTATION", "branch/BRANCH", "CREATE_BRANCHES", this.form)
         .then(({ error, response }) => {
           if (error) {
             this.$toast.error(this.$t(response.errors[0].message));
@@ -91,9 +94,6 @@ export default {
             this.$router.push("/app");
           }, 5000);
         })
-        .finally(() => {
-          this.loading = false;
-        });
     },
     addBranch() {
       this.form.addresses.push({
@@ -113,18 +113,7 @@ export default {
       return true;
     },
   },
-  validations: {
-    form: {
-      addresses: {
-        minLength: minLength(1),
-        $each: {
-          address: {
-            required,
-          },
-        },
-      },
-    },
-  },
+  validations: add_branch_validation,
 };
 </script>
 
