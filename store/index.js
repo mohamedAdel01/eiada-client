@@ -12,7 +12,7 @@ export const mutations = {
   },
   error(state, error) {
     state.response_errors = error;
-    state.loading = false
+    state.loading = false;
   }
 };
 
@@ -21,30 +21,36 @@ export const actions = {
     { commit, dispatch },
     { type, action, service, payload }
   ) {
-    commit("loading", "service");
+    try {
+      commit("loading", "service");
 
-    let apollo = this.app.apolloProvider.defaultClient;
-    let token = this.$cookiz.get("authData")
-      ? this.$cookiz.get("authData").user.token
-      : null;
+      let apollo = this.app.apolloProvider.defaultClient;
+      let token = this.$cookiz.get("authData")
+        ? this.$cookiz.get("authData").user.token
+        : null;
 
-    let response = (await SERVICE[type]({ apollo, token, service, payload }))
-      .data[service];
+      let response = (await SERVICE[type]({ apollo, token, service, payload }))
+        .data[service];
 
-    if (response.errors.length) {
-      commit("error", response.errors[0]);
+      if (response.errors.length) {
+        commit("error", response.errors[0]);
+        return {
+          error: true,
+          response
+        };
+      }
+
+      dispatch(action, { service, response });
+
+      commit("loading", false);
+
       return {
-        error: true
+        error: false,
+        response
       };
+    } catch (error) {
+      commit("loading", false);
+      throw error.networkError.result.errors[0].message;
     }
-
-    dispatch(action, { service, response });
-
-    commit("loading", false);
-
-    return {
-      error: false,
-      response
-    };
   }
 };

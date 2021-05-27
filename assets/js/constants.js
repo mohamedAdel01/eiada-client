@@ -120,3 +120,11 @@ export const change_password_validation = () => {
 
   return validation;
 };
+
+export const add_clinic_validation = {
+  form: {
+    name: {
+      required
+    }
+  }
+};

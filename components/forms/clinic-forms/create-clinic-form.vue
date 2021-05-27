@@ -32,28 +32,26 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate";
-import { required } from "vuelidate/lib/validators";
+import { add_clinic_validation, store_action_mixin, check_errors_mixin } from "@/assets/js/constants";
 export default {
-  mixins: [validationMixin],
+  mixins: [store_action_mixin, check_errors_mixin],
   data() {
     return {
       form: {
         name: "",
       },
-      loading: false,
     };
+  },
+  computed: {
+    loading() {
+      return this.$store.state.loading;
+    },
   },
   methods: {
     submit() {
-      if (!this.checkErrors()) return;
-      this.$store
-        .dispatch("clinic/CLINIC", {
-          service: "CREATE_CLINIC",
-          payload: this.form,
-        })
-        .then(({ error, response }) => {
-          this.loading = false;
+      if (!this.CHECK_FORM_ERROR()) return;
+      this.STORE_ACTION("MUTATION", "clinic/CLINIC", "CREATE_CLINIC", this.form).then(
+        ({ error, response }) => {
           if (error) {
             this.$toast.error(this.$t(response.errors[0].message));
             return;
@@ -62,24 +60,12 @@ export default {
           setTimeout(() => {
             this.$router.push("/app/branch/create-branch");
           }, 5000);
-        });
-    },
-    checkErrors() {
-      this.loading = true;
-      this.$v.form.$touch();
-      if (this.$v.form.$anyError) {
-        this.loading = false;
-        return false;
-      }
-      return true;
+        }
+      ).catch(error => {
+        this.$toast.error(this.$t(error));
+      })
     },
   },
-  validations: {
-    form: {
-      name: {
-        required,
-      },
-    },
-  },
+  validations: add_clinic_validation,
 };
 </script>
