@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  layout: "app-2",
+  layout: "app-main",
   middleware: "appPages",
 };
 </script>

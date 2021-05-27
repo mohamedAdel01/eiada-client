@@ -13,7 +13,7 @@
 <script>
 export default {
   middleware: "appPages",
-  layout: "app-1",
+  layout: "app-intialization",
   data() {
     return {
       showSuccessMsg: false,
