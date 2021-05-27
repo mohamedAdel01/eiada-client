@@ -76,7 +76,7 @@ export default {
     },
     verify_email() {
       this.STORE_ACTION("MUTATION", "auth/AUTH", "VERIFY_EMAIL", {
-        verification_code: this.$route.query.code,
+        verification_code: this.$route.query.verification_code,
       }).then(({ error, response }) => {
         if (error) {
           this.response = {
@@ -98,7 +98,7 @@ export default {
     },
   },
   mounted() {
-    if (!this.$route.query.code) return this.$router.push("/");
+    if (!this.$route.query.verification_code) return this.$router.push("/");
     this.verify_email();
   },
 };
