@@ -32,7 +32,7 @@ export const actions = {
       let response = (await SERVICE[type]({ apollo, token, service, payload }))
         .data[service];
 
-      if (response.errors.length) {
+      if (response.errors && response.errors.length) {
         commit("error", response.errors[0]);
         return {
           error: true,
@@ -40,7 +40,7 @@ export const actions = {
         };
       }
 
-      dispatch(action, { service, response });
+      dispatch(action, { service, response, payload });
 
       commit("loading", false);
 
@@ -50,6 +50,7 @@ export const actions = {
       };
     } catch (error) {
       commit("loading", false);
+      console.log(error);
       throw error.networkError.result.errors[0].message;
     }
   }

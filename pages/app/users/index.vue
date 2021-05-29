@@ -12,7 +12,7 @@
         </div>
         <h1 class="mx-2">{{ $t("Users") }}</h1>
       </div>
-      <div class="d-flex align-items-center tooltip-bottom">
+      <div class="d-flex align-items-center">
         <button
           v-b-modal.add-user
           class="btn btn-primary shadow-sm d-flex align-items-center pointer py-2 px-3"
@@ -29,9 +29,9 @@
     </section>
 
     <div>
-      <section>
+      <!-- <section>
         <filter-users-sec />
-      </section>
+      </section> -->
       <section>
         <user-card-sec />
       </section>
@@ -54,11 +54,7 @@ export default {
     // });
     this.STORE_ACTION("QUERY", "user/USER", "USERS", {
       page: 1,
-      limit: 2,
     });
-    // this.$store.dispatch("user/USER", {
-    //   service: "USERS",
-    // });
   },
 };
 </script>

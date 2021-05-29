@@ -1,26 +1,33 @@
 export const state = () => ({
   users: null,
-  pagination: null
+  pagination: {
+    page: 1,
+    limit: 10,
+    total: 0
+  }
 });
 
 export const mutations = {
-  save_user_item(state, [ key, value, payload ]) {
-    state[key] = value;
-    state.pagination = payload
+  save_users(state, [value, payload]) {
+    state.users = value.users;
+    state.pagination = { ...payload };
+    state.pagination.total = value.total;
+
+    console.log(state);
+  },
+  add_user(state, user) {
+    state.users.push(user);
   }
 };
 
 export const actions = {
-  async USER({ commit }, { service, payload }) {
+  async USER({ commit }, { service, response, payload }) {
     switch (service) {
       case "CREATE_USER":
-        commit("save_user_item", ["users", response, payload]);
+        commit("add_user", response);
         break;
       case "USERS":
-        commit("save_user_item", {
-          key: "users",
-          value: response
-        });
+        commit("save_users", [response, payload]);
         break;
     }
 

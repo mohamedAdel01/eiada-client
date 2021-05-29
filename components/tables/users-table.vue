@@ -13,7 +13,7 @@
           </th>
         </tr>
       </thead>
-      <tbody v-show="loading != 'INVOICES'">
+      <tbody v-show="loading != 'USERS'">
         <tr v-for="(user, i) in users" :key="i">
           <td
             :data-label="$t('Date')"
@@ -78,6 +78,9 @@ export default {
   computed: {
     users() {
       return this.$store.state.user.users;
+    },
+    loading() {
+      return this.$store.state.loading;
     },
     // pagination() {
     //   return this.$store.state.invoice.pagination;
