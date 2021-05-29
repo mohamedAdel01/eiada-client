@@ -1,4 +1,4 @@
-import SERVICE from "@/services";
+import SERVICE from "@/types_grqphql";
 
 export const state = () => ({
   loading: false,

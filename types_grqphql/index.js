@@ -30,11 +30,14 @@ export default {
     });
   },
 
-  async QUERY({ apollo, token, service }) {
+  async QUERY({ apollo, token, service, payload }) {
     return await apollo.query({
       query: gql`
         ${TYPES[service]}
       `,
+      variables: {
+        ...payload
+      },
       context: {
         headers: {
           Authorization: token

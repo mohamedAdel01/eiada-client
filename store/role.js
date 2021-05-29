@@ -1,4 +1,4 @@
-import roleServices from "@/services/role";
+import roleServices from "@/types_grqphql/role";
 
 export const state = () => ({
   roles: null

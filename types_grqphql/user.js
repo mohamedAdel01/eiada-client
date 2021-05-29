@@ -23,28 +23,20 @@ export default {
   }
 `,
   USERS: `
-{
-  USERS {
-    fullname
-    email
+  query(
+    $page: Int
+    $limit: Int
+  ){
+    USERS(
+      page: $page
+      limit: $limit
+    ) {
+      users {
+        fullname
+        email
+      }
+      total
+    }
   }
-}
 `
-  // async USERS({ apollo, token }) {
-  //   return await apollo.query({
-  //     query: gql`
-  //       {
-  //         USERS {
-  //           fullname
-  //           email
-  //         }
-  //       }
-  //     `,
-  //     context: {
-  //       headers: {
-  //         Authorization: token
-  //       }
-  //     }
-  //   });
-  // }
 };

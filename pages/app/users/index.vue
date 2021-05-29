@@ -43,16 +43,22 @@
   </div>
 </template>
 <script>
+import { store_action_mixin } from "@/assets/js/constants";
 export default {
+  mixins: [store_action_mixin],
   layout: "app-main",
   middleware: "appPages",
   mounted() {
-    this.$store.dispatch("role/ROLE", {
-      service: "ROLES",
+    // this.$store.dispatch("role/ROLE", {
+    //   service: "ROLES",
+    // });
+    this.STORE_ACTION("QUERY", "user/USER", "USERS", {
+      page: 1,
+      limit: 2,
     });
-    this.$store.dispatch("user/USER", {
-      service: "USERS",
-    });
+    // this.$store.dispatch("user/USER", {
+    //   service: "USERS",
+    // });
   },
 };
 </script>
