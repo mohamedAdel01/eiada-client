@@ -49,9 +49,7 @@ export default {
   layout: "app-main",
   middleware: "appPages",
   mounted() {
-    // this.$store.dispatch("role/ROLE", {
-    //   service: "ROLES",
-    // });
+    this.STORE_ACTION("QUERY", "role/ROLE", "ROLES");
     this.STORE_ACTION("QUERY", "user/USER", "USERS", {
       page: 1,
     });

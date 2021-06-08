@@ -1,4 +1,4 @@
-import SERVICE from "@/types_grqphql";
+import SERVICE from "~/types_grqphql";
 
 export const state = () => ({
   loading: false,
@@ -22,7 +22,7 @@ export const actions = {
     { type, action, service, payload }
   ) {
     try {
-      commit("loading", "service");
+      commit("loading", service);
 
       let apollo = this.app.apolloProvider.defaultClient;
       let token = this.$cookiz.get("authData")

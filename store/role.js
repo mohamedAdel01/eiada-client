@@ -1,7 +1,5 @@
-import roleServices from "@/types_grqphql/role";
-
 export const state = () => ({
-  roles: null
+  roles: []
 });
 
 export const mutations = {
@@ -11,22 +9,7 @@ export const mutations = {
 };
 
 export const actions = {
-  async ROLE({ commit }, { service, payload }) {
-    let apollo = this.app.apolloProvider.defaultClient;
-    let token = this.$cookiz.get("authData")
-      ? this.$cookiz.get("authData").user.token
-      : null;
-
-    let response = (await roleServices[service]({ apollo, token }, payload))
-      .data[service];
-
-    if (response.errors && response.errors.length) {
-      return {
-        error: true,
-        response
-      };
-    }
-
+  async ROLE({ commit }, { service, response }) {
     switch (service) {
       case "ROLES":
         commit("save_role_item", {
@@ -35,10 +18,5 @@ export const actions = {
         });
         break;
     }
-
-    return {
-      error: false,
-      response
-    };
   }
 };

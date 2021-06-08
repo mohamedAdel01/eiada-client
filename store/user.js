@@ -29,9 +29,5 @@ export const actions = {
         break;
     }
 
-    return {
-      error: false,
-      response
-    };
   }
 };
