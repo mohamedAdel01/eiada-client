@@ -90,7 +90,7 @@
           <div class="invalid-feedback d-block" v-if="!$v.form.role_name.required">
             {{ $t("This field is required") }}
           </div>
-          <button class="btn btn-link text-primary p-0 mx-2">
+          <button v-b-modal.user-roles class="btn btn-link text-primary p-0 mx-2">
             {{ $t("Edit Roles") }}
           </button>
         </div>
@@ -104,7 +104,7 @@
       <button class="btn btn-dark col-4 py-2 rounded" @click="submit">
         {{ $t("Submit") }}
       </button>
-      <button v-b-modal.user-roles class="btn btn-link text-danger col-4 py-2 rounded">
+      <button class="btn btn-link text-danger col-4 py-2 rounded">
         {{ $t("Cancel") }}
       </button>
     </div>
@@ -167,12 +167,8 @@ export default {
             return;
           }
         });
-      console.log(this.form);
     },
   },
-  // mounted() {
-  //   console.log(add_user_validation(this.form.role_name));
-  // },
   validations() {
     return add_user_validation(this.form.role_name);
   },
@@ -183,7 +179,7 @@ export default {
 #user-roles {
   .modal-dialog {
     margin: 0 0 0 auto !important;
-    height: 100% !important;
+    min-height: 100vh !important;
     padding-top: 100px !important;
     padding-left: 10px !important;
     padding-right: 10px !important;
@@ -195,7 +191,7 @@ export default {
     transform: none !important;
   }
   .modal-content {
-    height: 100% !important;
+    min-height: 100vh !important;
     border-radius: 10px 10px 0 0 !important;
     box-shadow: 1px -1px 5px #ddd !important;
     border: none !important;
