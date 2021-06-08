@@ -12,8 +12,6 @@ export const mutations = {
     state.users = value.users;
     state.pagination = { ...payload };
     state.pagination.total = value.total;
-
-    console.log(state);
   },
   add_user(state, user) {
     state.users.push(user);
