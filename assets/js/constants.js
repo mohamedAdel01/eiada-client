@@ -18,7 +18,7 @@ export const check_errors_mixin = {
     CHECK_FORM_ERROR() {
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
-        this.$toast.info(this.$t("Please fill all inputs with correct data"));
+        this.$toast.error(this.$t("Please fill all inputs with correct data"));
         return false;
       }
       return true;

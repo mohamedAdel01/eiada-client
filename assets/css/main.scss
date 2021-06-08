@@ -199,12 +199,9 @@ table th {
 }
 
 .invalid-feedback {
-  width: fit-content;
-  background: white;
-  padding: 10px;
   border-radius: 5px;
-  margin-top: 5px;
-  border: 1px solid tomato;
+  margin: 2px 5px 5px;
+  font-size: 12px;
 }
 
 .msgToast {
@@ -215,9 +212,6 @@ table th {
   }
 }
 
-.invalid-feedback {
-  font-size: 0.95em;
-}
 
 .page-enter-active {
   animation: opacity 0.3s;

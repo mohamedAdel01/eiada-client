@@ -29,9 +29,9 @@
           :placeholder="$t('Enter', { input: $t('Branch') })"
         >
         </model-list-select>
-        <b-form-invalid-feedback v-show="!$v.form.branch_id.required">{{
-          $t("This field is required")
-        }}</b-form-invalid-feedback>
+        <div class="invalid-feedback d-block" v-if="!$v.form.branch_id.required">
+          {{ $t("This field is required") }}
+        </div>
       </b-form-group>
 
       <b-form-group
@@ -87,12 +87,12 @@
             :placeholder="$t('Enter', { input: $t('Role') })"
           >
           </model-list-select>
+          <div class="invalid-feedback d-block" v-if="!$v.form.role_name.required">
+            {{ $t("This field is required") }}
+          </div>
           <button class="btn btn-link text-primary p-0 mx-2">
             {{ $t("Edit Roles") }}
           </button>
-          <b-form-invalid-feedback v-show="!$v.form.role_name.required">{{
-            $t("This field is required")
-          }}</b-form-invalid-feedback>
         </div>
       </b-form-group>
 
@@ -112,10 +112,15 @@
 </template>
 
 <script>
-import { add_user_validation } from "@/assets/js/constants";
+import {
+  add_user_validation,
+  store_action_mixin,
+  check_errors_mixin,
+} from "@/assets/js/constants";
 import "vue-search-select/dist/VueSearchSelect.css";
 import { ModelListSelect } from "vue-search-select";
 export default {
+  mixins: [store_action_mixin, check_errors_mixin],
   components: {
     ModelListSelect,
   },
@@ -136,12 +141,6 @@ export default {
         },
       },
       responseErrors: null,
-      options: [
-        { value: "a", text: "This is First option" },
-        { value: "b", text: "Selected Option" },
-        { value: { C: "3PO" }, text: "This is an option with object value" },
-        { value: "d", text: "This one is disabled", disabled: true },
-      ],
     };
   },
   computed: {
@@ -155,7 +154,7 @@ export default {
   },
   methods: {
     submit() {
-      if (!this.checkFormErrors()) return;
+      if (!this.CHECK_FORM_ERROR()) return;
       this.$store
         .dispatch("user/USER", {
           service: "CREATE_USER",
