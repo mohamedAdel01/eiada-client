@@ -155,18 +155,15 @@ export default {
   methods: {
     submit() {
       if (!this.CHECK_FORM_ERROR()) return;
-      this.$store
-        .dispatch("user/USER", {
-          service: "CREATE_USER",
-          payload: this.form,
-        })
-        .then(({ error, response }) => {
+      this.STORE_ACTION("MUTATION", "user/USER", "CREATE_USER", this.form).then(
+        ({ error, response }) => {
           this.loading = false;
           if (error) {
             this.responseErrors = response.errors[0];
             return;
           }
-        });
+        }
+      );
     },
   },
   validations() {

@@ -34,6 +34,8 @@ export const actions = {
 
       if (response.errors && response.errors.length) {
         commit("error", response.errors[0]);
+        if (["autherization"].includes(response.errors[0].key))
+          this.$toast.error(response.errors[0].message);
         return {
           error: true,
           response

@@ -28,6 +28,5 @@ export const actions = {
         commit("save_users", [response, payload]);
         break;
     }
-
   }
 };
