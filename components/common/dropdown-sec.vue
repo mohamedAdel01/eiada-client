@@ -29,7 +29,7 @@
             <div class="mx-2 rotate-90">
               <inline-svg
                 fill="#000"
-                :src="require('@/static/icons/arrow-down.svg')"
+                :src="require('@/static/images/arrow-down.svg')"
               ></inline-svg>
             </div>
           </div>

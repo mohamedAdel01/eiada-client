@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "fibers": "^5.0.0",
-    "sass": "^1.29.0",
+    "sass": "1.32.13",
     "sass-loader": "^10.1.0"
   }
 }

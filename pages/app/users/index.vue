@@ -33,7 +33,7 @@
         <filter-users-sec />
       </section> -->
       <section>
-        <user-card-sec />
+        <user-card-section />
       </section>
     </div>
 
