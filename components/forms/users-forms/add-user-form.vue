@@ -29,7 +29,7 @@
           :placeholder="$t('Enter', { input: $t('Branch') })"
         >
         </model-list-select>
-        <div class="invalid-feedback d-block" v-if="!$v.form.branch_id.required">
+        <div class="invalid-feedback d-block" v-if="$v.form.$anyError && !$v.form.branch_id.required">
           {{ $t("This field is required") }}
         </div>
       </b-form-group>
@@ -87,10 +87,10 @@
             :placeholder="$t('Enter', { input: $t('Role') })"
           >
           </model-list-select>
-          <div class="invalid-feedback d-block" v-if="!$v.form.role_name.required">
+          <div class="invalid-feedback d-block" v-if="$v.form.$anyError && !$v.form.role_name.required">
             {{ $t("This field is required") }}
           </div>
-          <button v-b-modal.user-roles class="btn btn-link text-primary p-0 mx-2">
+          <button v-b-modal.user-roles  class="btn btn-link text-primary p-0 mx-2">
             {{ $t("Edit Roles") }}
           </button>
         </div>
@@ -127,10 +127,10 @@ export default {
   data() {
     return {
       form: {
-        email: "mohamed7adel96@gmail.com",
-        jop_title: "doctor",
+        email: null,
+        jop_title: null,
         branch_id: "",
-        role_name: "doctor",
+        role_name: "",
         new_role: {
           name: "",
           custom: false,
