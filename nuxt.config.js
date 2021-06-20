@@ -49,7 +49,7 @@ export default {
       "~/components/forms/role-forms",
       "~/components/forms/users-forms",
       "~/components/sections",
-      "~/components/sections/user-sections",
+      "~/components/sections/users-sections",
       "~/components/tabels"
     ]
   },
