@@ -14,6 +14,10 @@ export default {
       branch_id: $branch_id
       new_role: $new_role
     ) {
+      user{
+        fullname
+        email
+      }
       message
       errors {
         key

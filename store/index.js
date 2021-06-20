@@ -44,6 +44,8 @@ export const actions = {
 
       dispatch(action, { service, response, payload });
 
+      this.$toast.info(response.message);
+
       commit("loading", false);
 
       return {

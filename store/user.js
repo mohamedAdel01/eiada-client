@@ -22,7 +22,7 @@ export const actions = {
   async USER({ commit }, { service, response, payload }) {
     switch (service) {
       case "CREATE_USER":
-        commit("add_user", response);
+        commit("add_user", response.user);
         break;
       case "USERS":
         commit("save_users", [response, payload]);

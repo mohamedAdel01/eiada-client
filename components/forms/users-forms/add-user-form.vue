@@ -147,6 +147,9 @@ export default {
     roles() {
       return this.$store.state.role.roles;
     },
+    loading() {
+      return this.$store.state.loading;
+    },
     branches() {
       let authData = this.$cookiz.get("authData");
       return authData.branches;
@@ -157,11 +160,10 @@ export default {
       if (!this.CHECK_FORM_ERROR()) return;
       this.STORE_ACTION("MUTATION", "user/USER", "CREATE_USER", this.form).then(
         ({ error, response }) => {
-          this.loading = false;
-          if (error) {
-            this.responseErrors = response.errors[0];
-            return;
-          }
+          if (error) return (this.responseErrors = response.errors[0]);
+          Object.assign(this.$data, this.$options.data.apply(this));
+          this.$v.$reset();
+          this.$bvModal.hide("add-user");
         }
       );
     },
