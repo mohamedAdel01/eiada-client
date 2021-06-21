@@ -28,9 +28,40 @@
   transform: translate(0, 10px);
 }
 
+html {
+  min-height: 100% !important;
+  height: 100%;
+}
+
 body {
-  font-size: 14px;
+  min-height: 100% !important;
+  height: 100%;
+  font-size: 14px !important;
   font-family: Poppins, Lato;
+}
+
+.h-90-full {
+  min-height: 90vh;
+}
+
+input,
+button,
+section,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label {
+  outline: none !important;
+  transition: 0.5s !important;
+}
+
+input:-webkit-autofill {
+  -webkit-background-clip: text;
 }
 
 .pointer {
@@ -211,7 +242,6 @@ table th {
     background: #17a2b8 !important;
   }
 }
-
 
 .page-enter-active {
   animation: opacity 0.3s;

@@ -43,8 +43,8 @@ export const add_user_validation = role_name => {
   let validation_keys = ["branch_id", "email", "jop_title", "role_name"];
   let validation = create_validation_obj(validation_keys);
 
-  if (role_name != "custom") return validation;
-  validation.form["new_role"] = {
+  if (role_name !== "custom") return validation;
+  validation.form.new_role = {
     name: {
       required
     }

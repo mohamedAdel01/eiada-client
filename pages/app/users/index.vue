@@ -37,7 +37,7 @@
       </section>
     </div>
 
-    <b-modal id="add-user" hide-header hide-footer>
+    <b-modal id="add-user" size="lg" hide-header hide-footer>
       <add-user-form />
     </b-modal>
   </div>
@@ -60,7 +60,7 @@ export default {
 #add-user {
   .modal-dialog {
     margin: 0 0 0 auto !important;
-    height: 100% !important;
+    min-height: 100vh !important;
   }
   &.modal.fade .modal-dialog {
     transform: translate(200px, 0) !important;
@@ -69,7 +69,7 @@ export default {
     transform: none !important;
   }
   .modal-content {
-    height: 100% !important;
+    min-height: 100vh !important;
     border-radius: 0 !important;
     border: 1px solid #f0f0f0 !important;
   }
