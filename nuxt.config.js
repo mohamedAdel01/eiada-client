@@ -96,10 +96,12 @@ export default {
       "FormGroupPlugin",
       "InputGroupPlugin",
       "FormTextareaPlugin",
+      "FormCheckboxPlugin",
       "CollapsePlugin",
       "DropdownPlugin",
       "PaginationPlugin",
       "SpinnerPlugin",
+      "VBTooltipPlugin",
       "ModalPlugin"
     ],
     directivePlugins: []

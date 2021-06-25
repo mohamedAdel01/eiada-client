@@ -1,11 +1,11 @@
 <template>
   <b-form
-    class="user-form d-flex flex-wrap align-items-start flex-column bg-white rounded h-90-full"
+    class="user-form d-flex flex-wrap align-items-start flex-column bg-white rounded-lg h-90-full"
     @submit.prevent
   >
     <div class="w-100 mb-auto">
       <div class="d-flex align-items-center mb-4 mt-2">
-        <div class="rounded shadow-sm mx-2 p-3">
+        <div class="rounded-lg shadow-sm mx-2 p-3">
           <inline-svg
             fill="#777"
             width="20px"
@@ -26,7 +26,7 @@
           :data-label="$t('Branch')"
         >
           <model-list-select
-            class="border rounded"
+            class="border rounded-lg"
             :list="branches"
             v-model="$v.form.branch_id.$model"
             option-value="id"
@@ -52,7 +52,7 @@
         >
           <b-form-input
             v-model="form.email"
-            class="py-4 border rounded"
+            class="py-4 border rounded-lg"
             :placeholder="$t('Enter', { input: $t('Email') })"
             :state="
               responseErrors && responseErrors.key == 'email'
@@ -80,7 +80,7 @@
         >
           <b-form-input
             v-model="form.jop_title"
-            class="py-4 border rounded"
+            class="py-4 border rounded-lg"
             :placeholder="$t('Enter', { input: $t('Jop Title') })"
             :state="$v.form.jop_title.$dirty ? !$v.form.jop_title.$error : null"
           ></b-form-input>
@@ -99,7 +99,7 @@
         >
           <div>
             <model-list-select
-              class="border rounded"
+              class="border rounded-lg"
               :list="roles"
               v-model="form.role_name"
               option-value="name"
@@ -118,15 +118,13 @@
       </div>
 
       <div v-if="form.role_name === 'custom'">
-        <div class="d-flex align-items-start justify-content-between">
+        <div class="d-flex align-items-start justify-content-between mb-3">
           <div class="col-md-6 col-12 px-2">
             <p class="mb-2">{{ $t("Is this role is specially for this user?") }}</p>
-            <b-form-group
-              v-if="form.new_role.custom"
-            >
+            <b-form-group v-if="!form.new_role.custom">
               <b-form-input
                 v-model="form.new_role.name"
-                class="py-4 border rounded"
+                class="py-4 border rounded-lg"
                 :placeholder="$t('Enter', { input: $t('New Role Name') })"
                 :state="
                   $v.form.new_role.name.$dirty ? !$v.form.new_role.name.$error : null
@@ -149,14 +147,133 @@
             />
           </div>
         </div>
+
+        <div class="bg-light rounded-lg p-2 d-flex flex-wrap">
+          <div class="p-1 mb-3 col-md-4 col-6">
+            <h4 class="font-16 font-weight-bold">{{ $t("User Roles") }}</h4>
+            <div class="m-1">
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("View User Info") }}</b-form-checkbox
+              >
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("Create User") }}</b-form-checkbox
+              >
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("Update User Info") }}</b-form-checkbox
+              >
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("Arrchive User Account") }}</b-form-checkbox
+              >
+            </div>
+          </div>
+          <div class="p-1 mb-3 col-md-4 col-6">
+            <h4 class="font-16 font-weight-bold">{{ $t("User Roles") }}</h4>
+            <div class="m-1">
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("View User Info") }}</b-form-checkbox
+              >
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("Create User") }}</b-form-checkbox
+              >
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("Update User Info") }}</b-form-checkbox
+              >
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("Arrchive User Account") }}</b-form-checkbox
+              >
+            </div>
+          </div>
+          <div class="p-1 mb-3 col-md-4 col-6">
+            <h4 class="font-16 font-weight-bold">{{ $t("User Roles") }}</h4>
+            <div class="m-1">
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("View User Info") }}</b-form-checkbox
+              >
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("Create User") }}</b-form-checkbox
+              >
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("Update User Info") }}</b-form-checkbox
+              >
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("Arrchive User Account") }}</b-form-checkbox
+              >
+            </div>
+          </div>
+          <div class="p-1 mb-3 col-md-4 col-6">
+            <h4 class="font-16 font-weight-bold">{{ $t("User Roles") }}</h4>
+            <div class="m-1">
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("View User Info") }}</b-form-checkbox
+              >
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("Create User") }}</b-form-checkbox
+              >
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("Update User Info") }}</b-form-checkbox
+              >
+              <b-form-checkbox
+                class="font-12 mb-1"
+                v-b-tooltip.hover
+                title="Tooltip content"
+                >{{ $t("Arrchive User Account") }}</b-form-checkbox
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="w-100 px-2 mt-4 d-flex justify-content-between">
-      <button class="btn btn-dark col-4 py-2 rounded" @click="submit">
+      <button class="btn btn-dark col-4 py-2 rounded-lg" @click="submit">
         {{ $t("Submit") }}
       </button>
-      <button class="btn btn-link text-danger col-4 py-2 rounded">
+      <button class="btn btn-link text-danger col-4 py-2 rounded-lg">
         {{ $t("Cancel") }}
       </button>
     </div>

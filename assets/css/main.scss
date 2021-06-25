@@ -57,11 +57,23 @@ h6,
 p,
 label {
   outline: none !important;
-  transition: 0.5s !important;
+  transition: 0.4s !important;
+}
+
+.tooltip {
+  transition: 0s !important;
 }
 
 input:-webkit-autofill {
   -webkit-background-clip: text;
+}
+
+.rounded-lg {
+  border-radius: 10px !important;
+}
+
+.custom-checkbox .custom-control-label {
+  padding-top: 3px !important;
 }
 
 .pointer {
