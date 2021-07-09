@@ -1,5 +1,20 @@
 import { required, email, sameAs, minLength } from "vuelidate/lib/validators";
 
+export const sidebar_items = [
+  {
+    route: "/app",
+    name: "Dashboard",
+  },
+  {
+    route: "/app/users",
+    name: "Users",
+  },
+  {
+    route: "/app/appointments",
+    name: "Appointments",
+  }
+];
+
 export const store_action_mixin = {
   methods: {
     STORE_ACTION(type, action, service, payload = null) {

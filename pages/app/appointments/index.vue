@@ -7,10 +7,10 @@
             fill="#777"
             width="30px"
             height="30px"
-            :src="require('@/static/images/s-Users.svg')"
+            :src="require('@/static/images/s-Appointments.svg')"
           ></inline-svg>
         </div>
-        <h1 class="mx-2">{{ $t("Users") }}</h1>
+        <h1 class="mx-2">{{ $t("Appointments") }}</h1>
       </div>
       <div class="d-flex align-items-center">
         <button
@@ -21,9 +21,9 @@
             fill="#fff"
             width="25px"
             height="20px"
-            :src="require('@/static/images/add-user.svg')"
+            :src="require('@/static/images/s-Appointments.svg')"
           ></inline-svg>
-          <p class="mx-1">{{ $t("Add User") }}</p>
+          <p class="mx-1">{{ $t("Add Appointment") }}</p>
         </button>
       </div>
     </section>
@@ -33,7 +33,7 @@
         <filter-users-sec />
       </section> -->
       <section>
-        <user-card-section />
+        <appointments-table />
       </section>
     </div>
 

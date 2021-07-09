@@ -50,13 +50,13 @@ export default {
       "~/components/forms/users-forms",
       "~/components/sections",
       "~/components/sections/users-sections",
-      "~/components/tabels"
+      "~/components/tables"
     ]
   },
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [],
+  buildModules: ["@nuxtjs/moment"],
   /*
    ** Nuxt.js modules
    */

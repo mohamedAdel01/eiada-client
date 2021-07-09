@@ -2,39 +2,17 @@
   <section class="sidebar position-fixed z-3">
     <ul class="p-0 text-center">
       <li
-        @click="$router.push('/app')"
+        v-for="(item, i) in sidebar_items"
+        :key="i"
+        @click="$router.push(item.route)"
         class="bg-white pointer my-4 p-1 shadow-sm"
-        :data-label="$t('Dashboard')"
+        :data-label="$t(item.name)"
       >
         <inline-svg
           width="40px"
           height="40px"
           fill="#777"
-          :src="require('@/static/images/dashboard.svg')"
-        ></inline-svg>
-      </li>
-      <li
-        @click="$router.push('/app/users')"
-        class="bg-white pointer my-4 p-1 shadow-sm"
-        :data-label="$t('Manage Users')"
-      >
-        <inline-svg
-          width="40px"
-          height="40px"
-          fill="#777"
-          :src="require('@/static/images/users.svg')"
-        ></inline-svg>
-      </li>
-      <li
-        @click="$router.push('/app/appointments')"
-        class="bg-white pointer my-4 p-1 shadow-sm"
-        :data-label="$t('Manage Appointments')"
-      >
-        <inline-svg
-          width="40px"
-          height="40px"
-          fill="#777"
-          :src="require('@/static/images/appointment.svg')"
+          :src="require(`@/static/images/s-${item.name}.svg`)"
         ></inline-svg>
       </li>
     </ul>
@@ -42,7 +20,14 @@
 </template>
 
 <script>
-export default {};
+import { sidebar_items } from "@/assets/js/constants";
+export default {
+  data() {
+    return {
+      sidebar_items,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
