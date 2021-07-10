@@ -1,17 +1,17 @@
 <template>
-  <section class="appointments-table overflow-auto bg-white">
+  <section class="appointments-table overflow-auto">
     <table>
       <thead>
         <tr>
-          <th class="bg-white text-center border-0"></th>
-          <th class="bg-white text-center border-0" v-for="i in 11" :key="i">
+          <th class="bg-white border-right border-bottom text-center border-0"></th>
+          <th class="bg-white border-right border-bottom text-center border-0" v-for="i in 11" :key="i">
             <div>{{ i + ":00" }} PM</div>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="i in 70" :key="i" class="position-relative">
-          <td class="border-bottom border-light bg-white text-center z-3">Doctor name</td>
+          <td class="border-bottom border-light bg-white border-right text-center z-3">Doctor name</td>
           <td
             class="border-right border-bottom border-light bg-white text-center pointer hoverable"
             v-for="i in 11"
