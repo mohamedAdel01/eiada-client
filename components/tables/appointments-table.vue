@@ -1,23 +1,39 @@
 <template>
-  <section class="appointments-table bg-white rounded-lg p-3">
+  <section class="appointments-table overflow-auto bg-white">
     <table>
       <thead>
         <tr>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
-          <th>1</th>
+          <th class="bg-white text-center border-0"></th>
+          <th class="bg-white text-center border-0" v-for="i in 11" :key="i">
+            <div>{{ i + ":00" }} PM</div>
+          </th>
         </tr>
       </thead>
       <tbody>
-        <th>test</th>
-        <td>2</td>
-        <td>2</td>
-        <td>2</td>
-        <td>2</td>
-        <td>2</td>
+        <tr v-for="i in 70" :key="i" class="position-relative">
+          <td class="border-bottom border-light bg-white text-center z-3">Doctor name</td>
+          <td
+            class="border-right border-bottom border-light bg-white text-center pointer hoverable"
+            v-for="i in 11"
+            :key="i"
+          ></td>
+          <div>
+            <div
+              :style="{
+                width: 250 + 'px',
+                height: '100px',
+                top: '0',
+                left: 5 * 250 + 'px',
+              }"
+              class="p-2 position-absolute z-3"
+            >
+              <div class="px-3 py-2 h-75 bg-light-primary rounded-lg">
+                <p class="text-muted mb-1">2:00 PM : 3:00 PM</p>
+                <p class="text-dark font-weight-bold">patient: 01116515445</p>
+              </div>
+            </div>
+          </div>
+        </tr>
       </tbody>
     </table>
   </section>
@@ -28,68 +44,48 @@ export default {};
 </script>
 
 <style lang="scss">
+@import "~assets/css/colors.scss";
 .appointments-table {
+  max-height: 500px;
   table {
-    font-family: "Fraunces", serif;
     white-space: nowrap;
-    margin: 0;
-    border: none;
     border-collapse: separate;
     border-spacing: 0;
     table-layout: fixed;
-    border: 1px solid black;
-  }
-  table td,
-  table th {
-    border: 1px solid black;
-    padding: 0.5rem 1rem;
-  }
-  table thead th {
-    padding: 3px;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    width: 25vw;
-    background: white;
-  }
-  table td {
-    background: #fff;
-    padding: 4px 5px;
-    text-align: center;
-  }
 
-  table tbody th {
-    font-weight: 100;
-    font-style: italic;
-    text-align: left;
-    position: relative;
-  }
-  table thead th:first-child {
-    position: sticky;
-    left: 0;
-    z-index: 2;
-  }
-  table tbody th {
-    position: sticky;
-    left: 0;
-    background: white;
-    z-index: 1;
-  }
-  caption {
-    text-align: left;
-    padding: 0.25rem;
-    position: sticky;
-    left: 0;
-  }
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 4;
+      min-width: 250px;
+      width: 250px;
+      min-height: 70px;
+      height: 70px;
+    }
 
-  [role="region"][aria-labelledby][tabindex] {
-    width: 100%;
-    max-height: 98vh;
-    overflow: auto;
-  }
-  [role="region"][aria-labelledby][tabindex]:focus {
-    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
-    outline: 0;
+    thead th:first-child {
+      left: 0;
+      z-index: 5;
+    }
+
+    tbody td {
+      min-width: 250px;
+      width: 250px;
+      min-height: 80px;
+      height: 80px;
+      z-index: 1;
+      border-width: 4px !important;
+      transition: 0.3s;
+      &.hoverable:hover {
+        background: $light !important;
+      }
+    }
+
+    tbody td:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 4;
+    }
   }
 }
 </style>
