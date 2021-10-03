@@ -31,10 +31,12 @@ export default {
   query(
     $page: Int
     $limit: Int
+    $role: String
   ){
     USERS(
       page: $page
       limit: $limit
+      role: $role
     ) {
       users {
         jop_title

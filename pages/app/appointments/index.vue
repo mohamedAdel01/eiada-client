@@ -51,6 +51,7 @@ export default {
   mounted() {
     this.STORE_ACTION("QUERY", "role/MAIN", "ROLES");
     this.STORE_ACTION("QUERY", "user/MAIN", "USERS", {
+      role: "doctor",
       page: 1,
     });
   },
