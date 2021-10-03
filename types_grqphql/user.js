@@ -15,6 +15,7 @@ export default {
       new_role: $new_role
     ) {
       user{
+        jop_title
         fullname
         email
       }
@@ -36,6 +37,7 @@ export default {
       limit: $limit
     ) {
       users {
+        jop_title
         fullname
         email
       }

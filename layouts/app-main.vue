@@ -3,8 +3,8 @@
     <client-only>
       <navbar />
       <sidebar />
-      <div class="p-5 mx-4">
-        <div class="p-4">
+      <div class="col-xl-10 mx-auto px-0 py-5">
+        <div>
           <Nuxt />
         </div>
       </div>

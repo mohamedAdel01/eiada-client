@@ -1,20 +1,11 @@
 <template>
-  <div>
-    <section class="mb-5 d-flex justify-content-between align-items-center px-2">
-      <div class="d-flex align-items-center">
-        <div class="bg-white rounded shadow-sm pointer py-1 px-2">
-          <inline-svg
-            fill="#777"
-            width="30px"
-            height="30px"
-            :src="require('@/static/images/s-Users.svg')"
-          ></inline-svg>
-        </div>
-        <h1 class="mx-2">{{ $t("Users") }}</h1>
-      </div>
+  <div class="px-2">
+    <section class="mb-4 d-flex justify-content-between align-items-center">
+      <h1 class="font-34">{{ $t("Users") }}</h1>
+
       <div class="d-flex align-items-center">
         <button
-          v-b-modal.add-user
+          v-b-modal.add-user-modal
           class="btn btn-primary shadow-sm d-flex align-items-center pointer py-2 px-3"
         >
           <inline-svg
@@ -37,7 +28,7 @@
       </section>
     </div>
 
-    <b-modal id="add-user" size="lg" hide-header hide-footer>
+    <b-modal id="add-user-modal" hide-header hide-footer>
       <add-user-form />
     </b-modal>
   </div>
@@ -52,25 +43,21 @@ export default {
     this.STORE_ACTION("QUERY", "role/MAIN", "ROLES");
     this.STORE_ACTION("QUERY", "user/MAIN", "USERS", {
       page: 1,
-    })
+    });
   },
 };
 </script>
 <style lang="scss">
-#add-user {
+#add-user-modal {
+  display: flex !important;
   .modal-dialog {
-    margin: 0 0 0 auto !important;
-    min-height: 100vh !important;
+    margin: auto 0 0 auto !important;
   }
-  &.modal.fade .modal-dialog {
-    transform: translate(200px, 0) !important;
-  }
-  &.modal.show .modal-dialog {
-    transform: none !important;
+  .modal-body {
+    padding: 0 !important;
   }
   .modal-content {
-    min-height: 100vh !important;
-    border-radius: 0 !important;
+    border-radius: 10px 0 0 0 !important;
     border: 1px solid #f0f0f0 !important;
   }
 }

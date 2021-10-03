@@ -1,32 +1,28 @@
 <template>
-  <b-form
-    class="user-form d-flex flex-wrap align-items-start flex-column bg-white rounded-lg h-90-full"
-    @submit.prevent
-  >
+  <b-form class="user-form px-4 pt-4 pb-3" @submit.prevent>
     <div class="w-100 mb-auto">
-      <div class="d-flex align-items-center mb-4 mt-2">
-        <div class="rounded-lg shadow-sm mx-2 p-3">
-          <inline-svg
-            fill="#777"
-            width="20px"
-            height="20px"
-            :src="require('@/static/images/add-user.svg')"
-          ></inline-svg>
-        </div>
+      <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
         <h3 class="mx-2 text-muted font-20">{{ $t("Add User") }}</h3>
+        <inline-svg
+          class="pointer"
+          fill="#777"
+          width="15px"
+          height="20px"
+          :src="require(`@/static/images/horizontal-arrow.svg`)"
+        ></inline-svg>
       </div>
 
       <div class="d-flex flex-wrap align-items-start mb-2">
         <b-form-group
           :class="[
-            'px-2  z-1',
+            'px-0  z-1',
             form.branch_id ? 'show-label' : '',
             form.role_name === 'custom' ? 'col-md-6 col-12' : 'col-12',
           ]"
           :data-label="$t('Branch')"
         >
           <model-list-select
-            class="border rounded-lg"
+            class="border rounded"
             :list="branches"
             v-model="$v.form.branch_id.$model"
             option-value="id"
@@ -44,7 +40,7 @@
 
         <b-form-group
           :class="[
-            'px-2',
+            'px-0',
             form.role_name === 'custom' ? 'col-md-6 col-12' : 'col-12',
             form.email ? 'show-label' : '',
           ]"
@@ -52,7 +48,7 @@
         >
           <b-form-input
             v-model="form.email"
-            class="py-4 border rounded-lg"
+            class="py-4 border rounded"
             :placeholder="$t('Enter', { input: $t('Email') })"
             :state="
               responseErrors && responseErrors.key == 'email'
@@ -72,7 +68,7 @@
 
         <b-form-group
           :class="[
-            'px-2 ',
+            'px-0 ',
             form.role_name === 'custom' ? 'col-md-6 col-12' : 'col-12',
             form.jop_title ? 'show-label' : '',
           ]"
@@ -80,7 +76,7 @@
         >
           <b-form-input
             v-model="form.jop_title"
-            class="py-4 border rounded-lg"
+            class="py-4 border rounded"
             :placeholder="$t('Enter', { input: $t('Jop Title') })"
             :state="$v.form.jop_title.$dirty ? !$v.form.jop_title.$error : null"
           ></b-form-input>
@@ -91,7 +87,7 @@
 
         <b-form-group
           :class="[
-            'px-2 z-1',
+            'px-0 z-1',
             form.role_name === 'custom' ? 'col-md-6 col-12' : 'col-12',
             form.role_name ? 'show-label' : '',
           ]"
@@ -99,7 +95,7 @@
         >
           <div>
             <model-list-select
-              class="border rounded-lg"
+              class="border rounded"
               :list="roles"
               v-model="form.role_name"
               option-value="name"
@@ -119,12 +115,12 @@
 
       <div v-if="form.role_name === 'custom'">
         <div class="d-flex align-items-start justify-content-between mb-3">
-          <div class="col-md-6 col-12 px-2">
+          <div class="col-md-6 col-12 px-0">
             <p class="mb-2">{{ $t("Is this role is specially for this user?") }}</p>
             <b-form-group v-if="!form.new_role.custom">
               <b-form-input
                 v-model="form.new_role.name"
-                class="py-4 border rounded-lg"
+                class="py-4 border rounded"
                 :placeholder="$t('Enter', { input: $t('New Role Name') })"
                 :state="
                   $v.form.new_role.name.$dirty ? !$v.form.new_role.name.$error : null
@@ -135,7 +131,7 @@
               }}</b-form-invalid-feedback>
             </b-form-group>
           </div>
-          <div class="px-2">
+          <div class="px-0">
             <switch-button
               class="d-flex"
               key1="Yes"
@@ -148,7 +144,7 @@
           </div>
         </div>
 
-        <div class="bg-light rounded-lg p-2 d-flex flex-wrap">
+        <div class="bg-light rounded p-2 d-flex flex-wrap">
           <div class="p-1 mb-3 col-md-4 col-6">
             <h4 class="font-16 font-weight-bold">{{ $t("User Roles") }}</h4>
             <div class="m-1">
@@ -269,12 +265,15 @@
       </div>
     </div>
 
-    <div class="w-100 px-2 mt-4 d-flex justify-content-between">
-      <button class="btn btn-dark col-4 py-2 rounded-lg" @click="submit">
-        {{ $t("Submit") }}
-      </button>
-      <button class="btn btn-link text-danger col-4 py-2 rounded-lg">
+    <div class="mt-5 d-flex justify-content-end">
+      <button
+        class="btn btn-link text-black-50 px-4 py-2 mx-4 rounded"
+        @click="$bvModal.hide('add-user-modal')"
+      >
         {{ $t("Cancel") }}
+      </button>
+      <button class="btn btn-primary px-4 py-2 rounded" @click="submit">
+        {{ $t("Submit") }}
       </button>
     </div>
   </b-form>
@@ -314,7 +313,8 @@ export default {
   },
   computed: {
     roles() {
-      return [...this.$store.state.role.roles, { name: "custom" }];
+      return this.$store.state.role.roles;
+      // return [...this.$store.state.role.roles, { name: "custom" }];
     },
     loading() {
       return this.$store.state.loading;
@@ -332,7 +332,7 @@ export default {
           if (error) return (this.responseErrors = response.errors[0]);
           Object.assign(this.$data, this.$options.data.apply(this));
           this.$v.$reset();
-          this.$bvModal.hide("add-user");
+          this.$bvModal.hide("add-user-modal");
         }
       );
     },
