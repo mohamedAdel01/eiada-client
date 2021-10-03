@@ -49,8 +49,8 @@ export default {
   layout: "app-main",
   middleware: "appPages",
   mounted() {
-    this.STORE_ACTION("QUERY", "role/ROLE", "ROLES");
-    this.STORE_ACTION("QUERY", "user/USER", "USERS", {
+    this.STORE_ACTION("QUERY", "role/MAIN", "ROLES");
+    this.STORE_ACTION("QUERY", "user/MAIN", "USERS", {
       page: 1,
     });
   },

@@ -7,7 +7,7 @@ export const mutations = {
 };
 
 export const actions = {
-  async BRANCH({ commit }, { service, response }) {
+  async MAIN({ commit }, { service, response }) {
     switch (service) {
       case "CREATE_BRANCHES":
         commit("save_branch", response);

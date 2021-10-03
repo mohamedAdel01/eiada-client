@@ -18,7 +18,7 @@ export default {
   methods: {
     logout() {
       this.$store
-        .dispatch("auth/AUTH", {
+        .dispatch("auth/MAIN", {
           service: "LOGOUT",
           payload: null,
         })

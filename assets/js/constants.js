@@ -3,27 +3,31 @@ import { required, email, sameAs, minLength } from "vuelidate/lib/validators";
 export const sidebar_items = [
   {
     route: "/app",
-    name: "Dashboard",
+    name: "Dashboard"
   },
   {
     route: "/app/users",
-    name: "Users",
+    name: "Users"
   },
   {
     route: "/app/appointments",
-    name: "Appointments",
+    name: "Appointments"
   }
 ];
 
 export const store_action_mixin = {
   methods: {
     STORE_ACTION(type, action, service, payload = null) {
-      return this.$store.dispatch("HANDLE_REQUEST", {
-        type,
-        action,
-        service,
-        payload
-      });
+      return this.$store
+        .dispatch("HANDLE_REQUEST", {
+          type,
+          action,
+          service,
+          payload
+        })
+        .then(res => {
+          // here will handle error msgs
+        });
     }
   }
 };

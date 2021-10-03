@@ -9,7 +9,7 @@ export const mutations = {
 };
 
 export const actions = {
-  async ROLE({ commit }, { service, response }) {
+  async MAIN({ commit }, { service, response }) {
     switch (service) {
       case "ROLES":
         commit("save_role_item", {

@@ -50,7 +50,7 @@ export default {
   methods: {
     submit() {
       if (!this.CHECK_FORM_ERROR()) return;
-      this.STORE_ACTION("MUTATION", "clinic/CLINIC", "CREATE_CLINIC", this.form).then(
+      this.STORE_ACTION("MUTATION", "clinic/MAIN", "CREATE_CLINIC", this.form).then(
         ({ error, response }) => {
           if (error) {
             this.$toast.error(this.$t(response.errors[0].message));

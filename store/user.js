@@ -19,7 +19,7 @@ export const mutations = {
 };
 
 export const actions = {
-  async USER({ commit }, { service, response, payload }) {
+  async MAIN({ commit }, { service, response, payload }) {
     switch (service) {
       case "CREATE_USER":
         commit("add_user", response.user);

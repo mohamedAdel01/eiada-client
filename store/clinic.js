@@ -7,7 +7,7 @@ export const mutations = {
 };
 
 export const actions = {
-  async CLINIC({ commit }, { service, response }) {
+  async MAIN({ commit }, { service, response }) {
     switch (service) {
       case "CREATE_CLINIC":
         commit("save_clinic", response);

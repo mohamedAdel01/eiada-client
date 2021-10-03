@@ -118,7 +118,7 @@ export default {
   methods: {
     submit(service) {
       if (!this.CHECK_FORM_ERROR()) return;
-      this.STORE_ACTION("MUTATION", "auth/AUTH", service, this.form).then(({ error }) => {
+      this.STORE_ACTION("MUTATION", "auth/MAIN", service, this.form).then(({ error }) => {
         if (error) return;
 
         if (service == "LOGIN") return this.$router.push("/app");

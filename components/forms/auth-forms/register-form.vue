@@ -164,7 +164,7 @@ export default {
   methods: {
     register() {
       if (!this.CHECK_FORM_ERROR()) return;
-      this.STORE_ACTION("MUTATION", "auth/AUTH", "REGISTER", this.form).then(
+      this.STORE_ACTION("MUTATION", "auth/MAIN", "REGISTER", this.form).then(
         ({ error }) => {
           if (error) return;
 

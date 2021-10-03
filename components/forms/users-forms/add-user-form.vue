@@ -327,7 +327,7 @@ export default {
   methods: {
     submit() {
       if (!this.CHECK_FORM_ERROR()) return;
-      this.STORE_ACTION("MUTATION", "user/USER", "CREATE_USER", this.form).then(
+      this.STORE_ACTION("MUTATION", "user/MAIN", "CREATE_USER", this.form).then(
         ({ error, response }) => {
           if (error) return (this.responseErrors = response.errors[0]);
           Object.assign(this.$data, this.$options.data.apply(this));

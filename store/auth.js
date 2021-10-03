@@ -13,7 +13,7 @@ export const mutations = {
 };
 
 export const actions = {
-  async AUTH({ commit }, { service, response }) {
+  async MAIN({ commit }, { service, response }) {
     if (service == "LOGOUT") {
       // will be removed later
       commit("clear_data");

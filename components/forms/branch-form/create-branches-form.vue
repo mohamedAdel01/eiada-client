@@ -83,7 +83,7 @@ export default {
   methods: {
     submit() {
       if (!this.CHECK_FORM_ERROR()) return;
-      this.STORE_ACTION("MUTATION", "branch/BRANCH", "CREATE_BRANCHES", this.form)
+      this.STORE_ACTION("MUTATION", "branch/MAIN", "CREATE_BRANCHES", this.form)
         .then(({ error, response }) => {
           if (error) {
             this.$toast.error(this.$t(response.errors[0].message));

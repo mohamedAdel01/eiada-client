@@ -87,7 +87,7 @@ export default {
   methods: {
     change_password() {
       if (!this.CHECK_FORM_ERROR()) return;
-      this.STORE_ACTION("MUTATION", "auth/AUTH", "CHANGE_PASSWORD", this.form).then(
+      this.STORE_ACTION("MUTATION", "auth/MAIN", "CHANGE_PASSWORD", this.form).then(
         ({ error, response }) => {
           if (error) {
             this.responseErrors = response.errors[0];

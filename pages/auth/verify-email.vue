@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     resend_verification_email() {
-      this.STORE_ACTION("MUTATION", "auth/AUTH", "RESEND_VERIFICATION_EMAIL").then(
+      this.STORE_ACTION("MUTATION", "auth/MAIN", "RESEND_VERIFICATION_EMAIL").then(
         ({ error, response }) => {
           if (error) {
             this.response = {
@@ -75,7 +75,7 @@ export default {
       );
     },
     verify_email() {
-      this.STORE_ACTION("MUTATION", "auth/AUTH", "VERIFY_EMAIL", {
+      this.STORE_ACTION("MUTATION", "auth/MAIN", "VERIFY_EMAIL", {
         verification_code: this.$route.query.verification_code,
       }).then(({ error, response }) => {
         if (error) {
