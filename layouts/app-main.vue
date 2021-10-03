@@ -4,7 +4,7 @@
       <navbar />
       <sidebar />
       <div class="col-xl-10 mx-auto px-0 py-5">
-        <div>
+        <div class="py-4">
           <Nuxt />
         </div>
       </div>

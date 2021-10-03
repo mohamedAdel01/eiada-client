@@ -1,17 +1,8 @@
 <template>
   <div>
     <section class="mb-5 d-flex justify-content-between align-items-center px-2">
-      <div class="d-flex align-items-center">
-        <div class="bg-white rounded shadow-sm pointer py-1 px-2">
-          <inline-svg
-            fill="#777"
-            width="30px"
-            height="30px"
-            :src="require('@/static/images/s-Appointments.svg')"
-          ></inline-svg>
-        </div>
-        <h1 class="mx-2">{{ $t("Appointments") }}</h1>
-      </div>
+      <h1 class="mx-2 font-34">{{ $t("Appointments") }}</h1>
+
       <div class="d-flex align-items-center">
         <button
           v-b-modal.add-user
