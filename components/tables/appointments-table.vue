@@ -1,21 +1,29 @@
 <template>
-  <section class="appointments-table overflow-auto">
+  <section class="appointments-table bg-white shadow-sm rounded overflow-auto">
     <table>
       <thead>
         <tr>
           <th class="bg-white border-right border-bottom text-center border-0"></th>
-          <th class="bg-white border-right border-bottom text-center border-0" v-for="i in 11" :key="i">
+          <th
+            class="bg-white border-right border-bottom text-center border-0"
+            v-for="i in 11"
+            :key="i"
+          >
             <div>{{ i + ":00" }} PM</div>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="i in 70" :key="i" class="position-relative">
-          <td class="border-bottom border-light bg-white border-right text-center z-3">Doctor name</td>
+        <tr v-for="(user, i) in users" :key="i" class="position-relative">
+          <td
+            class="border-bottom border-right border-light bg-primary text-white text-center z-3 font-20"
+          >
+            <span class="font-14 mx-1">{{$t('Dr/')}}</span>{{ user.fullname }}
+          </td>
           <td
             class="border-right border-bottom border-light bg-white text-center pointer hoverable"
-            v-for="i in 11"
-            :key="i"
+            v-for="x in 11"
+            :key="x"
           ></td>
           <div>
             <div
@@ -40,12 +48,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    users() {
+      return this.$store.state.user.users;
+    },
+  },
+};
 </script>
 
 <style lang="scss">
 @import "~assets/css/colors.scss";
 .appointments-table {
+  min-height: 450px;
   max-height: 500px;
   table {
     white-space: nowrap;
