@@ -1,5 +1,5 @@
 export const state = () => ({
-  users: null,
+  users: [],
   pagination: {
     page: 1,
     limit: 10,

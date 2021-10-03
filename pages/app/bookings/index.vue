@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="mb-5 d-flex justify-content-between align-items-center px-2">
-      <h1 class="mx-2 font-34">{{ $t("Appointments") }}</h1>
+      <h1 class="mx-2 font-34">{{ $t("Bookings") }}</h1>
 
       <div class="d-flex align-items-center">
         <button
@@ -12,9 +12,9 @@
             fill="#fff"
             width="25px"
             height="20px"
-            :src="require('@/static/images/s-Appointments.svg')"
+            :src="require('@/static/images/s-Bookings.svg')"
           ></inline-svg>
-          <p class="mx-1">{{ $t("Add Appointment") }}</p>
+          <p class="mx-1">{{ $t("Add Booking") }}</p>
         </button>
       </div>
     </section>
@@ -24,7 +24,7 @@
         <filter-users-sec />
       </section> -->
       <section>
-        <appointments-table />
+        <bookings-table />
       </section>
     </div>
 
@@ -40,9 +40,8 @@ export default {
   layout: "app-main",
   middleware: "appPages",
   mounted() {
-    this.STORE_ACTION("QUERY", "user/MAIN", "USERS", {
-      role: "doctor",
-      page: 1,
+    this.STORE_ACTION("QUERY", "booking/MAIN", "BOOKINGS", {
+      booking_date: '2021-10-03',
     });
   },
 };

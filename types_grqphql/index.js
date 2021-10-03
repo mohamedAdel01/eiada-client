@@ -4,13 +4,15 @@ import BRANCH_TYPES from "./branch";
 import CLINIC_TYPES from "./clinic";
 import ROLE_TYPES from "./role";
 import USER_TYPES from "./user";
+import BOOKING_TYPES from "./booking";
 
 let TYPES = {
   ...AUTH_TYPES,
   ...BRANCH_TYPES,
   ...CLINIC_TYPES,
   ...ROLE_TYPES,
-  ...USER_TYPES
+  ...USER_TYPES,
+  ...BOOKING_TYPES
 };
 
 export default {

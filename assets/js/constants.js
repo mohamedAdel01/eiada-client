@@ -10,8 +10,8 @@ export const sidebar_items = [
     name: "Users"
   },
   {
-    route: "/app/appointments",
-    name: "Appointments"
+    route: "/app/bookings",
+    name: "Bookings"
   }
 ];
 

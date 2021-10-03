@@ -1,5 +1,5 @@
 <template>
-  <section class="appointments-table bg-white shadow-sm rounded overflow-auto">
+  <section class="bookings-table bg-white shadow-sm rounded overflow-auto">
     <table>
       <thead>
         <tr>
@@ -13,29 +13,36 @@
           </th>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="(user, i) in users" :key="i" class="position-relative">
+      <tbody v-if="bookings.length">
+        <tr
+          v-for="(day_booking, i) in bookings[0].day_bookings"
+          :key="i"
+          class="position-relative"
+        >
           <td
             class="border-bottom border-right border-light bg-primary text-white text-center z-3 font-20"
           >
-            <span class="font-14 mx-1">{{$t('Dr/')}}</span>{{ user.fullname }}
+            <span class="font-14 mx-1">{{ $t("Dr/") }}</span
+            >{{ day_booking.doctor.fullname }}
           </td>
           <td
-            class="border-right border-bottom border-light bg-white text-center pointer hoverable"
+            class="border-right border-bottom border-light bg-white pointer hoverable"
             v-for="x in 11"
             :key="x"
           ></td>
           <div>
             <div
+              v-for="(booking, i) in day_booking.doctor_bookings"
+              :key="i"
               :style="{
-                width: 250 + 'px',
-                height: '100px',
+                width: (booking.end_time - booking.start_time) * 250 + 'px',
+                'min-height': '100px',
                 top: '0',
-                left: 5 * 250 + 'px',
+                left: booking.start_time * 250 + 'px',
               }"
               class="p-2 position-absolute z-3"
             >
-              <div class="px-3 py-2 h-75 bg-light-primary rounded-lg">
+              <div class="px-3 py-2 bg-light-primary rounded-lg pointer">
                 <p class="text-muted mb-1">2:00 PM : 3:00 PM</p>
                 <p class="text-dark font-weight-bold">patient: 01116515445</p>
               </div>
@@ -50,8 +57,8 @@
 <script>
 export default {
   computed: {
-    users() {
-      return this.$store.state.user.users;
+    bookings() {
+      return this.$store.state.booking.bookings;
     },
   },
 };
@@ -59,7 +66,7 @@ export default {
 
 <style lang="scss">
 @import "~assets/css/colors.scss";
-.appointments-table {
+.bookings-table {
   min-height: 450px;
   max-height: 500px;
   table {
