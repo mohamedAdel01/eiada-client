@@ -83,11 +83,11 @@
         :placeholder="$t('Enter', { input: $t('Password') })"
         :state="$v.form.password.$dirty ? !$v.form.password.$error : null"
       ></b-form-input>
-      <b-form-invalid-feedback v-show="!$v.form.password.required">{{
+      <b-form-invalid-feedback v-if="!$v.form.password.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
       <b-form-invalid-feedback
-        v-show="$v.form.password.required && !$v.form.password.valid"
+        v-if="$v.form.password.required && !$v.form.password.valid"
         >{{
           $t(
             "Password must contain capital letters, small letters, numbers and any special sign from these #?!@$%^&*-"

@@ -47,7 +47,8 @@ export default {
       "~/components/forms/branch-form",
       "~/components/forms/clinic-forms",
       "~/components/forms/role-forms",
-      "~/components/forms/users-forms",
+      "~/components/forms/user-forms",
+      "~/components/forms/booking-forms",
       "~/components/sections",
       "~/components/sections/users-sections",
       "~/components/tables"

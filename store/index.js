@@ -19,7 +19,7 @@ export const mutations = {
 export const actions = {
   async HANDLE_REQUEST(
     { commit, dispatch },
-    { type, action, service, payload }
+    { type, action, service, payload, response_schema }
   ) {
     try {
       commit("loading", service);
@@ -28,9 +28,16 @@ export const actions = {
       let token = this.$cookiz.get("authData")
         ? this.$cookiz.get("authData").user.token
         : null;
-
-      let response = (await SERVICE[type]({ apollo, token, service, payload }))
-        .data[service];
+        
+      let response = (
+        await SERVICE[type]({
+          apollo,
+          token,
+          service,
+          payload,
+          response_schema
+        })
+      ).data[service];
 
       if (response.errors && response.errors.length) {
         commit("error", response.errors[0]);

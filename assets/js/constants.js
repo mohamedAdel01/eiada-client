@@ -17,12 +17,19 @@ export const sidebar_items = [
 
 export const store_action_mixin = {
   methods: {
-    STORE_ACTION(type, action, service, payload = null) {
+    STORE_ACTION(
+      type,
+      action,
+      service,
+      payload = null,
+      response_schema = null
+    ) {
       return this.$store.dispatch("HANDLE_REQUEST", {
         type,
         action,
         service,
-        payload
+        payload,
+        response_schema
       });
       // .then(res => {
       //   // here will handle error msgs

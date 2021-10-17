@@ -20,7 +20,7 @@
           class="position-relative"
         >
           <td
-            class="border-bottom border-right border-light bg-primary text-white text-center z-3 font-20"
+            class="border-bottom bg-white border-light text-dark text-center z-3 font-16"
           >
             <span class="font-14 mx-1">{{ $t("Dr/") }}</span
             >{{ day_booking.doctor.fullname }}
