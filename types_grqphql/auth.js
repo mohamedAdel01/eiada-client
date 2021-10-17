@@ -1,13 +1,13 @@
 export default {
-  REGISTER: `
+  REGISTER: () => `
     mutation(
-      $fullname: String!
+      $name: String!
       $email: String!
       $phone: String!
       $password: String!
     ) {
       REGISTER(
-        fullname: $fullname
+        name: $name
         email: $email
         phone: $phone
         password: $password
@@ -35,7 +35,7 @@ export default {
       }
     }
     `,
-  VERIFY_EMAIL: `
+  VERIFY_EMAIL: () => `
     mutation($verification_code: String!) {
       VERIFY_EMAIL(verification_code: $verification_code) {
         message
@@ -46,7 +46,7 @@ export default {
       }
     }
   `,
-  RESEND_VERIFICATION_EMAIL: `
+  RESEND_VERIFICATION_EMAIL: () => `
   mutation {
     RESEND_VERIFICATION_EMAIL {
       message
@@ -57,12 +57,12 @@ export default {
     }
   }
   `,
-  LOGIN: `
+  LOGIN: () => `
   mutation($email: String!, $password: String!) {
     LOGIN(email: $email, password: $password) {
       user {
         id
-        fullname
+        name
         email
         token
         role
@@ -83,7 +83,7 @@ export default {
     }
   }
   `,
-  FORGET_PASSWORD_REQUREST: `
+  FORGET_PASSWORD_REQUREST: () => `
   mutation($email: String!) {
     FORGET_PASSWORD_REQUREST(email: $email) {
       message
@@ -94,7 +94,7 @@ export default {
     }
   }
   `,
-  CHANGE_PASSWORD: `
+  CHANGE_PASSWORD: () => `
   mutation($new_password: String!, $verification_code: String!) {
     CHANGE_PASSWORD(
       new_password: $new_password

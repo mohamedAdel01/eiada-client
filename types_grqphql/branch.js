@@ -1,5 +1,5 @@
 export default {
-  CREATE_BRANCHES: `
+  CREATE_BRANCHES: () => `
   mutation($addresses: [BranchInput]) {
     CREATE_BRANCHES(addresses: $addresses) {
       branches {

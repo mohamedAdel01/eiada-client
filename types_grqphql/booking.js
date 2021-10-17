@@ -1,5 +1,5 @@
 export default {
-  BOOKINGS: `
+  BOOKINGS: () => `
     query(
         $booking_date: String
     )
@@ -14,7 +14,7 @@ export default {
             booking_date
             day_bookings {
                 doctor {
-                    fullname
+                    name
                 }
                 doctor_bookings {
                     patient_phone

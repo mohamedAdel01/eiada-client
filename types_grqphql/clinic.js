@@ -1,12 +1,12 @@
 export default {
-  CREATE_CLINIC: `
+  CREATE_CLINIC: () => `
   mutation($name: String!) {
     CREATE_CLINIC(name: $name) {
       clinic {
         name
         owner {
           id
-          fullname
+          name
           email
         }
       }

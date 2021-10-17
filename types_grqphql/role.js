@@ -1,9 +1,9 @@
 export default {
-  ROLES: `
-  {
-    ROLES {
-      name
+  ROLES: () => `
+    {
+      ROLES {
+        name
+      }
     }
-  }
-`
+  `
 };

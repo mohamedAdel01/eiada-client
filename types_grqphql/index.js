@@ -19,7 +19,7 @@ export default {
   async MUTATION({ apollo, token, service, payload, response_schema }) {
     return await apollo.mutate({
       mutation: gql`
-        ${TYPES[service]}
+        ${TYPES[service](response_schema)}
       `,
       variables: {
         ...payload
@@ -35,7 +35,7 @@ export default {
   async QUERY({ apollo, token, service, payload, response_schema }) {
     return await apollo.query({
       query: gql`
-        ${TYPES[service]}
+        ${TYPES[service](response_schema)}
       `,
       variables: {
         ...payload

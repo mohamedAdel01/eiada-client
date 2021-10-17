@@ -1,5 +1,5 @@
 export default {
-  CREATE_USER: `
+  CREATE_USER: () => `
   mutation(
     $email: String!
     $jop_title: String!
@@ -16,7 +16,7 @@ export default {
     ) {
       user{
         jop_title
-        fullname
+        name
         email
       }
       message
@@ -27,7 +27,7 @@ export default {
     }
   }
 `,
-  USERS: `
+  USERS: response_schema => `
   query(
     $page: Int
     $limit: Int
@@ -38,12 +38,19 @@ export default {
       limit: $limit
       role: $role
     ) {
-      users {
-        jop_title
-        fullname
-        email
+      ${
+        response_schema
+          ? response_schema
+          : `
+          users {
+          id
+          jop_title
+          name
+          email
+        }
+        total`
       }
-      total
+
     }
   }
 `

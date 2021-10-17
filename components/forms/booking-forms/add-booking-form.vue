@@ -1,6 +1,5 @@
 <template>
-<div></div>
-  <!-- <b-form class="user-form px-4 pt-4 pb-3" @submit.prevent>
+  <b-form class="user-form px-4 pt-4 pb-3" @submit.prevent>
     <div class="w-100 mb-auto">
       <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
         <h3 class="mx-2 text-muted font-20">{{ $t("Add Booking") }}</h3>
@@ -24,7 +23,7 @@
         >
           <model-list-select
             class="border rounded"
-            :list="branches"
+            :list="users"
             v-model="$v.form.branch_id.$model"
             option-value="id"
             option-text="address"
@@ -277,7 +276,7 @@
         {{ $t("Submit") }}
       </button>
     </div>
-  </b-form> -->
+  </b-form>
 </template>
 
 <script>

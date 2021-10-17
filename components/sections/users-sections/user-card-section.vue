@@ -24,7 +24,7 @@
 
             <p class="font-18 text-dark font-lato mb-3">
               <span class="mx-1 text-info font-14" v-if="user.jop_title">{{ user.jop_title }}/</span>
-              {{ user.fullname }}
+              {{ user.name }}
             </p>
             <p class="font-14 text-info font-lato mb-4 pb-2">{{ user.email }}</p>
 

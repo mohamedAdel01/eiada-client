@@ -93,7 +93,7 @@ export const login_validation = forget_password_form => {
 };
 
 export const register_validation = () => {
-  let validation_keys = ["fullname", "email", "phone"];
+  let validation_keys = ["name", "email", "phone"];
   let validation = create_validation_obj(validation_keys);
 
   validation.form.password = {

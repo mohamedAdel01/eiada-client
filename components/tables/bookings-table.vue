@@ -23,7 +23,7 @@
             class="border-bottom bg-white border-light text-dark text-center z-3 font-16"
           >
             <span class="font-14 mx-1">{{ $t("Dr/") }}</span
-            >{{ day_booking.doctor.fullname }}
+            >{{ day_booking.doctor.name }}
           </td>
           <td
             class="border-right border-bottom border-light bg-white pointer hoverable"

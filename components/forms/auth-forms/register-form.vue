@@ -2,12 +2,12 @@
   <b-form @submit.prevent>
     <b-form-group class="px-2" :data-label="$t('Fullname')">
       <b-form-input
-        v-model="$v.form.fullname.$model"
+        v-model="$v.form.name.$model"
         class="py-4 border rounded"
         :placeholder="$t('Enter', { input: $t('Fullname') })"
-        :state="$v.form.fullname.$dirty ? !$v.form.fullname.$error : null"
+        :state="$v.form.name.$dirty ? !$v.form.name.$error : null"
       ></b-form-input>
-      <b-form-invalid-feedback v-show="!$v.form.fullname.required">{{
+      <b-form-invalid-feedback v-show="!$v.form.name.required">{{
         $t("This field is required")
       }}</b-form-invalid-feedback>
     </b-form-group>
@@ -144,7 +144,7 @@ export default {
   data() {
     return {
       form: {
-        fullname: "",
+        name: "",
         email: "",
         phone: "",
         password: "",
