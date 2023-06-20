@@ -51,6 +51,19 @@ export const check_errors_mixin = {
   }
 };
 
+export const form_validation = (form, excluded) => {
+  let validation = {
+    form: {}
+  };
+
+  Object.keys(form).forEach(key => {
+    if (key == "email") validation.form[key] = { required, email };
+    else validation.form[key] = { required };
+  });
+
+  return validation
+}
+
 const create_validation_obj = validation_keys => {
   let validation = {
     form: {}
@@ -66,6 +79,26 @@ const create_validation_obj = validation_keys => {
 
 export const add_user_validation = role_name => {
   let validation_keys = ["branch_id", "email", "jop_title", "role_name"];
+  let validation = create_validation_obj(validation_keys);
+
+  if (role_name !== "custom") return validation;
+  validation.form.new_role = {
+    name: {
+      required
+    }
+  };
+
+  return validation;
+};
+
+export const add_booking_validation = role_name => {
+  let validation_keys = [
+    "doctor_id",
+    "booking_date",
+    "patient_phone",
+    "start_time",
+    "end_time"
+  ];
   let validation = create_validation_obj(validation_keys);
 
   if (role_name !== "custom") return validation;

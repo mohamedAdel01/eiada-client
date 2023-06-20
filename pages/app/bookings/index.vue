@@ -57,6 +57,7 @@ export default {
 #add-booking-modal {
   display: flex !important;
   .modal-dialog {
+    width: 100% !important;
     margin: auto 0 0 auto !important;
   }
   .modal-body {

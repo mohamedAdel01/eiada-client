@@ -61,7 +61,6 @@ export const actions = {
       };
     } catch (error) {
       commit("loading", false);
-      console.log(error);
       throw error.networkError.result.errors[0].message;
     }
   }

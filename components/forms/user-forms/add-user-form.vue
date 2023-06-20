@@ -15,7 +15,7 @@
       <div class="d-flex flex-wrap align-items-start mb-2">
         <b-form-group
           :class="[
-            'px-0  z-1',
+            'px-0 z-1',
             form.branch_id ? 'show-label' : '',
             form.role_name === 'custom' ? 'col-md-6 col-12' : 'col-12',
           ]"

@@ -35,16 +35,17 @@
               v-for="(booking, i) in day_booking.doctor_bookings"
               :key="i"
               :style="{
-                width: (booking.end_time - booking.start_time) * 250 + 'px',
-                'min-height': '100px',
+                width: (booking.end_time - booking.start_time) * 300 + 'px',
+                'min-height': '200px',
                 top: '0',
-                left: booking.start_time * 250 + 'px',
+                left: booking.start_time * 300 + 'px',
               }"
               class="p-2 position-absolute z-3"
             >
               <div class="px-3 py-2 bg-light-primary rounded-lg pointer">
                 <p class="text-muted mb-1">2:00 PM : 3:00 PM</p>
-                <p class="text-dark font-weight-bold">patient: 01116515445</p>
+                <p class="text-dark font-weight-bold">Mohamed Adel</p>
+                <p class="text-dark font-weight-bold">01116515445</p>
               </div>
             </div>
           </div>
@@ -79,8 +80,8 @@ export default {
       position: sticky;
       top: 0;
       z-index: 4;
-      min-width: 250px;
-      width: 250px;
+      min-width: 300px;
+      width: 300px;
       min-height: 70px;
       height: 70px;
     }
@@ -91,10 +92,10 @@ export default {
     }
 
     tbody td {
-      min-width: 250px;
-      width: 250px;
-      min-height: 80px;
-      height: 80px;
+      min-width: 300px;
+      width: 300px;
+      min-height: 100px;
+      height: 100px;
       z-index: 1;
       border-width: 4px !important;
       transition: 0.3s;
